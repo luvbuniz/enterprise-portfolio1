@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amy Sullivan | Enterprise AI Workflow Design</title>
+    <meta name="description" content="AI workflow design and enterprise training that delivers measurable efficiency gains.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep': '#0a0a0b',
+                        'surface': '#141416',
+                        'elevated': '#1c1c1f',
+                        'border': 'rgba(255,255,255,0.08)',
+                        'muted': '#71717a',
+                        'gold': '#d4a853',
+                        'gold-bright': '#f0c966',
+                    },
+                    fontFamily: {
+                        'display': ['Fraunces', 'Georgia', 'serif'],
+                        'body': ['DM Sans', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0a0a0b;
+            color: #e4e4e7;
+        }
+
+        .gold-gradient {
+            background: linear-gradient(135deg, #d4a853 0%, #f0c966 50%, #d4a853 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass {
+            background: rgba(255,255,255,0.02);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .card-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-lift:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(212, 168, 83, 0.08);
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-up {
+            animation: fadeUp 0.7s ease-out forwards;
+        }
+        .delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .delay-3 { animation-delay: 0.3s; opacity: 0; }
+        .delay-4 { animation-delay: 0.4s; opacity: 0; }
+        .delay-5 { animation-delay: 0.5s; opacity: 0; }
+
+        /* Subtle animated background */
+        .hero-bg {
+            background: 
+                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(212, 168, 83, 0.08), transparent),
+                radial-gradient(ellipse 60% 40% at 80% 60%, rgba(212, 168, 83, 0.04), transparent);
+        }
+
+        /* Grid pattern */
+        .grid-pattern {
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 48px 48px;
+        }
+
+        /* Metric counter animation */
+        .metric-value {
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a0b; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #d4a853; }
+    </style>
+</head>
+<body class="font-body antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-deep/80 backdrop-blur-md border-b border-border">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+            <span class="font-display text-lg text-white">Amy Sullivan</span>
+            <div class="flex items-center gap-6 text-sm">
+                <a href="#services" class="text-muted hover:text-white transition-colors hidden sm:block">Services</a>
+                <a href="#results" class="text-muted hover:text-white transition-colors hidden sm:block">Results</a>
+                <a href="#contact" class="px-4 py-2 bg-gold/10 text-gold border border-gold/20 hover:bg-gold/20 transition-colors">
+                    Get in Touch
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="min-h-screen flex items-center hero-bg grid-pattern relative pt-16">
+        <div class="max-w-5xl mx-auto px-6 py-12">
+            <div class="grid lg:grid-cols-5 gap-12 items-center">
+                <!-- Left: Main content -->
+                <div class="lg:col-span-3 space-y-6">
+                    <p class="text-gold text-sm tracking-widest uppercase animate-fade-up delay-1">
+                        Enterprise AI Consultant
+                    </p>
+                    
+                    <h1 class="animate-fade-up delay-2">
+                        <span class="font-display text-4xl md:text-5xl text-white leading-tight block mb-2">
+                            AI workflows that actually
+                        </span>
+                        <span class="font-display text-4xl md:text-5xl gold-gradient leading-tight">
+                            get adopted.
+                        </span>
+                    </h1>
+
+                    <p class="text-lg text-muted leading-relaxed max-w-xl animate-fade-up delay-3">
+                        I help organizations move from AI experimentation to measurable efficiency gains. 
+                        Not demos that gather dust—systems your team will actually use.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4 pt-4 animate-fade-up delay-4">
+                        <a href="#contact" class="px-6 py-3 bg-gold text-deep font-medium hover:bg-gold-bright transition-colors">
+                            Work With Me
+                        </a>
+                        <a href="#services" class="px-6 py-3 border border-border hover:border-gold/40 text-white transition-colors">
+                            View Services
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: Proof metrics -->
+                <div class="lg:col-span-2 animate-fade-up delay-5">
+                    <div class="glass rounded-xl p-6 space-y-6">
+                        <div class="flex items-baseline gap-3 border-b border-border pb-4">
+                            <span class="font-display text-4xl text-white metric-value">75%</span>
+                            <span class="text-muted text-sm">time reduction achieved</span>
+                        </div>
+                        <div class="flex items-baseline gap-3 border-b border-border pb-4">
+                            <span class="font-display text-4xl text-white metric-value">78</span>
+                            <span class="text-muted text-sm">weeks of curriculum delivered</span>
+                        </div>
+                        <div class="flex items-baseline gap-3 border-b border-border pb-4">
+                            <span class="font-display text-4xl text-white metric-value">4</span>
+                            <span class="text-muted text-sm">LLM platforms mastered</span>
+                        </div>
+                        <div class="flex items-baseline gap-3">
+                            <span class="font-display text-4xl text-white metric-value">40+</span>
+                            <span class="text-muted text-sm">stakeholder decks delivered</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem/Solution -->
+    <section class="py-24 bg-surface border-y border-border">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <p class="text-gold text-sm tracking-widest uppercase mb-4">The Problem</p>
+                    <h2 class="font-display text-2xl md:text-3xl text-white mb-4">
+                        "We tried AI but it didn't stick."
+                    </h2>
+                    <p class="text-muted leading-relaxed">
+                        Most AI adoption fails because organizations treat it as a novelty instead of a workflow. 
+                        Teams get excited, try ChatGPT for a week, then go back to old habits. Sound familiar?
+                    </p>
+                </div>
+                <div>
+                    <p class="text-gold text-sm tracking-widest uppercase mb-4">The Solution</p>
+                    <h2 class="font-display text-2xl md:text-3xl text-white mb-4">
+                        Systems designed for adoption.
+                    </h2>
+                    <p class="text-muted leading-relaxed">
+                        I build AI workflows that fit into existing processes—with templates, documentation, 
+                        and training that makes adoption the path of least resistance. No novelty, just results.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="py-24">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="mb-12">
+                <p class="text-gold text-sm tracking-widest uppercase mb-3">Services</p>
+                <h2 class="font-display text-3xl md:text-4xl text-white">What I Deliver</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Service 1 -->
+                <div class="glass rounded-xl p-8 card-lift">
+                    <div class="w-10 h-10 rounded-lg bg-gold/10 flex items-center justify-center mb-5">
+                        <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl text-white mb-3">Enterprise AI Training</h3>
+                    <p class="text-muted text-sm leading-relaxed mb-4">
+                        Hands-on programs that get your team proficient with Claude, ChatGPT, and Gemini. 
+                        Role-specific workflows they can use immediately—not just prompting theory.
+                    </p>
+                    <ul class="space-y-2 text-sm text-muted">
+                        <li class="flex items-center gap-2">
+                            <span class="w-1 h-1 bg-gold rounded-full"></span>
+                            Role-specific curriculum
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1 h-1 bg-gold rounded-full"></span>
+                            Prompt engineering best practices
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1 h-1 bg-gold rounded-full"></span>
+                            Output validation methods
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="glass rounded-xl p-8 card-lift">
+                    <div class="w-10 h-10 rounded-lg bg-gold/10 flex items-center justify-center mb-5">
+                        <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl text-white mb-3">Workflow Architecture</h3>
+                    <p class="text-muted text-sm leading-relaxed mb-4">
+                        Custom AI pipelines for content, documentation, and operations. 
+                        I build systems that are repeatable, auditable, and designed to stick.
+                    </p>
+                    <ul class="space-y-2 text-sm text-muted">
+                        <li class="flex items-center gap-2">
+                            <span class="w-1 h-1 bg-gold rounded-full"></span>
+                            Multi-model workflow design
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1 h-1 bg-gold rounded-full"></span>
+                            Template & prompt libraries
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1 h-1 bg-gold rounded-full"></span>
+                            Process documentation
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="glass rounded-xl p-8 card-lift">
+                    <div class="w-10 h-10 rounded-lg bg-gold/10 flex items-center justify-center mb-5">
+                        <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl text-white mb-3">Model Evaluation</h3>
+                    <p class="text-muted text-sm leading-relaxed mb-4">
+                        Not all LLMs are equal for every task. I benchmark Claude vs GPT vs Gemini 
+                        for your specific use cases—reliability, accuracy, cost, speed.
+                    </p>
+                    <ul class="space-y-2 text-sm text-muted">
+                        <li class="flex items-center gap-2">
+                            <span class="w-1 h-1 bg-gold rounded-full"></span>
+                            Task-specific benchmarking
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1 h-1 bg-gold rounded-full"></span>
+                            Hallucination rate analysis
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1 h-1 bg-gold rounded-full"></span>
+                            Cost-performance optimization
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="glass rounded-xl p-8 card-lift">
+                    <div class="w-10 h-10 rounded-lg bg-gold/10 flex items-center justify-center mb-5">
+                        <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl text-white mb-3">Content Production Systems</h3>
+                    <p class="text-muted text-sm leading-relaxed mb-4">
+                        End-to-end pipelines for stakeholder presentations, training videos, and documentation. 
+                        Scaled production with consistent brand quality.
+                    </p>
+                    <ul class="space-y-2 text-sm text-muted">
+                        <li class="flex items-center gap-2">
+                            <span class="w-1 h-1 bg-gold rounded-full"></span>
+                            Rapid visual synthesis
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1 h-1 bg-gold rounded-full"></span>
+                            Voice & video pipelines
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-1 h-1 bg-gold rounded-full"></span>
+                            Brand-aligned output at scale
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results -->
+    <section id="results" class="py-24 bg-surface border-y border-border">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="mb-12">
+                <p class="text-gold text-sm tracking-widest uppercase mb-3">Results</p>
+                <h2 class="font-display text-3xl md:text-4xl text-white">Proven Outcomes</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="border-l-2 border-gold/30 pl-6">
+                    <p class="font-display text-4xl gold-gradient mb-2">8 → 2 hrs</p>
+                    <h3 class="text-white text-lg mb-2">Weekly Time Savings</h3>
+                    <p class="text-muted text-sm leading-relaxed">
+                        Reduced planning time from 8 hours to 2 hours per week through AI workflow systems. 
+                        That's 6 hours returned to high-value work—every week.
+                    </p>
+                </div>
+
+                <div class="border-l-2 border-gold/30 pl-6">
+                    <p class="font-display text-4xl gold-gradient mb-2">78 Weeks</p>
+                    <h3 class="text-white text-lg mb-2">Curriculum Delivered</h3>
+                    <p class="text-muted text-sm leading-relaxed">
+                        Three complete 26-week programs developed with AI workflows. 
+                        Full lesson plans, assessments, slide decks, and supporting materials.
+                    </p>
+                </div>
+
+                <div class="border-l-2 border-gold/30 pl-6">
+                    <p class="font-display text-4xl gold-gradient mb-2">100%</p>
+                    <h3 class="text-white text-lg mb-2">Documented & Repeatable</h3>
+                    <p class="text-muted text-sm leading-relaxed">
+                        Every workflow I build is templated and documented for consistent output—not 
+                        one-off experiments that can't be replicated.
+                    </p>
+                </div>
+
+                <div class="border-l-2 border-gold/30 pl-6">
+                    <p class="font-display text-4xl gold-gradient mb-2">4 Models</p>
+                    <h3 class="text-white text-lg mb-2">Deep Platform Expertise</h3>
+                    <p class="text-muted text-sm leading-relaxed">
+                        Daily professional use of Claude, ChatGPT, Gemini, and Grok. 
+                        I know which tool to deploy for which task.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Capabilities -->
+    <section class="py-24">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="mb-12 text-center">
+                <p class="text-gold text-sm tracking-widest uppercase mb-3">Capabilities</p>
+                <h2 class="font-display text-2xl text-white">Core Competencies</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="glass rounded-lg p-6">
+                    <p class="text-white font-medium mb-2">Multi-LLM Orchestration</p>
+                    <p class="text-muted text-sm leading-relaxed">Cross-platform benchmarking and deployment across Claude, GPT, Gemini, and Grok for optimal task routing.</p>
+                </div>
+                <div class="glass rounded-lg p-6">
+                    <p class="text-white font-medium mb-2">Algorithmic Workflow Design</p>
+                    <p class="text-muted text-sm leading-relaxed">Systematic prompt architecture with validation layers, error handling, and reproducible output standards.</p>
+                </div>
+                <div class="glass rounded-lg p-6">
+                    <p class="text-white font-medium mb-2">Enterprise Communication Design</p>
+                    <p class="text-muted text-sm leading-relaxed">Rapid visual synthesis for stakeholder presentations, training materials, and internal communications.</p>
+                </div>
+                <div class="glass rounded-lg p-6">
+                    <p class="text-white font-medium mb-2">Agile Multimedia Production</p>
+                    <p class="text-muted text-sm leading-relaxed">End-to-end video and audio pipelines for internal training, social content, and voice synthesis.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Corporate AI Applications -->
+    <section class="py-24 bg-surface border-y border-border">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="mb-12">
+                <p class="text-gold text-sm tracking-widest uppercase mb-3">Applications</p>
+                <h2 class="font-display text-2xl text-white">Enterprise AI Use Cases</h2>
+                <p class="text-muted mt-3 max-w-2xl">Practical AI implementations for day-to-day business operations.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="glass rounded-lg p-5">
+                    <p class="text-white font-medium text-sm mb-1">Data Analysis Augmentation</p>
+                    <p class="text-muted text-xs">AI-enhanced spreadsheet workflows for reporting and analysis</p>
+                </div>
+                <div class="glass rounded-lg p-5">
+                    <p class="text-white font-medium text-sm mb-1">Document Intelligence</p>
+                    <p class="text-muted text-xs">Large document synthesis and knowledge extraction</p>
+                </div>
+                <div class="glass rounded-lg p-5">
+                    <p class="text-white font-medium text-sm mb-1">Unstructured Data Processing</p>
+                    <p class="text-muted text-xs">PDF parsing, contract review, and data extraction</p>
+                </div>
+                <div class="glass rounded-lg p-5">
+                    <p class="text-white font-medium text-sm mb-1">SOP & Policy Generation</p>
+                    <p class="text-muted text-xs">Standardized documentation and compliance materials</p>
+                </div>
+                <div class="glass rounded-lg p-5">
+                    <p class="text-white font-medium text-sm mb-1">Knowledge Base Development</p>
+                    <p class="text-muted text-xs">Onboarding materials and internal wiki creation</p>
+                </div>
+                <div class="glass rounded-lg p-5">
+                    <p class="text-white font-medium text-sm mb-1">Communication Workflows</p>
+                    <p class="text-muted text-xs">Email templates, meeting summaries, and async updates</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="py-24">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <div>
+                    <p class="text-gold text-sm tracking-widest uppercase mb-3">About</p>
+                    <h2 class="font-display text-3xl text-white mb-6">Background</h2>
+                    <div class="space-y-4 text-muted leading-relaxed">
+                        <p>
+                            I'm a GenAI practitioner who builds workflows that actually get used. 
+                            My background spans curriculum development, e-commerce operations, and 
+                            digital marketing—which means I think about AI from a business outcomes perspective.
+                        </p>
+                        <p>
+                            When teams tell me "we tried ChatGPT but it didn't stick," I know exactly why. 
+                            AI adoption fails when it's treated as a novelty instead of a workflow. I fix that.
+                        </p>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="glass rounded-lg p-5">
+                        <h3 class="text-white text-sm font-medium mb-2">Education</h3>
+                        <p class="text-muted text-sm">UC Berkeley — B.A. Business Administration</p>
+                        <p class="text-muted text-sm">Kingston University London — B.A. Business Administration</p>
+                    </div>
+                    <div class="glass rounded-lg p-5">
+                        <h3 class="text-white text-sm font-medium mb-2">Experience</h3>
+                        <p class="text-muted text-sm leading-relaxed">
+                            E-commerce operations (scaled to $1K/day revenue), 78 weeks of AI-developed curriculum, 
+                            40+ enterprise presentation decks, scalable knowledge transfer system design.
+                        </p>
+                    </div>
+                    <div class="glass rounded-lg p-5">
+                        <h3 class="text-white text-sm font-medium mb-2">Approach</h3>
+                        <p class="text-muted text-sm leading-relaxed">
+                            I explain complex AI concepts in plain language, then build systems 
+                            teams can actually maintain without me.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-24 bg-surface border-t border-border">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+            <p class="text-gold text-sm tracking-widest uppercase mb-3">Contact</p>
+            <h2 class="font-display text-3xl md:text-4xl text-white mb-4">Ready to implement AI that delivers?</h2>
+            <p class="text-muted mb-10 max-w-lg mx-auto">
+                Whether you need training, workflow design, or help choosing the right AI tools—let's talk.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+                <a href="mailto:sullivanamy75@gmail.com" class="px-8 py-4 bg-gold text-deep font-medium hover:bg-gold-bright transition-colors">
+                    sullivanamy75@gmail.com
+                </a>
+                <a href="https://www.linkedin.com/in/amy-sullivan-320865141/" target="_blank" class="px-8 py-4 border border-border hover:border-gold/40 text-white transition-colors">
+                    LinkedIn
+                </a>
+            </div>
+
+            <p class="text-muted text-sm">Based in Florida • Available for remote engagements</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-6 border-t border-border">
+        <div class="max-w-5xl mx-auto px-6 flex justify-between items-center text-sm text-muted">
+            <span>© 2025 Amy Sullivan</span>
+            <span>Enterprise AI Consultant</span>
+        </div>
+    </footer>
+
+</body>
+</html>
