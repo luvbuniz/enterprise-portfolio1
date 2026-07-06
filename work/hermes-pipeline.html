@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: Multi-Model Agent Pipeline with Human-in-the-Loop Review | Amy Sullivan</title>
+    <meta name="description" content="A two-lane automated application pipeline with model routing by task value, hard guardrail gates, and human review on every submission. Internal system, built and operated by Amy Sullivan.">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep': '#0a0a0b',
+                        'surface': '#141416',
+                        'elevated': '#1c1c1f',
+                        'border': 'rgba(255,255,255,0.08)',
+                        'muted': '#71717a',
+                        'gold': '#d4a853',
+                        'gold-bright': '#f0c966',
+                    },
+                    fontFamily: {
+                        'display': ['Fraunces', 'Georgia', 'serif'],
+                        'body': ['DM Sans', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0a0a0b;
+            color: #e4e4e7;
+        }
+
+        .gold-gradient {
+            background: linear-gradient(135deg, #d4a853 0%, #f0c966 50%, #d4a853 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass {
+            background: rgba(255,255,255,0.02);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .card-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-lift:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(212, 168, 83, 0.08);
+        }
+
+        .hero-bg {
+            background:
+                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(212, 168, 83, 0.08), transparent),
+                radial-gradient(ellipse 60% 40% at 80% 60%, rgba(212, 168, 83, 0.04), transparent);
+        }
+
+        .grid-pattern {
+            background-image:
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 48px 48px;
+        }
+
+        .metric-value {
+            font-variant-numeric: tabular-nums;
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a0b; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #d4a853; }
+
+        /* Placeholder marker for content Amy still needs to supply */
+        .fill-in {
+            color: #f0c966;
+            background: rgba(212, 168, 83, 0.08);
+            border: 1px dashed rgba(212, 168, 83, 0.4);
+            border-radius: 4px;
+            padding: 0 4px;
+        }
+
+        /* Timeline */
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            padding-bottom: 2.5rem;
+            border-left: 1px solid rgba(255,255,255,0.12);
+        }
+        .timeline-item:last-child {
+            border-left-color: transparent;
+            padding-bottom: 0;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 4px;
+            width: 11px;
+            height: 11px;
+            border-radius: 9999px;
+            background: #0a0a0b;
+            border: 2px solid #d4a853;
+        }
+    </style>
+</head>
+<body class="font-body antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-deep/80 backdrop-blur-md border-b border-border">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="../index.html" class="font-display text-lg text-white hover:text-gold-bright transition-colors">Amy Sullivan</a>
+            <div class="flex items-center gap-6 text-sm">
+                <a href="../index.html#work" class="text-muted hover:text-white transition-colors hidden sm:block">Work</a>
+                <a href="../index.html#services" class="text-muted hover:text-white transition-colors hidden sm:block">Services</a>
+                <a href="../index.html#contact" class="px-4 py-2 bg-gold/10 text-gold border border-gold/20 hover:bg-gold/20 transition-colors">
+                    Get in Touch
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Page header -->
+        <header class="hero-bg grid-pattern border-b border-border pt-32 pb-16">
+            <div class="max-w-5xl mx-auto px-6">
+                <a href="../index.html#work" class="text-muted text-sm hover:text-white transition-colors">&larr; All work</a>
+                <p class="text-gold text-sm tracking-widest uppercase mt-6 mb-4">Case Study</p>
+                <h1 class="font-display text-3xl md:text-5xl text-white leading-tight max-w-3xl">
+                    Multi-Model Agent Pipeline with Human-in-the-Loop Review
+                </h1>
+                <p class="text-lg text-muted leading-relaxed max-w-2xl mt-6">
+                    A two-lane automated job-application pipeline: cheap models handle the volume work,
+                    Claude Sonnet handles the writing that a human will actually read, hard guardrail gates
+                    filter what gets through — and nothing is submitted without my review and my click.
+                </p>
+                <div class="flex flex-wrap gap-3 mt-8">
+                    <span class="text-xs px-3 py-1.5 border border-gold/30 text-gold rounded-full">
+                        Internal system — built and operated by me
+                    </span>
+                    <span class="text-xs px-3 py-1.5 border border-border text-muted rounded-full">
+                        Shown as a demonstration of capability, not client work
+                    </span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Quick facts -->
+        <section class="py-12 border-b border-border">
+            <div class="max-w-5xl mx-auto px-6">
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="glass rounded-lg p-5">
+                        <p class="text-muted text-xs uppercase tracking-wider mb-2">Agent framework</p>
+                        <p class="text-white text-sm">Hermes (Nous Research)</p>
+                    </div>
+                    <div class="glass rounded-lg p-5">
+                        <p class="text-muted text-xs uppercase tracking-wider mb-2">Infrastructure</p>
+                        <p class="text-white text-sm">Vultr VPS &middot; OpenRouter multi-model API</p>
+                    </div>
+                    <div class="glass rounded-lg p-5">
+                        <p class="text-muted text-xs uppercase tracking-wider mb-2">Oversight</p>
+                        <p class="text-white text-sm">Every submission human-reviewed &mdash; nothing auto-submits</p>
+                    </div>
+                    <div class="glass rounded-lg p-5">
+                        <p class="text-muted text-xs uppercase tracking-wider mb-2">In operation since</p>
+                        <p class="text-white text-sm"><span class="fill-in">[AMY: fill in &mdash; month/year the pipeline went live]</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Before / After / Outcome -->
+        <section class="py-16 bg-surface border-b border-border">
+            <div class="max-w-5xl mx-auto px-6">
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="border-l-2 border-border pl-6">
+                        <p class="text-muted text-xs uppercase tracking-widest mb-3">Before</p>
+                        <p class="text-white leading-relaxed text-sm">
+                            Job applications as a fully manual workflow: find roles, read postings, judge fit,
+                            write a tailored cover letter, fill out forms &mdash; high-volume and repetitive,
+                            with quality mattering most exactly where the volume made it hardest to sustain.
+                        </p>
+                    </div>
+                    <div class="border-l-2 border-gold/40 pl-6">
+                        <p class="text-gold text-xs uppercase tracking-widest mb-3">After</p>
+                        <p class="text-white leading-relaxed text-sm">
+                            A two-lane agent pipeline finds, extracts, filters, and drafts &mdash; then stages every
+                            passing job to a review queue. I make the final call and click submit. Every application
+                            is logged automatically by source tag and date.
+                        </p>
+                    </div>
+                    <div class="border-l-2 border-gold/40 pl-6">
+                        <p class="text-gold text-xs uppercase tracking-widest mb-3">Measurable outcome</p>
+                        <p class="text-white leading-relaxed text-sm">
+                            <span class="fill-in">[AMY: fill in &mdash; applications processed to date, rejection-gate catch count if known]</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The problem -->
+        <section class="py-20">
+            <div class="max-w-5xl mx-auto px-6">
+                <p class="text-gold text-sm tracking-widest uppercase mb-3">The Problem</p>
+                <h2 class="font-display text-2xl md:text-3xl text-white mb-6">Three constraints that fight each other</h2>
+                <p class="text-muted leading-relaxed max-w-2xl mb-10">
+                    Applying for jobs at volume is the kind of workflow AI is constantly pitched for &mdash; and the kind
+                    where naive automation does real damage. The design problem is holding three constraints at once:
+                </p>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="glass rounded-xl p-7">
+                        <p class="font-display text-lg text-white mb-3">Volume</p>
+                        <p class="text-muted text-sm leading-relaxed">
+                            The workflow is high-volume and repetitive: discover postings, extract requirements,
+                            check fit, fill forms. Done by hand, it consumes hours that produce nothing durable.
+                        </p>
+                    </div>
+                    <div class="glass rounded-xl p-7">
+                        <p class="font-display text-lg text-white mb-3">Quality</p>
+                        <p class="text-muted text-sm leading-relaxed">
+                            The output is quality-sensitive. A cover letter is read by a real person at a real company.
+                            A sloppy or wrong application isn't a neutral miss &mdash; it costs reputation.
+                        </p>
+                    </div>
+                    <div class="glass rounded-xl p-7">
+                        <p class="font-display text-lg text-white mb-3">Cost</p>
+                        <p class="text-muted text-sm leading-relaxed">
+                            Running a frontier model on every page load and form field would make per-application
+                            cost balloon. Spend has to stay predictable &mdash; API budget caps are enforced on all keys.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Architecture -->
+        <section class="py-20 bg-surface border-y border-border">
+            <div class="max-w-5xl mx-auto px-6">
+                <p class="text-gold text-sm tracking-widest uppercase mb-3">Architecture</p>
+                <h2 class="font-display text-2xl md:text-3xl text-white mb-6">Two lanes, one router, hard gates, human finish</h2>
+                <p class="text-muted leading-relaxed max-w-2xl mb-10">
+                    The pipeline runs on the Hermes agent framework (Nous Research) on a Vultr VPS, with OpenRouter
+                    providing multi-model API access. Two intake lanes feed a shared filtering-and-drafting core;
+                    everything that passes the gates lands in a review queue for a human decision.
+                </p>
+
+                <div class="glass rounded-xl p-4 md:p-8 overflow-x-auto">
+                    <svg viewBox="0 0 880 560" role="img" aria-label="Architecture diagram: Lane A (LinkedIn Easy Apply) and Lane B (external ATS forms) feed a model router on OpenRouter, which feeds hard guardrail gates. Failing jobs are blocked before staging; passing jobs go to a review queue where a human makes the final submission. A Telegram bot logs every application." class="w-full h-auto" style="min-width: 760px;" font-family="DM Sans, system-ui, sans-serif">
+                        <defs>
+                            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                                <path d="M 0 0 L 10 5 L 0 10 z" fill="#8a8a93"/>
+                            </marker>
+                        </defs>
+
+                        <!-- Lane A -->
+                        <rect x="16" y="56" width="190" height="84" rx="8" fill="#1c1c1f" stroke="rgba(255,255,255,0.18)"/>
+                        <text x="32" y="80" fill="#d4a853" font-size="10" letter-spacing="2">LANE A</text>
+                        <text x="32" y="100" fill="#e4e4e7" font-size="13">LinkedIn Easy Apply</text>
+                        <text x="32" y="118" fill="#a1a1aa" font-size="10.5">human-paced &#183; daily cap</text>
+                        <text x="32" y="132" fill="#a1a1aa" font-size="10.5">dedup: applied_jobs.json</text>
+
+                        <!-- Lane B -->
+                        <rect x="16" y="168" width="190" height="84" rx="8" fill="#1c1c1f" stroke="rgba(255,255,255,0.18)"/>
+                        <text x="32" y="192" fill="#d4a853" font-size="10" letter-spacing="2">LANE B</text>
+                        <text x="32" y="212" fill="#e4e4e7" font-size="13">External ATS forms</text>
+                        <text x="32" y="230" fill="#a1a1aa" font-size="10.5">company career pages</text>
+
+                        <!-- Arrows lanes -> router -->
+                        <line x1="206" y1="98" x2="266" y2="138" stroke="#8a8a93" stroke-width="1.2" marker-end="url(#arrow)"/>
+                        <line x1="206" y1="210" x2="266" y2="186" stroke="#8a8a93" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+                        <!-- Model router -->
+                        <rect x="272" y="90" width="204" height="150" rx="8" fill="#141416" stroke="rgba(255,255,255,0.18)"/>
+                        <text x="288" y="114" fill="#d4a853" font-size="10" letter-spacing="2">MODEL ROUTER</text>
+                        <text x="288" y="133" fill="#a1a1aa" font-size="10.5">OpenRouter &#183; routed by task value</text>
+                        <text x="288" y="160" fill="#e4e4e7" font-size="12">DeepSeek V4 Flash / Pro</text>
+                        <text x="288" y="175" fill="#a1a1aa" font-size="10.5">page extraction &#183; navigation</text>
+                        <text x="288" y="202" fill="#e4e4e7" font-size="12">Claude Sonnet (high effort)</text>
+                        <text x="288" y="217" fill="#a1a1aa" font-size="10.5">cover letters &#8212; quality bottleneck</text>
+
+                        <!-- Arrow router -> gates -->
+                        <line x1="476" y1="165" x2="526" y2="165" stroke="#8a8a93" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+                        <!-- Guardrail gates -->
+                        <rect x="532" y="64" width="208" height="200" rx="8" fill="#141416" stroke="rgba(212,168,83,0.55)"/>
+                        <text x="548" y="88" fill="#d4a853" font-size="10" letter-spacing="2">GUARDRAIL GATES</text>
+                        <text x="548" y="105" fill="#a1a1aa" font-size="10.5">hard blocks &#8212; no agent discretion</text>
+                        <text x="548" y="132" fill="#e4e4e7" font-size="11.5">1&#160;&#160;Location verification</text>
+                        <text x="548" y="152" fill="#e4e4e7" font-size="11.5">2&#160;&#160;Requirements-tier filter</text>
+                        <text x="548" y="172" fill="#e4e4e7" font-size="11.5">3&#160;&#160;Audience-fit employer check</text>
+                        <text x="548" y="192" fill="#e4e4e7" font-size="11.5">4&#160;&#160;Exclusion list</text>
+                        <text x="548" y="220" fill="#d4a853" font-size="11.5">&#8594; 9-point pre-apply checklist</text>
+                        <text x="548" y="238" fill="#a1a1aa" font-size="10.5">run before any job can stage</text>
+
+                        <!-- Fail path -->
+                        <line x1="660" y1="264" x2="660" y2="306" stroke="#8a8a93" stroke-width="1.2" marker-end="url(#arrow)"/>
+                        <text x="672" y="290" fill="#a1a1aa" font-size="10">fail</text>
+                        <rect x="556" y="312" width="184" height="56" rx="8" fill="#141416" stroke="rgba(255,255,255,0.14)"/>
+                        <text x="572" y="336" fill="#a1a1aa" font-size="10" letter-spacing="2">BLOCKED</text>
+                        <text x="572" y="354" fill="#a1a1aa" font-size="11">rejected before staging</text>
+
+                        <!-- Pass path -->
+                        <line x1="576" y1="264" x2="452" y2="314" stroke="#8a8a93" stroke-width="1.2" marker-end="url(#arrow)"/>
+                        <text x="516" y="300" fill="#d4a853" font-size="10">pass</text>
+
+                        <!-- Review queue -->
+                        <rect x="252" y="318" width="200" height="84" rx="8" fill="#1c1c1f" stroke="rgba(212,168,83,0.55)"/>
+                        <text x="268" y="342" fill="#d4a853" font-size="10" letter-spacing="2">REVIEW QUEUE</text>
+                        <text x="268" y="362" fill="#e4e4e7" font-size="13">review_queue.md</text>
+                        <text x="268" y="380" fill="#a1a1aa" font-size="10.5">staged for review &#8212; none sent</text>
+
+                        <!-- Arrow review -> human -->
+                        <line x1="252" y1="360" x2="212" y2="360" stroke="#8a8a93" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+                        <!-- Human -->
+                        <rect x="16" y="318" width="190" height="84" rx="8" fill="rgba(212,168,83,0.10)" stroke="rgba(212,168,83,0.6)"/>
+                        <text x="32" y="342" fill="#d4a853" font-size="10" letter-spacing="2">HUMAN &#8212; FINAL AUTHORITY</text>
+                        <text x="32" y="362" fill="#e4e4e7" font-size="13">Manual review + click</text>
+                        <text x="32" y="380" fill="#a1a1aa" font-size="10.5">nothing auto-submits</text>
+
+                        <!-- Arrow human -> telegram -->
+                        <line x1="111" y1="402" x2="111" y2="448" stroke="#8a8a93" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+                        <!-- Telegram -->
+                        <rect x="16" y="454" width="240" height="96" rx="8" fill="#1c1c1f" stroke="rgba(255,255,255,0.18)"/>
+                        <text x="32" y="478" fill="#d4a853" font-size="10" letter-spacing="2">TELEGRAM REPORTING</text>
+                        <text x="32" y="498" fill="#e4e4e7" font-size="13">Bot on DeepSeek Flash</text>
+                        <text x="32" y="516" fill="#a1a1aa" font-size="10.5">logs every application</text>
+                        <text x="32" y="532" fill="#a1a1aa" font-size="10.5">by source tag, with dates</text>
+
+                        <!-- Infra caption -->
+                        <text x="452" y="440" fill="#a1a1aa" font-size="10" letter-spacing="2">RUNS ON</text>
+                        <text x="452" y="462" fill="#a1a1aa" font-size="11">Hermes agent framework (Nous Research) &#183; Vultr VPS</text>
+                        <text x="452" y="480" fill="#a1a1aa" font-size="11">Obsidian vault synced to the VPS via GitHub over SSH</text>
+                        <text x="452" y="498" fill="#a1a1aa" font-size="11">Dedicated agent browser &#183; separate from personal browsing</text>
+                        <text x="452" y="516" fill="#a1a1aa" font-size="11">API budget caps enforced on all keys</text>
+                    </svg>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 mt-10">
+                    <div class="glass rounded-xl p-7">
+                        <p class="font-display text-lg text-white mb-3">The data layer is a plain-text vault</p>
+                        <p class="text-muted text-sm leading-relaxed">
+                            My Obsidian vault syncs to the VPS through a GitHub repo over SSH, and the agent reads
+                            vault files directly &mdash; job notes, the exclusion list, the review queue. No custom database,
+                            no admin UI: the system's state is human-readable markdown I already work in daily.
+                        </p>
+                    </div>
+                    <div class="glass rounded-xl p-7">
+                        <p class="font-display text-lg text-white mb-3">The agent is contained by design</p>
+                        <p class="text-muted text-sm leading-relaxed">
+                            Agent runs happen in a dedicated browser instance, fully separated from my personal browser
+                            and its sessions. Combined with capped daily volume, the <span class="text-white">applied_jobs.json</span>
+                            deduplication ledger, and API budget caps, the blast radius of any bad run is bounded.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Model routing -->
+        <section class="py-20">
+            <div class="max-w-5xl mx-auto px-6">
+                <p class="text-gold text-sm tracking-widest uppercase mb-3">Model Routing</p>
+                <h2 class="font-display text-2xl md:text-3xl text-white mb-6">Route by task value, not by habit</h2>
+                <p class="text-muted leading-relaxed max-w-2xl mb-10">
+                    The routing principle across the whole system: the cheapest model that clears the quality bar
+                    for each task class &mdash; expensive models only where quality is the bottleneck.
+                </p>
+
+                <div class="glass rounded-xl overflow-x-auto">
+                    <table class="w-full text-sm text-left">
+                        <thead>
+                            <tr class="border-b border-border text-muted text-xs uppercase tracking-wider">
+                                <th class="px-6 py-4 font-medium">Task class</th>
+                                <th class="px-6 py-4 font-medium">Model</th>
+                                <th class="px-6 py-4 font-medium">Why this model</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-border align-top">
+                                <td class="px-6 py-4 text-white whitespace-nowrap">Cover-letter writing</td>
+                                <td class="px-6 py-4 text-gold whitespace-nowrap">Claude Sonnet (high effort)</td>
+                                <td class="px-6 py-4 text-muted leading-relaxed">
+                                    Quality is the bottleneck. This is the one output a human at the company actually
+                                    reads, so it gets the strongest model, run deliberately.
+                                </td>
+                            </tr>
+                            <tr class="border-b border-border align-top">
+                                <td class="px-6 py-4 text-white whitespace-nowrap">Page extraction &amp; navigation</td>
+                                <td class="px-6 py-4 text-gold whitespace-nowrap">DeepSeek V4 Flash / Pro</td>
+                                <td class="px-6 py-4 text-muted leading-relaxed">
+                                    Volume is the bottleneck. Reading postings and driving forms happens on every job,
+                                    so it runs on models cheap enough to call constantly.
+                                </td>
+                            </tr>
+                            <tr class="align-top">
+                                <td class="px-6 py-4 text-white whitespace-nowrap">Application logging (Telegram bot)</td>
+                                <td class="px-6 py-4 text-gold whitespace-nowrap">DeepSeek Flash</td>
+                                <td class="px-6 py-4 text-muted leading-relaxed">
+                                    Reporting is high-frequency and low-stakes: every application logged by source tag
+                                    with dates. No reason to pay frontier prices for status messages.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p class="text-muted text-sm leading-relaxed max-w-2xl mt-6">
+                    The evaluation method behind these routing choices &mdash; discriminator tasks instead of vibe
+                    comparisons &mdash; is documented in
+                    <a href="model-benchmarking.html" class="text-gold hover:text-gold-bright underline underline-offset-4">its own case study</a>.
+                </p>
+            </div>
+        </section>
+
+        <!-- Guardrails timeline -->
+        <section class="py-20 bg-surface border-y border-border">
+            <div class="max-w-5xl mx-auto px-6">
+                <p class="text-gold text-sm tracking-widest uppercase mb-3">Guardrails</p>
+                <h2 class="font-display text-2xl md:text-3xl text-white mb-6">What failed &rarr; what gate we added</h2>
+                <p class="text-muted leading-relaxed max-w-2xl mb-12">
+                    Every gate in this system exists because of a real observed failure. The through-line:
+                    soft heuristics &mdash; asking the agent to use judgment &mdash; failed. Hard blocking gates work.
+                </p>
+
+                <div class="max-w-3xl">
+                    <div class="timeline-item">
+                        <p class="text-white font-medium mb-1">Soft heuristics fail in practice</p>
+                        <p class="text-muted text-sm leading-relaxed mb-2">
+                            <span class="text-gold">What failed:</span> the first filters were prompt-level guidance
+                            &mdash; instructions asking the agent to judge whether a job was a fit. Judgment expressed
+                            as a suggestion gets applied inconsistently.
+                        </p>
+                        <p class="text-muted text-sm leading-relaxed">
+                            <span class="text-gold">What we added:</span> a design rule, not just a fix &mdash; every
+                            filter that matters became a hard blocking gate. A gate either passes a job or stops it;
+                            the agent gets no discretion to talk its way past one.
+                        </p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <p class="text-white font-medium mb-1">Location labels can't be trusted</p>
+                        <p class="text-muted text-sm leading-relaxed mb-2">
+                            <span class="text-gold">What failed:</span> postings carry location labels that don't
+                            always match the actual role.
+                        </p>
+                        <p class="text-muted text-sm leading-relaxed">
+                            <span class="text-gold">What we added:</span> a location-verification gate that checks the
+                            role's real location before a job can proceed. It has receipts: it caught a Slovenia-based
+                            role that was mislabeled as US.
+                        </p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <p class="text-white font-medium mb-1">Hard requirements hide in wish lists</p>
+                        <p class="text-muted text-sm leading-relaxed mb-2">
+                            <span class="text-gold">What failed:</span> roles with hard coding requirements &mdash;
+                            genuine must-haves, not nice-to-haves &mdash; were getting past the soft fit check.
+                        </p>
+                        <p class="text-muted text-sm leading-relaxed">
+                            <span class="text-gold">What we added:</span> a requirements-tier filter that catches hard
+                            coding requirements and blocks on them, instead of letting them blend into the posting's
+                            wish-list language.
+                        </p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <p class="text-white font-medium mb-1">A plausible role at the wrong employer is still wrong</p>
+                        <p class="text-muted text-sm leading-relaxed mb-2">
+                            <span class="text-gold">What failed:</span> role-level checks alone don't ask whether the
+                            employer matches the work I actually do.
+                        </p>
+                        <p class="text-muted text-sm leading-relaxed">
+                            <span class="text-gold">What we added:</span> an audience-fit employer check, plus a
+                            maintained exclusion list (<span class="text-white">Excluded_Companies.md</span>) so a
+                            ruled-out employer stays ruled out across every future run.
+                        </p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <p class="text-white font-medium mb-1">Individual gates consolidate into one checklist</p>
+                        <p class="text-muted text-sm leading-relaxed mb-2">
+                            <span class="text-gold">What failed:</span> gates added one at a time risk becoming scattered
+                            special cases &mdash; easy to skip, hard to audit.
+                        </p>
+                        <p class="text-muted text-sm leading-relaxed">
+                            <span class="text-gold">What we added:</span> a consolidated nine-point pre-apply checklist
+                            that every job must clear before it stages to the review queue. One list, run every time,
+                            in one place.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Human in the loop -->
+        <section class="py-20">
+            <div class="max-w-5xl mx-auto px-6">
+                <p class="text-gold text-sm tracking-widest uppercase mb-3">Human-in-the-Loop</p>
+                <h2 class="font-display text-2xl md:text-3xl text-white mb-6">Nothing auto-submits. That's the design, not a limitation.</h2>
+                <div class="grid md:grid-cols-2 gap-12 items-start">
+                    <div class="space-y-4 text-muted leading-relaxed">
+                        <p>
+                            Submitting an application is an irreversible, reputation-carrying action aimed at a real
+                            company. So the pipeline's job ends one step before the finish line: every job that clears
+                            the gates stages to <span class="text-white">review_queue.md</span>, and the final review
+                            and the actual click are mine, every time.
+                        </p>
+                        <p>
+                            This split puts each side of the system where it's strongest. The agent does the repetitive
+                            middle &mdash; discovery, extraction, filtering, drafting &mdash; at a volume I couldn't sustain
+                            manually. I hold the boundary where judgment and consequences live.
+                        </p>
+                        <p>
+                            It also makes the guardrails honest. Because the queue is the only exit, a gate failure means
+                            a bad job appears in a markdown file in front of me &mdash; not a bad application arriving at
+                            an employer. The system is allowed to be wrong cheaply.
+                        </p>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="glass rounded-lg p-5">
+                            <h3 class="text-white text-sm font-medium mb-2">Stage, don't send</h3>
+                            <p class="text-muted text-sm leading-relaxed">
+                                The agent's terminal action is writing to a review queue. Only a human action
+                                crosses the boundary into the outside world.
+                            </p>
+                        </div>
+                        <div class="glass rounded-lg p-5">
+                            <h3 class="text-white text-sm font-medium mb-2">Contain the agent</h3>
+                            <p class="text-muted text-sm leading-relaxed">
+                                Dedicated browser instance for agent runs, separated from my personal browser.
+                                Human-paced activity with capped daily volume on Lane A.
+                            </p>
+                        </div>
+                        <div class="glass rounded-lg p-5">
+                            <h3 class="text-white text-sm font-medium mb-2">Cap the spend</h3>
+                            <p class="text-muted text-sm leading-relaxed">
+                                API budget caps enforced on all keys, and model routing that keeps frontier-model
+                                calls reserved for the one task where they pay off.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Outcomes -->
+        <section class="py-20 bg-surface border-y border-border">
+            <div class="max-w-5xl mx-auto px-6">
+                <p class="text-gold text-sm tracking-widest uppercase mb-3">Outcomes</p>
+                <h2 class="font-display text-2xl md:text-3xl text-white mb-10">What the system delivers</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="glass rounded-xl p-7">
+                        <p class="font-display text-lg text-white mb-3">Measured</p>
+                        <ul class="space-y-3 text-sm text-muted leading-relaxed">
+                            <li class="flex gap-3">
+                                <span class="text-gold mt-0.5">&#9656;</span>
+                                <span><span class="fill-in">[AMY: fill in &mdash; applications processed to date]</span></span>
+                            </li>
+                            <li class="flex gap-3">
+                                <span class="text-gold mt-0.5">&#9656;</span>
+                                <span><span class="fill-in">[AMY: fill in &mdash; rejection-gate catch count, if known]</span></span>
+                            </li>
+                            <li class="flex gap-3">
+                                <span class="text-gold mt-0.5">&#9656;</span>
+                                <span>One documented catch on record: the location gate stopped a Slovenia-based role
+                                mislabeled as US before it reached the queue.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="glass rounded-xl p-7">
+                        <p class="font-display text-lg text-white mb-3">Structural</p>
+                        <ul class="space-y-3 text-sm text-muted leading-relaxed">
+                            <li class="flex gap-3">
+                                <span class="text-gold mt-0.5">&#9656;</span>
+                                <span>Zero duplicate applications by construction &mdash; the
+                                <span class="text-white">applied_jobs.json</span> ledger dedupes every run.</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <span class="text-gold mt-0.5">&#9656;</span>
+                                <span>A complete audit trail &mdash; every application logged by the Telegram bot
+                                with source tag and date.</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <span class="text-gold mt-0.5">&#9656;</span>
+                                <span>100% of submissions human-approved &mdash; nothing has ever gone out without
+                                a person deciding it should.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Generalization -->
+        <section class="py-20">
+            <div class="max-w-5xl mx-auto px-6">
+                <p class="text-gold text-sm tracking-widest uppercase mb-3">Why This Matters Beyond Job Applications</p>
+                <h2 class="font-display text-2xl md:text-3xl text-white mb-6">The pattern generalizes</h2>
+                <p class="text-muted leading-relaxed max-w-3xl">
+                    Strip out the job-hunting nouns and this is a general architecture for any high-volume,
+                    quality-sensitive workflow: cheap models for extraction and triage, a strong model reserved for
+                    the output a human will actually read, hard gates built from observed failures instead of
+                    imagined ones, and a staging queue that keeps a person on the trigger. The same shape fits
+                    document triage, application and intake processing, and content review queues &mdash; anywhere
+                    the work is repetitive but the cost of a wrong send is real.
+                </p>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="py-16 bg-surface border-t border-border">
+            <div class="max-w-3xl mx-auto px-6 text-center">
+                <h2 class="font-display text-2xl text-white mb-4">Have a workflow with the same shape?</h2>
+                <p class="text-muted mb-8">High volume, quality-sensitive, and too risky to fully automate &mdash; that's exactly the kind of system I build.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="../index.html#contact" class="px-8 py-4 bg-gold text-deep font-medium hover:bg-gold-bright transition-colors">
+                        Get in Touch
+                    </a>
+                    <a href="../index.html#work" class="px-8 py-4 border border-border hover:border-gold/40 text-white transition-colors">
+                        More Work
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-6 border-t border-border">
+        <div class="max-w-5xl mx-auto px-6 flex justify-between items-center text-sm text-muted">
+            <span>&copy; 2026 Amy Sullivan &middot; Buni LLC</span>
+            <span>Enterprise AI Consultant</span>
+        </div>
+    </footer>
+
+</body>
+</html>

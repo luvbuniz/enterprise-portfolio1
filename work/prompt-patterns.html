@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Pattern Library for Business Teams | Amy Sullivan</title>
+    <meta name="description" content="Eight reusable prompt patterns for business teams — when to use each, the template, a worked example, and the failure mode it guards against. By Amy Sullivan.">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep': '#0a0a0b',
+                        'surface': '#141416',
+                        'elevated': '#1c1c1f',
+                        'border': 'rgba(255,255,255,0.08)',
+                        'muted': '#71717a',
+                        'gold': '#d4a853',
+                        'gold-bright': '#f0c966',
+                    },
+                    fontFamily: {
+                        'display': ['Fraunces', 'Georgia', 'serif'],
+                        'body': ['DM Sans', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0a0a0b;
+            color: #e4e4e7;
+        }
+
+        .gold-gradient {
+            background: linear-gradient(135deg, #d4a853 0%, #f0c966 50%, #d4a853 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass {
+            background: rgba(255,255,255,0.02);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .card-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-lift:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(212, 168, 83, 0.08);
+        }
+
+        .hero-bg {
+            background:
+                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(212, 168, 83, 0.08), transparent),
+                radial-gradient(ellipse 60% 40% at 80% 60%, rgba(212, 168, 83, 0.04), transparent);
+        }
+
+        .grid-pattern {
+            background-image:
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 48px 48px;
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a0b; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #d4a853; }
+
+        .pattern-template {
+            background: #0a0a0b;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            font-size: 0.8rem;
+            line-height: 1.6;
+            color: #d4d4d8;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .filter-btn {
+            border: 1px solid rgba(255,255,255,0.12);
+            color: #a1a1aa;
+            transition: all 0.2s ease;
+        }
+        .filter-btn:hover {
+            border-color: rgba(212,168,83,0.4);
+            color: #e4e4e7;
+        }
+        .filter-btn.filter-active {
+            background: rgba(212,168,83,0.12);
+            border-color: rgba(212,168,83,0.5);
+            color: #d4a853;
+        }
+    </style>
+</head>
+<body class="font-body antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-deep/80 backdrop-blur-md border-b border-border">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="../index.html" class="font-display text-lg text-white hover:text-gold-bright transition-colors">Amy Sullivan</a>
+            <div class="flex items-center gap-6 text-sm">
+                <a href="../index.html#work" class="text-muted hover:text-white transition-colors hidden sm:block">Work</a>
+                <a href="../index.html#services" class="text-muted hover:text-white transition-colors hidden sm:block">Services</a>
+                <a href="../index.html#contact" class="px-4 py-2 bg-gold/10 text-gold border border-gold/20 hover:bg-gold/20 transition-colors">
+                    Get in Touch
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Page header -->
+        <header class="hero-bg grid-pattern border-b border-border pt-32 pb-16">
+            <div class="max-w-5xl mx-auto px-6">
+                <a href="../index.html#work" class="text-muted text-sm hover:text-white transition-colors">&larr; All work</a>
+                <p class="text-gold text-sm tracking-widest uppercase mt-6 mb-4">Pattern Library</p>
+                <h1 class="font-display text-3xl md:text-5xl text-white leading-tight max-w-3xl">
+                    Prompt Patterns for Business Teams
+                </h1>
+                <p class="text-lg text-muted leading-relaxed max-w-2xl mt-6">
+                    Eight reusable patterns for everyday business work. Each one tells you when to use it, gives you
+                    the template, shows a worked example &mdash; and names the most common way it fails, because knowing
+                    the failure mode is what separates a workflow from a party trick.
+                </p>
+                <div class="flex flex-wrap gap-3 mt-8">
+                    <span class="text-xs px-3 py-1.5 border border-gold/30 text-gold rounded-full">
+                        Written for non-technical teams
+                    </span>
+                    <span class="text-xs px-3 py-1.5 border border-border text-muted rounded-full">
+                        Copy the template &mdash; replace the [BRACKETED] slots
+                    </span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Filter + cards -->
+        <section class="py-16">
+            <div class="max-w-5xl mx-auto px-6">
+
+                <!-- Filter bar -->
+                <div class="flex flex-wrap gap-3 mb-12" role="group" aria-label="Filter patterns by category">
+                    <button type="button" data-filter="all" class="filter-btn filter-active px-4 py-2 text-sm rounded-full" aria-pressed="true">All (8)</button>
+                    <button type="button" data-filter="writing" class="filter-btn px-4 py-2 text-sm rounded-full" aria-pressed="false">Writing (4)</button>
+                    <button type="button" data-filter="review" class="filter-btn px-4 py-2 text-sm rounded-full" aria-pressed="false">Review (1)</button>
+                    <button type="button" data-filter="extraction" class="filter-btn px-4 py-2 text-sm rounded-full" aria-pressed="false">Extraction (2)</button>
+                    <button type="button" data-filter="decision" class="filter-btn px-4 py-2 text-sm rounded-full" aria-pressed="false">Decision (1)</button>
+                </div>
+
+                <div class="grid gap-8" id="pattern-grid">
+
+                    <!-- Pattern 1: Meeting notes -> action items -->
+                    <article class="glass rounded-xl p-7 md:p-9" data-category="extraction">
+                        <p class="text-gold text-xs tracking-widest uppercase mb-2">Extraction</p>
+                        <h2 class="font-display text-2xl text-white mb-4">Meeting Notes &rarr; Action Items</h2>
+                        <p class="text-muted text-sm leading-relaxed mb-6">
+                            <span class="text-white font-medium">When to use it:</span> after any meeting where decisions
+                            and tasks are buried in a transcript or rough notes, and the team needs an executable list
+                            &mdash; not a recap.
+                        </p>
+                        <p class="text-white text-sm font-medium mb-2">The template</p>
+                        <div class="pattern-template mb-6">You are turning meeting notes into an action-item list that someone who missed the meeting can execute.
+
+Meeting notes:
+[PASTE NOTES OR TRANSCRIPT]
+
+Produce three sections:
+1. Decisions made — one line each.
+2. Action items — a table with columns: Task, Owner, Deadline, Depends on.
+3. Open questions — anything discussed but not resolved.
+
+Rules:
+- Use only what is in the notes. If an owner or deadline was not stated, write "not assigned" — do not guess.
+- After each action item, quote the phrase from the notes that justifies it.</div>
+                        <div class="grid md:grid-cols-2 gap-4 mb-6">
+                            <div class="border border-border rounded-lg p-5">
+                                <p class="text-muted text-xs uppercase tracking-wider mb-2">Example input</p>
+                                <p class="text-muted text-sm leading-relaxed">A 40-minute project kickoff transcript: overlapping speakers, tangents, decisions made in passing ("yeah let's just go with the March date then").</p>
+                            </div>
+                            <div class="border border-border rounded-lg p-5">
+                                <p class="text-muted text-xs uppercase tracking-wider mb-2">Output sketch</p>
+                                <p class="text-muted text-sm leading-relaxed">3 decisions, a 7-row action table with 2 items flagged "not assigned," 3 open questions &mdash; each action item traceable to a quoted line.</p>
+                            </div>
+                        </div>
+                        <div class="border-l-2 border-gold/40 pl-4">
+                            <p class="text-gold text-xs uppercase tracking-widest mb-1">Most common failure mode</p>
+                            <p class="text-muted text-sm leading-relaxed">
+                                The model invents owners and deadlines to make the table look complete. The "do not
+                                guess" rule and the required source quote exist specifically to block that.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Pattern 2: Messy doc -> SOP -->
+                    <article class="glass rounded-xl p-7 md:p-9" data-category="writing">
+                        <p class="text-gold text-xs tracking-widest uppercase mb-2">Writing</p>
+                        <h2 class="font-display text-2xl text-white mb-4">Messy Doc &rarr; SOP</h2>
+                        <p class="text-muted text-sm leading-relaxed mb-6">
+                            <span class="text-white font-medium">When to use it:</span> when a process lives in someone's
+                            head, an email thread, or a rambling wiki page &mdash; and it needs to become a procedure a
+                            new hire can follow without asking anyone.
+                        </p>
+                        <p class="text-white text-sm font-medium mb-2">The template</p>
+                        <div class="pattern-template mb-6">Convert the source material below into a standard operating procedure a brand-new team member could follow unaided.
+
+Source material:
+[PASTE DOC, THREAD, OR NOTES]
+
+SOP format:
+- Purpose (2 sentences max)
+- Who does this, and when it's triggered
+- Prerequisites (access, tools, information needed before starting)
+- Numbered steps. Each step ends with a "Done when:" completion check.
+- Escalation: what to do when a step fails, and who to contact
+
+Rules:
+- Do not invent steps. Where the source is silent or ambiguous, insert a line reading "GAP: [what's missing]" and continue.
+- Keep the original terminology the team already uses.</div>
+                        <div class="grid md:grid-cols-2 gap-4 mb-6">
+                            <div class="border border-border rounded-lg p-5">
+                                <p class="text-muted text-xs uppercase tracking-wider mb-2">Example input</p>
+                                <p class="text-muted text-sm leading-relaxed">A three-page email thread where a departing employee explains monthly invoice processing, out of order, with two contradictions.</p>
+                            </div>
+                            <div class="border border-border rounded-lg p-5">
+                                <p class="text-muted text-xs uppercase tracking-wider mb-2">Output sketch</p>
+                                <p class="text-muted text-sm leading-relaxed">A 12-step SOP with completion checks, plus 2 GAP flags &mdash; one where the thread never says who approves amounts over a threshold.</p>
+                            </div>
+                        </div>
+                        <div class="border-l-2 border-gold/40 pl-4">
+                            <p class="text-gold text-xs uppercase tracking-widest mb-1">Most common failure mode</p>
+                            <p class="text-muted text-sm leading-relaxed">
+                                The model papers over holes with plausible invented steps, and the SOP reads complete
+                                while being wrong. Forcing explicit GAP markers turns missing knowledge into a visible
+                                to-do instead of a hidden landmine.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Pattern 3: First draft with source grounding -->
+                    <article class="glass rounded-xl p-7 md:p-9" data-category="writing">
+                        <p class="text-gold text-xs tracking-widest uppercase mb-2">Writing</p>
+                        <h2 class="font-display text-2xl text-white mb-4">First Draft with Source Grounding</h2>
+                        <p class="text-muted text-sm leading-relaxed mb-6">
+                            <span class="text-white font-medium">When to use it:</span> drafting anything where accuracy
+                            matters &mdash; a client memo, a report section, a board update &mdash; and you have source
+                            documents the draft must stay faithful to.
+                        </p>
+                        <p class="text-white text-sm font-medium mb-2">The template</p>
+                        <div class="pattern-template mb-6">Write a first draft grounded ONLY in the sources below.
+
+Sources:
+[S1] — [PASTE OR SUMMARIZE SOURCE 1]
+[S2] — [PASTE OR SUMMARIZE SOURCE 2]
+
+Draft to write: [WHAT IT IS — memo, report section, update]
+Audience: [WHO READS IT]
+Length: [TARGET LENGTH]
+
+Rules:
+- Every factual claim in the draft ends with its source tag, like [S1].
+- Anything you believe is true but cannot tag goes in a separate "Needs verification" list at the end — not in the draft.
+- If sources conflict, say so in the draft rather than picking one silently.</div>
+                        <div class="grid md:grid-cols-2 gap-4 mb-6">
+                            <div class="border border-border rounded-lg p-5">
+                                <p class="text-muted text-xs uppercase tracking-wider mb-2">Example input</p>
+                                <p class="text-muted text-sm leading-relaxed">Two internal research summaries about customer churn, plus "audience: VP of Customer Success, 500 words."</p>
+                            </div>
+                            <div class="border border-border rounded-lg p-5">
+                                <p class="text-muted text-xs uppercase tracking-wider mb-2">Output sketch</p>
+                                <p class="text-muted text-sm leading-relaxed">A 500-word memo with every claim tagged [S1] or [S2], and a 2-item "Needs verification" list of claims the model wanted to add but couldn't source.</p>
+                            </div>
+                        </div>
+                        <div class="border-l-2 border-gold/40 pl-4">
+                            <p class="text-gold text-xs uppercase tracking-widest mb-1">Most common failure mode</p>
+                            <p class="text-muted text-sm leading-relaxed">
+                                The model blends its general knowledge into the draft so smoothly that sourced and
+                                unsourced claims read identically. The tag-or-quarantine rule keeps the two separable
+                                &mdash; which is the whole point.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Pattern 4: Rubric-based quality review -->
+                    <article class="glass rounded-xl p-7 md:p-9" data-category="review">
+                        <p class="text-gold text-xs tracking-widest uppercase mb-2">Review</p>
+                        <h2 class="font-display text-2xl text-white mb-4">Rubric-Based Quality Review</h2>
+                        <p class="text-muted text-sm leading-relaxed mb-6">
+                            <span class="text-white font-medium">When to use it:</span> reviewing drafts or deliverables
+                            when you need consistent judgments across different reviewers, days, and moods &mdash; the
+                            same structure professional AI data-quality evaluation runs on: anchored scales, evidence
+                            quotes, per-criterion scores.
+                        </p>
+                        <p class="text-white text-sm font-medium mb-2">The template</p>
+                        <div class="pattern-template mb-6">Review the artifact below against this rubric. Score each criterion independently before any overall judgment.
+
+Rubric (score each 1–5):
+- [CRITERION 1, e.g. Clarity]: 1 = [WHAT A 1 LOOKS LIKE], 3 = [WHAT A 3 LOOKS LIKE], 5 = [WHAT A 5 LOOKS LIKE]
+- [CRITERION 2]: 1 = …, 3 = …, 5 = …
+- [CRITERION 3]: 1 = …, 3 = …, 5 = …
+
+Artifact to review:
+[PASTE ARTIFACT]
+
+For each criterion: the score, a one-sentence justification, and a direct quote from the artifact as evidence.
+Then: the two highest-impact fixes, in order.
+Do not give an overall score until every criterion is scored.</div>
+                        <div class="grid md:grid-cols-2 gap-4 mb-6">
+                            <div class="border border-border rounded-lg p-5">
+                                <p class="text-muted text-xs uppercase tracking-wider mb-2">Example input</p>
+                                <p class="text-muted text-sm leading-relaxed">A sales one-pager, reviewed against a 5-criterion rubric (clarity, proof, audience fit, call to action, length discipline) with anchored scale points.</p>
+                            </div>
+                            <div class="border border-border rounded-lg p-5">
+                                <p class="text-muted text-xs uppercase tracking-wider mb-2">Output sketch</p>
+                                <p class="text-muted text-sm leading-relaxed">A score table with quoted evidence per criterion &mdash; proof scores 2 with the offending vague sentence quoted &mdash; then two prioritized fixes.</p>
+                            </div>
+                        </div>
+                        <div class="border-l-2 border-gold/40 pl-4">
+                            <p class="text-gold text-xs uppercase tracking-widest mb-1">Most common failure mode</p>
+                            <p class="text-muted text-sm leading-relaxed">
+                                Grade inflation &mdash; everything scores 4 out of 5 and the review is useless. Anchoring
+                                what a 1, 3, and 5 actually look like, and demanding quoted evidence, is what forces the
+                                scores to mean something.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Pattern 5: Persona-based stakeholder rewrite -->
+                    <article class="glass rounded-xl p-7 md:p-9" data-category="writing">
+                        <p class="text-gold text-xs tracking-widest uppercase mb-2">Writing</p>
+                        <h2 class="font-display text-2xl text-white mb-4">Persona-Based Stakeholder Rewrite</h2>
+                        <p class="text-muted text-sm leading-relaxed mb-6">
+                            <span class="text-white font-medium">When to use it:</span> one piece of content needs to land
+                            with different audiences &mdash; the executive, the front-line team, the customer &mdash;
+                            without maintaining three documents by hand.
+                        </p>
+                        <p class="text-white text-sm font-medium mb-2">The template</p>
+                        <div class="pattern-template mb-6">Rewrite the source content for the reader profile below.
+
+Reader profile:
+- Role: [WHO THEY ARE]
+- What they care about: [THEIR PRIORITIES]
+- Time budget: [e.g. 30 seconds / 5 minutes]
+- What they already know: [CONTEXT THEY HAVE]
+- Decision they need to make after reading: [THE DECISION]
+
+Source content:
+[PASTE SOURCE]
+
+Rules:
+- Facts stay identical to the source. Only selection, order, and framing change.
+- Format for the reader: if the time budget is short, lead with the decision and keep it under [N] lines.
+- End with exactly what you need from them, stated once.</div>
+                        <div class="grid md:grid-cols-2 gap-4 mb-6">
+                            <div class="border border-border rounded-lg p-5">
+                                <p class="text-muted text-xs uppercase tracking-wider mb-2">Example input</p>
+                                <p class="text-muted text-sm leading-relaxed">A detailed engineering status update, rewritten for a COO with a 30-second budget who must decide whether to approve two more weeks.</p>
+                            </div>
+                            <div class="border border-border rounded-lg p-5">
+                                <p class="text-muted text-xs uppercase tracking-wider mb-2">Output sketch</p>
+                                <p class="text-muted text-sm leading-relaxed">A 4-line summary: current state, the one risk that matters, the ask ("approve 2-week extension"), and the cost of saying no.</p>
+                            </div>
+                        </div>
+                        <div class="border-l-2 border-gold/40 pl-4">
+                            <p class="text-gold text-xs uppercase tracking-widest mb-1">Most common failure mode</p>
+                            <p class="text-muted text-sm leading-relaxed">
+                                "Simplifying" quietly changes the claims &mdash; numbers get rounded into fiction, hedged
+                                findings become confident ones. The "facts stay identical" rule is the guardrail; spot-check
+                                the numbers anyway.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Pattern 6: Structured data extraction -->
+                    <article class="glass rounded-xl p-7 md:p-9" data-category="extraction">
+                        <p class="text-gold text-xs tracking-widest uppercase mb-2">Extraction</p>
+                        <h2 class="font-display text-2xl text-white mb-4">Structured Data Extraction from Documents</h2>
+                        <p class="text-muted text-sm leading-relaxed mb-6">
+                            <span class="text-white font-medium">When to use it:</span> pulling the same fields out of
+                            many documents &mdash; contracts, invoices, applications, intake forms &mdash; where the
+                            output feeds a spreadsheet or system and errors compound downstream.
+                        </p>
+                        <p class="text-white text-sm font-medium mb-2">The template</p>
+                        <div class="pattern-template mb-6">Extract the following fields from the document below.
+
+Fields:
+- [FIELD 1] — [TYPE / ALLOWED VALUES, e.g. date as YYYY-MM-DD]
+- [FIELD 2] — [TYPE]
+- [FIELD 3] — [TYPE]
+
+Document:
+[PASTE DOCUMENT]
+
+Output a table with three columns: Field, Extracted value, Verbatim quote from the document supporting it.
+
+Rules:
+- If a field is not stated in the document, the value is "NOT FOUND" — never infer or compute it.
+- The quote column must be word-for-word from the document. No quote, no value.</div>
+                        <div class="grid md:grid-cols-2 gap-4 mb-6">
+                            <div class="border border-border rounded-lg p-5">
+                                <p class="text-muted text-xs uppercase tracking-wider mb-2">Example input</p>
+                                <p class="text-muted text-sm leading-relaxed">A vendor contract; fields: parties, effective date, term length, renewal type, termination notice period, payment terms.</p>
+                            </div>
+                            <div class="border border-border rounded-lg p-5">
+                                <p class="text-muted text-xs uppercase tracking-wider mb-2">Output sketch</p>
+                                <p class="text-muted text-sm leading-relaxed">A 6-row table, each value paired with its supporting quote; renewal type comes back NOT FOUND because the contract never states it &mdash; caught in seconds.</p>
+                            </div>
+                        </div>
+                        <div class="border-l-2 border-gold/40 pl-4">
+                            <p class="text-gold text-xs uppercase tracking-widest mb-1">Most common failure mode</p>
+                            <p class="text-muted text-sm leading-relaxed">
+                                Silent normalization: the model converts "Net 30 from invoice date" into an invented
+                                calendar date, or guesses a missing field from context. The verbatim-quote column makes
+                                every value auditable by a human in seconds.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Pattern 7: Multi-option decision memo -->
+                    <article class="glass rounded-xl p-7 md:p-9" data-category="decision">
+                        <p class="text-gold text-xs tracking-widest uppercase mb-2">Decision</p>
+                        <h2 class="font-display text-2xl text-white mb-4">Multi-Option Decision Memo</h2>
+                        <p class="text-muted text-sm leading-relaxed mb-6">
+                            <span class="text-white font-medium">When to use it:</span> a real decision with two or more
+                            viable options &mdash; vendor choice, build vs. buy, timing &mdash; where stakeholders need
+                            a document to react to instead of a meeting to relitigate.
+                        </p>
+                        <p class="text-white text-sm font-medium mb-2">The template</p>
+                        <div class="pattern-template mb-6">Write a one-page decision memo.
+
+Decision to make: [THE DECISION + DEADLINE]
+Constraints: [BUDGET, TIMELINE, POLICY — anything non-negotiable]
+Criteria, weighted: [e.g. Cost 40%, Time-to-value 30%, Risk 30%]
+
+Options:
+[OPTION A — WHAT IT IS]
+[OPTION B — WHAT IT IS]
+[OPTION C — WHAT IT IS]
+
+Structure:
+1. For each option: what it costs, what it gets us, its biggest risk, and what we'd have to believe for it to be the right choice.
+2. A comparison table scoring each option against the weighted criteria.
+3. Recommendation with reasoning — including the strongest case AGAINST the recommended option.
+4. "What would change this recommendation" — 2–3 concrete tripwires.
+
+Build the table before stating the recommendation.</div>
+                        <div class="grid md:grid-cols-2 gap-4 mb-6">
+                            <div class="border border-border rounded-lg p-5">
+                                <p class="text-muted text-xs uppercase tracking-wider mb-2">Example input</p>
+                                <p class="text-muted text-sm leading-relaxed">Three project-management vendors, a hard budget cap, migration deadline next quarter, criteria weighted toward time-to-value.</p>
+                            </div>
+                            <div class="border border-border rounded-lg p-5">
+                                <p class="text-muted text-xs uppercase tracking-wider mb-2">Output sketch</p>
+                                <p class="text-muted text-sm leading-relaxed">A one-page memo: weighted table, a recommendation that survives its own counter-argument, and two tripwires ("if migration exceeds 6 weeks, revisit").</p>
+                            </div>
+                        </div>
+                        <div class="border-l-2 border-gold/40 pl-4">
+                            <p class="text-gold text-xs uppercase tracking-widest mb-1">Most common failure mode</p>
+                            <p class="text-muted text-sm leading-relaxed">
+                                The model picks a winner early &mdash; often mirroring a preference you hinted at &mdash;
+                                and back-fills the analysis to justify it. Requiring the table first and a genuine case
+                                against the winner keeps the memo honest.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Pattern 8: Email tone calibration -->
+                    <article class="glass rounded-xl p-7 md:p-9" data-category="writing">
+                        <p class="text-gold text-xs tracking-widest uppercase mb-2">Writing</p>
+                        <h2 class="font-display text-2xl text-white mb-4">Email Tone Calibration</h2>
+                        <p class="text-muted text-sm leading-relaxed mb-6">
+                            <span class="text-white font-medium">When to use it:</span> the email is drafted but the
+                            stakes make tone the hard part &mdash; an escalation, a decline, chasing an overdue payment,
+                            delivering bad news to a good client.
+                        </p>
+                        <p class="text-white text-sm font-medium mb-2">The template</p>
+                        <div class="pattern-template mb-6">Calibrate the tone of this email without changing what it asks for.
+
+Draft:
+[PASTE DRAFT]
+
+Context:
+- Recipient and relationship: [WHO + HISTORY, e.g. "client of 3 years, second late invoice"]
+- What I need to happen: [THE CONCRETE OUTCOME]
+- Tone target: warmth [1–5], directness [1–5]
+
+Produce two versions:
+A) Minimal edit — keep my structure and voice, adjust only what misses the tone target.
+B) Full rewrite — same facts and same ask, rebuilt for the tone target.
+
+After each version, list what you changed and why, in one line per change.
+The ask must survive in both versions, stated clearly, exactly once.</div>
+                        <div class="grid md:grid-cols-2 gap-4 mb-6">
+                            <div class="border border-border rounded-lg p-5">
+                                <p class="text-muted text-xs uppercase tracking-wider mb-2">Example input</p>
+                                <p class="text-muted text-sm leading-relaxed">A blunt overdue-invoice email to a long-term client; target: warmth 4, directness 4 &mdash; friendly, but the payment date doesn't move.</p>
+                            </div>
+                            <div class="border border-border rounded-lg p-5">
+                                <p class="text-muted text-xs uppercase tracking-wider mb-2">Output sketch</p>
+                                <p class="text-muted text-sm leading-relaxed">Version A softens two sentences and keeps the deadline; version B restructures around the relationship first &mdash; both still name the date and the amount.</p>
+                            </div>
+                        </div>
+                        <div class="border-l-2 border-gold/40 pl-4">
+                            <p class="text-gold text-xs uppercase tracking-widest mb-1">Most common failure mode</p>
+                            <p class="text-muted text-sm leading-relaxed">
+                                Over-correction into corporate mush: apologetic, hedged, and suddenly not asking for
+                                anything. Pinning "what I need to happen" as a hard requirement anchors the rewrite
+                                against dissolving the ask.
+                            </p>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="py-16 bg-surface border-t border-border">
+            <div class="max-w-3xl mx-auto px-6 text-center">
+                <h2 class="font-display text-2xl text-white mb-4">Want patterns built for your team's actual work?</h2>
+                <p class="text-muted mb-8">These eight are generic on purpose. The versions I build for clients are tuned to your documents, your tone, and your failure modes.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="../index.html#contact" class="px-8 py-4 bg-gold text-deep font-medium hover:bg-gold-bright transition-colors">
+                        Get in Touch
+                    </a>
+                    <a href="../index.html#work" class="px-8 py-4 border border-border hover:border-gold/40 text-white transition-colors">
+                        More Work
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-6 border-t border-border">
+        <div class="max-w-5xl mx-auto px-6 flex justify-between items-center text-sm text-muted">
+            <span>&copy; 2026 Amy Sullivan &middot; Buni LLC</span>
+            <span>Enterprise AI Consultant</span>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            var buttons = document.querySelectorAll('.filter-btn');
+            var cards = document.querySelectorAll('#pattern-grid [data-category]');
+
+            buttons.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var filter = btn.getAttribute('data-filter');
+
+                    buttons.forEach(function (b) {
+                        var active = b === btn;
+                        b.classList.toggle('filter-active', active);
+                        b.setAttribute('aria-pressed', active ? 'true' : 'false');
+                    });
+
+                    cards.forEach(function (card) {
+                        var show = filter === 'all' || card.getAttribute('data-category') === filter;
+                        card.style.display = show ? '' : 'none';
+                    });
+                });
+            });
+        })();
+    </script>
+
+</body>
+</html>
