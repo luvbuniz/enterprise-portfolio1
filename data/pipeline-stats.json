@@ -1,0 +1,6 @@
+{
+  "_readme": "Published by the Hermes pipeline cron. Overwrite this file from the VPS and push to main; work/hermes-pipeline.html auto-renders every non-null field. null means 'not published yet' — the page keeps its placeholder. Keep the numbers honest: they should come from the pipeline's own ledger, never typed by hand.",
+  "updated": null,
+  "applications_processed": null,
+  "gate_catches": null
+}

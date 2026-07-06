@@ -113,6 +113,22 @@
             background: #0a0a0b;
             border: 2px solid #d4a853;
         }
+
+        /* Live tracker */
+        .live-dot {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            border-radius: 9999px;
+            background: #d4a853;
+            margin-right: 6px;
+            vertical-align: middle;
+            animation: livePulse 2s ease-in-out infinite;
+        }
+        @keyframes livePulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
     </style>
 </head>
 <body class="font-body antialiased">
@@ -174,7 +190,8 @@
                     </div>
                     <div class="glass rounded-lg p-5">
                         <p class="text-muted text-xs uppercase tracking-wider mb-2">In operation since</p>
-                        <p class="text-white text-sm"><span class="fill-in">[AMY: fill in &mdash; month/year the pipeline went live]</span></p>
+                        <p class="text-white text-sm">May 28, 2026</p>
+                        <p class="text-gold text-xs mt-2"><span class="live-dot"></span><span id="uptime-counter">&nbsp;</span></p>
                     </div>
                 </div>
             </div>
@@ -202,7 +219,7 @@
                     </div>
                     <div class="border-l-2 border-gold/40 pl-6">
                         <p class="text-gold text-xs uppercase tracking-widest mb-3">Measurable outcome</p>
-                        <p class="text-white leading-relaxed text-sm">
+                        <p class="text-white leading-relaxed text-sm" data-stat="applications_processed" data-stat-template="{n} applications processed since May 28, 2026 &mdash; count published automatically from the pipeline's ledger.">
                             <span class="fill-in">[AMY: fill in &mdash; applications processed to date, rejection-gate catch count if known]</span>
                         </p>
                     </div>
@@ -568,11 +585,11 @@
                         <ul class="space-y-3 text-sm text-muted leading-relaxed">
                             <li class="flex gap-3">
                                 <span class="text-gold mt-0.5">&#9656;</span>
-                                <span><span class="fill-in">[AMY: fill in &mdash; applications processed to date]</span></span>
+                                <span data-stat="applications_processed" data-stat-template="{n} applications processed to date &mdash; auto-updated from the pipeline ledger."><span class="fill-in">[AMY: fill in &mdash; applications processed to date]</span></span>
                             </li>
                             <li class="flex gap-3">
                                 <span class="text-gold mt-0.5">&#9656;</span>
-                                <span><span class="fill-in">[AMY: fill in &mdash; rejection-gate catch count, if known]</span></span>
+                                <span data-stat="gate_catches" data-stat-template="{n} rejection-gate catches to date &mdash; auto-updated."><span class="fill-in">[AMY: fill in &mdash; rejection-gate catch count, if known]</span></span>
                             </li>
                             <li class="flex gap-3">
                                 <span class="text-gold mt-0.5">&#9656;</span>
@@ -602,6 +619,10 @@
                         </ul>
                     </div>
                 </div>
+                <p class="text-muted text-xs mt-6" id="stats-updated" style="display: none;">
+                    <span class="live-dot"></span>Live stats last published <span id="stats-updated-date"></span>
+                    &middot; pushed automatically by the pipeline's cron job
+                </p>
             </div>
         </section>
 
@@ -645,6 +666,46 @@
             <span>Enterprise AI Consultant</span>
         </div>
     </footer>
+
+    <script>
+        (function () {
+            // Live uptime counter, anchored to the pipeline's launch date
+            var START = new Date('2026-05-28T00:00:00Z');
+            var counter = document.getElementById('uptime-counter');
+
+            function renderUptime() {
+                var ms = Date.now() - START.getTime();
+                if (ms < 0) ms = 0;
+                var days = Math.floor(ms / 86400000);
+                var hours = Math.floor((ms % 86400000) / 3600000);
+                counter.textContent = 'live · ' + days.toLocaleString() + ' days, ' + hours + ' h in operation';
+            }
+            renderUptime();
+            setInterval(renderUptime, 60000);
+
+            // Live stats feed: the pipeline's cron publishes data/pipeline-stats.json.
+            // Non-null fields replace their placeholders; null fields leave them untouched.
+            fetch('../data/pipeline-stats.json?t=' + Date.now(), { cache: 'no-store' })
+                .then(function (r) { return r.ok ? r.json() : null; })
+                .then(function (stats) {
+                    if (!stats) return;
+                    document.querySelectorAll('[data-stat]').forEach(function (el) {
+                        var value = stats[el.getAttribute('data-stat')];
+                        if (value === null || value === undefined || isNaN(Number(value))) return;
+                        var template = el.getAttribute('data-stat-template') || '{n}';
+                        el.textContent = template.replace('{n}', Number(value).toLocaleString());
+                    });
+                    if (stats.updated) {
+                        var date = new Date(stats.updated);
+                        document.getElementById('stats-updated-date').textContent =
+                            isNaN(date.getTime()) ? String(stats.updated)
+                                                  : date.toLocaleString(undefined, { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+                        document.getElementById('stats-updated').style.display = '';
+                    }
+                })
+                .catch(function () { /* stats feed is optional; placeholders remain */ });
+        })();
+    </script>
 
 </body>
 </html>
