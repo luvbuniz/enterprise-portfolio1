@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buni LLC — Capabilities | Amy Sullivan</title>
+<meta name="description" content="Capabilities one-pager: AI workflow design, team enablement, and model evaluation by Amy Sullivan, Buni LLC.">
+<style>
+    :root {
+        --ink: #1a1a1c;
+        --muted: #5c5c66;
+        --gold: #b08430;
+        --gold-soft: #f4ead2;
+        --line: #e3e0da;
+        --paper: #fbfaf7;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: "DM Sans", "Segoe UI", system-ui, sans-serif;
+        background: #ecebe7;
+        color: var(--ink);
+        line-height: 1.5;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    .sheet {
+        max-width: 8.5in;
+        margin: 24px auto;
+        background: var(--paper);
+        padding: 44px 52px;
+        box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+    }
+    .toolbar {
+        max-width: 8.5in;
+        margin: 16px auto 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 13px;
+        color: var(--muted);
+    }
+    .toolbar a { color: var(--gold); text-decoration: none; }
+    .toolbar button {
+        font: inherit;
+        padding: 8px 16px;
+        background: var(--ink);
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    header.head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        border-bottom: 2px solid var(--ink);
+        padding-bottom: 14px;
+        margin-bottom: 22px;
+    }
+    .brand { font-family: Georgia, "Times New Roman", serif; font-size: 26px; letter-spacing: 0.5px; }
+    .brand span { color: var(--gold); }
+    .head-right { text-align: right; font-size: 12.5px; color: var(--muted); line-height: 1.45; }
+    .tagline {
+        font-family: Georgia, serif;
+        font-size: 19px;
+        margin-bottom: 6px;
+    }
+    .subline { color: var(--muted); font-size: 13.5px; max-width: 60ch; margin-bottom: 22px; }
+    h2 {
+        font-size: 11px;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin: 20px 0 10px;
+    }
+    .services { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+    .svc {
+        border: 1px solid var(--line);
+        border-top: 2px solid var(--gold);
+        padding: 12px 14px;
+        background: #fff;
+    }
+    .svc b { display: block; font-size: 13.5px; margin-bottom: 5px; }
+    .svc p { font-size: 12px; color: var(--muted); }
+    .quickstart {
+        margin-top: 10px;
+        font-size: 12px;
+        color: var(--muted);
+        background: var(--gold-soft);
+        border: 1px solid #e8d9b0;
+        padding: 9px 12px;
+    }
+    .quickstart b { color: var(--ink); }
+    .cols { display: grid; grid-template-columns: 1.15fr 1fr; gap: 28px; }
+    .receipts { list-style: none; }
+    .receipts li {
+        font-size: 12.5px;
+        padding: 6px 0 6px 16px;
+        border-bottom: 1px solid var(--line);
+        position: relative;
+    }
+    .receipts li::before {
+        content: "";
+        position: absolute;
+        left: 0; top: 12px;
+        width: 6px; height: 6px;
+        background: var(--gold);
+        border-radius: 50%;
+    }
+    .receipts em { font-style: normal; color: var(--muted); }
+    .steps { counter-reset: step; list-style: none; }
+    .steps li {
+        counter-increment: step;
+        font-size: 12.5px;
+        padding: 7px 0 7px 30px;
+        position: relative;
+    }
+    .steps li::before {
+        content: counter(step);
+        position: absolute;
+        left: 0; top: 6px;
+        width: 20px; height: 20px;
+        border: 1px solid var(--gold);
+        border-radius: 50%;
+        color: var(--gold);
+        font-size: 11px;
+        display: flex; align-items: center; justify-content: center;
+    }
+    .steps b { display: inline; }
+    .steps span { color: var(--muted); }
+    .note {
+        margin-top: 14px;
+        font-size: 12px;
+        color: var(--muted);
+        border-left: 2px solid var(--gold);
+        padding-left: 10px;
+    }
+    footer.foot {
+        margin-top: 24px;
+        border-top: 2px solid var(--ink);
+        padding-top: 12px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: var(--muted);
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+    footer.foot b { color: var(--ink); }
+    a { color: var(--gold); }
+    @media (max-width: 700px) {
+        .sheet { padding: 28px 22px; margin: 12px; }
+        .services, .cols { grid-template-columns: 1fr; }
+        header.head { flex-direction: column; gap: 8px; }
+        .head-right { text-align: left; }
+    }
+    @media print {
+        body { background: #fff; font-size: 95%; }
+        .sheet { margin: 0; box-shadow: none; max-width: none; padding: 0.15in 0.3in; }
+        .toolbar { display: none; }
+        @page { size: letter; margin: 0.15in; }
+        header.head { padding-bottom: 10px; margin-bottom: 14px; }
+        .subline { margin-bottom: 14px; }
+        h2 { margin: 12px 0 8px; }
+        .receipts li { padding: 4px 0 4px 16px; }
+        .steps li { padding: 5px 0 5px 30px; }
+        .quickstart { margin-top: 8px; padding: 7px 12px; }
+        .note { margin-top: 10px; }
+        footer.foot { margin-top: 14px; padding-top: 9px; }
+    }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+    <a href="index.html">&larr; back to site</a>
+    <span>
+        <a href="downloads/Buni-LLC-Capabilities.pdf" style="margin-right:14px;">Download PDF</a>
+        <button type="button" onclick="window.print()">Print / Save as PDF</button>
+    </span>
+</div>
+
+<div class="sheet">
+    <header class="head">
+        <div class="brand">Buni <span>LLC</span></div>
+        <div class="head-right">
+            Amy Sullivan &middot; AI Enablement Specialist<br>
+            sullivanamy75@gmail.com &middot; linkedin.com/in/amy-sullivan-320865141<br>
+            luvbuniz.github.io/enterprise-portfolio1 &middot; Florida &middot; remote
+        </div>
+    </header>
+
+    <p class="tagline">I help teams stop experimenting with AI and start using it.</p>
+    <p class="subline">
+        Working AI systems for business teams &mdash; not developers. Built with guardrails, human
+        approval gates, and documentation your team owns. Every claim below is documented in full
+        on the portfolio site, including a production pipeline with live public stats.
+    </p>
+
+    <h2>What I Build</h2>
+    <div class="services">
+        <div class="svc">
+            <b>Bespoke AI Workflows</b>
+            <p>Agent pipelines for high-volume, quality-sensitive work: model routing by task value,
+            hard guardrail gates, review queues &mdash; nothing irreversible without a human click.</p>
+        </div>
+        <div class="svc">
+            <b>Team Enablement &amp; Training</b>
+            <p>Role-specific training and playbooks for non-technical teams &mdash; executives, marketing,
+            operations &mdash; so adoption survives after I leave.</p>
+        </div>
+        <div class="svc">
+            <b>Model Evaluation &amp; Stack Decisions</b>
+            <p>Discriminator-task benchmarking on your actual workload: which model, for which tasks,
+            at what cost &mdash; evaluations that end in spending decisions.</p>
+        </div>
+    </div>
+    <p class="quickstart">
+        <b>Quick-start engagement:</b> a deck &amp; content production system &mdash; consistent,
+        brand-locked presentations and documents on a prompt + rubric system your team keeps.
+    </p>
+
+    <div class="cols">
+        <div>
+            <h2>Receipts, Not Claims</h2>
+            <ul class="receipts">
+                <li>Two-lane agent pipeline in production since May 2026 &mdash; human-approved submissions,
+                    hard guardrail gates, <em>live public stats on the site</em></li>
+                <li>Weekly production time cut from 8 hours to 2 <em>(75% reduction)</em></li>
+                <li>78 weeks of curriculum across three programs &mdash; each 26-week program built
+                    in under 4 hours with AI workflows</li>
+                <li>40+ presentation decks at consistent design standards via systematic prompt engineering</li>
+                <li>Stackadoo &mdash; shipped 3D educational math game with parent dashboard <em>(stackadoo.com)</em></li>
+                <li>Claude, ChatGPT, Gemini &amp; Grok used daily in production, 3+ years</li>
+                <li>AI data-quality evaluation for multiple enterprise AI training platforms
+                    <em>(structured rubrics, 7-point scales)</em></li>
+            </ul>
+        </div>
+        <div>
+            <h2>How an Engagement Works</h2>
+            <ol class="steps">
+                <li><b>Workflow audit (30 min).</b><br><span>Bring one messy workflow. Leave with a
+                    one-page findings memo &mdash; no pitch.</span></li>
+                <li><b>Build, gated.</b><br><span>The system runs with hard quality gates and a human
+                    approval queue from day one. Value is instrumented, not asserted.</span></li>
+                <li><b>Handoff.</b><br><span>Templates, documentation, and training &mdash; your team
+                    owns and maintains it without me.</span></li>
+            </ol>
+            <p class="note">
+                Workflows can run on the Claude subscription your team already pays for &mdash;
+                no API keys, no per-token billing &mdash; or as a multi-model API build when
+                volume demands it.
+            </p>
+        </div>
+    </div>
+
+    <footer class="foot">
+        <div><b>Start with the audit:</b> sullivanamy75@gmail.com &middot; subject line &ldquo;Workflow Audit&rdquo;</div>
+        <div>Full case studies: <b>luvbuniz.github.io/enterprise-portfolio1</b></div>
+    </footer>
+</div>
+
+</body>
+</html>
