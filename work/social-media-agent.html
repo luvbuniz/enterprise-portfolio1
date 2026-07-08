@@ -430,8 +430,51 @@
             </div>
         </section>
 
-        <!-- Engagement shape -->
+        <!-- Deployment options -->
         <section class="py-20 bg-surface border-y border-border">
+            <div class="max-w-5xl mx-auto px-6">
+                <p class="text-gold text-sm tracking-widest uppercase mb-3">Deployment Options</p>
+                <h2 class="font-display text-2xl md:text-3xl text-white mb-6">Two ways to run it &mdash; including on the subscription you already pay for</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="glass rounded-xl p-7 border border-gold/20">
+                        <p class="text-gold text-xs tracking-widest uppercase mb-2">Option A &middot; Lightest footprint</p>
+                        <p class="text-white font-medium mb-3">On your existing Claude subscription</p>
+                        <p class="text-muted text-sm leading-relaxed mb-4">
+                            The entire pipeline runs as scheduled Claude Code sessions (Routines) in the cloud:
+                            an orchestrator model coordinates cheaper worker models, research runs on built-in web
+                            tools, state lives in a private repo, and drafts stage to your review queue.
+                        </p>
+                        <ul class="space-y-2 text-sm text-muted">
+                            <li class="flex items-center gap-2"><span class="w-1 h-1 bg-gold rounded-full"></span>No API keys, no per-token billing</li>
+                            <li class="flex items-center gap-2"><span class="w-1 h-1 bg-gold rounded-full"></span>Flat cost: the Claude plan your team already has</li>
+                            <li class="flex items-center gap-2"><span class="w-1 h-1 bg-gold rounded-full"></span>Subject to your plan's usage limits &mdash; fine for a weekly cadence</li>
+                        </ul>
+                    </div>
+                    <div class="glass rounded-xl p-7">
+                        <p class="text-gold text-xs tracking-widest uppercase mb-2">Option B &middot; Highest headroom</p>
+                        <p class="text-white font-medium mb-3">Multi-model API build on your infrastructure</p>
+                        <p class="text-muted text-sm leading-relaxed mb-4">
+                            For higher volume, non-Claude models in the routing mix, or pipelines that must run
+                            inside your own environment: an agent framework on a small server with per-call API
+                            access &mdash; the same architecture as my
+                            <a href="hermes-pipeline.html" class="text-gold hover:text-gold-bright underline underline-offset-4">production pipeline</a>.
+                        </p>
+                        <ul class="space-y-2 text-sm text-muted">
+                            <li class="flex items-center gap-2"><span class="w-1 h-1 bg-gold rounded-full"></span>Any model from any provider, routed by benchmark</li>
+                            <li class="flex items-center gap-2"><span class="w-1 h-1 bg-gold rounded-full"></span>Scales past subscription limits</li>
+                            <li class="flex items-center gap-2"><span class="w-1 h-1 bg-gold rounded-full"></span>Budget caps enforced on every key</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="text-muted text-sm leading-relaxed max-w-2xl mt-6">
+                    Which option fits is a cost question with real numbers &mdash; posting cadence &times; content
+                    volume &times; model mix &mdash; estimated in discovery, not guessed.
+                </p>
+            </div>
+        </section>
+
+        <!-- Engagement shape -->
+        <section class="py-20">
             <div class="max-w-5xl mx-auto px-6">
                 <p class="text-gold text-sm tracking-widest uppercase mb-3">How It Gets Built</p>
                 <h2 class="font-display text-2xl md:text-3xl text-white mb-6">Trust is dialed up, not assumed</h2>
