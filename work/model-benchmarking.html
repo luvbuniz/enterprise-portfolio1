@@ -1,442 +1,319 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Case Study: Discriminator-Task Model Evaluation | Amy Sullivan</title>
-    <meta name="description" content="A model evaluation method built on tasks that fail in visible, specific ways instead of vibe comparisons — and the real subscription decision it produced. By Amy Sullivan.">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'deep': '#0a0a0b',
-                        'surface': '#141416',
-                        'elevated': '#1c1c1f',
-                        'border': 'rgba(255,255,255,0.08)',
-                        'muted': '#71717a',
-                        'gold': '#d4a853',
-                        'gold-bright': '#f0c966',
-                    },
-                    fontFamily: {
-                        'display': ['Fraunces', 'Georgia', 'serif'],
-                        'body': ['DM Sans', 'system-ui', 'sans-serif'],
-                    },
-                }
-            }
-        }
-    </script>
-
-    <style>
-        body {
-            background-color: #0a0a0b;
-            color: #e4e4e7;
-        }
-
-        .gold-gradient {
-            background: linear-gradient(135deg, #d4a853 0%, #f0c966 50%, #d4a853 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .glass {
-            background: rgba(255,255,255,0.02);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,0.06);
-        }
-
-        .card-lift {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card-lift:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(212, 168, 83, 0.08);
-        }
-
-        .hero-bg {
-            background:
-                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(212, 168, 83, 0.08), transparent),
-                radial-gradient(ellipse 60% 40% at 80% 60%, rgba(212, 168, 83, 0.04), transparent);
-        }
-
-        .grid-pattern {
-            background-image:
-                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 48px 48px;
-        }
-
-        .metric-value {
-            font-variant-numeric: tabular-nums;
-        }
-
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #0a0a0b; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #d4a853; }
-
-        /* Placeholder marker for content Amy still needs to supply */
-        .fill-in {
-            color: #f0c966;
-            background: rgba(212, 168, 83, 0.08);
-            border: 1px dashed rgba(212, 168, 83, 0.4);
-            border-radius: 4px;
-            padding: 0 4px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FILE 02 — Discriminator-Task Model Evaluation · Amy Sullivan</title>
+<meta name="description" content="Case file: a model evaluation method built on tasks that fail in visible, specific ways instead of vibe comparisons — and the real subscription decision it produced. By Amy Sullivan.">
+<link rel="stylesheet" href="../assets/system.css">
+<style>
+  .evalwrap { overflow-x: auto; }
+  .evaltable { width:100%; border-collapse:collapse; text-align:left; }
+  .evaltable th { font-family:var(--mono); font-weight:500; font-size:var(--step--1); letter-spacing:.14em; text-transform:uppercase; color:var(--gold); }
+  .evaltable th, .evaltable td { padding:.9rem 1rem .9rem 0; border-bottom:var(--rule); vertical-align:top; }
+  .fill-in { font-family:var(--mono); font-size:var(--step--1); color:var(--gold-2); border:1px dashed var(--gold); border-radius:2px; padding:.05em .35em; }
+</style>
 </head>
-<body class="font-body antialiased">
+<body>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-deep/80 backdrop-blur-md border-b border-border">
-        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="../index.html" class="font-display text-lg text-white hover:text-gold-bright transition-colors">Amy Sullivan</a>
-            <div class="flex items-center gap-6 text-sm">
-                <a href="../index.html#work" class="text-muted hover:text-white transition-colors hidden sm:block">Work</a>
-                <a href="../index.html#services" class="text-muted hover:text-white transition-colors hidden sm:block">Services</a>
-                <a href="../index.html#contact" class="px-4 py-2 bg-gold/10 text-gold border border-gold/20 hover:bg-gold/20 transition-colors">
-                    Get in Touch
-                </a>
-            </div>
-        </div>
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><span class="mark">AS</span> Amy&nbsp;Sullivan</a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../index.html#specialties">Specialties</a>
+      <a href="../index.html#casefiles">Case Files</a>
+      <a href="../index.html#contact" class="nav-cta">Get in Touch →</a>
     </nav>
+  </div>
+</header>
 
-    <main>
-        <!-- Page header -->
-        <header class="hero-bg grid-pattern border-b border-border pt-32 pb-16">
-            <div class="max-w-5xl mx-auto px-6">
-                <a href="../index.html#work" class="text-muted text-sm hover:text-white transition-colors">&larr; All work</a>
-                <p class="text-gold text-sm tracking-widest uppercase mt-6 mb-4">Case Study</p>
-                <h1 class="font-display text-3xl md:text-5xl text-white leading-tight max-w-3xl">
-                    Discriminator-Task Model Evaluation
-                </h1>
-                <p class="text-lg text-muted leading-relaxed max-w-2xl mt-6">
-                    How I compare models: tasks that fail in visible, specific ways &mdash; not side-by-side
-                    answers and a gut feeling. The method, a worked head-to-head, and the real spending
-                    decision it produced.
-                </p>
-                <div class="flex flex-wrap gap-3 mt-8">
-                    <span class="text-xs px-3 py-1.5 border border-gold/30 text-gold rounded-full">
-                        Internal methodology &mdash; built and used for my own model-stack decisions
-                    </span>
-                    <span class="text-xs px-3 py-1.5 border border-border text-muted rounded-full">
-                        Every result below is from my own testing
-                    </span>
-                </div>
-            </div>
-        </header>
+<!-- ===== FILE HEADER ===== -->
+<section class="section" style="padding-bottom:2rem">
+  <div class="wrap">
+    <p class="eyebrow">Case File 02 · Methodology · Declassified</p>
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1.5rem; margin-top:.6em">
+      <h1 class="display" style="font-size:var(--step-3); max-width:20ch; margin:0">Discriminator-Task Model Evaluation</h1>
+      <span class="stamp">Verdict: Subscription Cancelled</span>
+    </div>
+    <p class="muted" style="max-width:66ch; margin-top:1.2rem; font-size:var(--step-1)">
+      How I compare models: tasks that fail in visible, specific ways — <span class="charm">not side-by-side answers and a gut feeling.</span>
+      The method, a worked head-to-head, and the real spending decision it produced.
+    </p>
+    <p class="mono muted" style="font-size:var(--step--1); letter-spacing:.08em">
+      INTERNAL METHODOLOGY — BUILT AND USED FOR MY OWN MODEL-STACK DECISIONS · EVERY RESULT BELOW IS FROM MY OWN TESTING
+    </p>
+  </div>
+</section>
 
-        <!-- Before / After / Outcome -->
-        <section class="py-16 bg-surface border-b border-border">
-            <div class="max-w-5xl mx-auto px-6">
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="border-l-2 border-border pl-6">
-                        <p class="text-muted text-xs uppercase tracking-widest mb-3">Before</p>
-                        <p class="text-white leading-relaxed text-sm">
-                            A paid GLM subscription justified by general impressions &mdash; and no task-specific
-                            evidence for which model actually earned its place in which workflow.
-                        </p>
-                    </div>
-                    <div class="border-l-2 border-gold/40 pl-6">
-                        <p class="text-gold text-xs uppercase tracking-widest mb-3">After</p>
-                        <p class="text-white leading-relaxed text-sm">
-                            Head-to-head discriminator tasks with visible failure modes, and a routing rule applied
-                            across my stack: the cheapest model that clears the quality bar for each task class.
-                        </p>
-                    </div>
-                    <div class="border-l-2 border-gold/40 pl-6">
-                        <p class="text-gold text-xs uppercase tracking-widest mb-3">Measurable outcome</p>
-                        <p class="text-white leading-relaxed text-sm">
-                            GLM subscription cancelled; GLM moved to per-call OpenRouter access only; budget caps
-                            enforced on all API keys.
-                            <span class="fill-in">[AMY: fill in &mdash; any cost-per-task or monthly API spend numbers you're willing to publish]</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
+<div class="tickerbar" aria-hidden="true">
+  <span>◆ VISIBLE FAILURES</span><span>◆ ONE HEAD-TO-HEAD</span><span>◆ A REAL SPENDING DECISION</span>
+  <span>◆ VISIBLE FAILURES</span><span>◆ ONE HEAD-TO-HEAD</span><span>◆ A REAL SPENDING DECISION</span>
+</div>
 
-        <!-- Why vibes fail -->
-        <section class="py-20">
-            <div class="max-w-5xl mx-auto px-6">
-                <p class="text-gold text-sm tracking-widest uppercase mb-3">The Problem</p>
-                <h2 class="font-display text-2xl md:text-3xl text-white mb-6">Why vibe-based model comparison fails</h2>
-                <p class="text-muted leading-relaxed max-w-2xl mb-10">
-                    The default way teams compare models &mdash; give two of them the same prompt, read both answers,
-                    pick the one that "feels better" &mdash; reliably produces confident conclusions and bad decisions:
-                </p>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="glass rounded-xl p-7">
-                        <p class="font-display text-lg text-white mb-3">Both outputs look plausible</p>
-                        <p class="text-muted text-sm leading-relaxed">
-                            Modern models are all fluent. On open-ended prompts, weaknesses hide inside
-                            well-formatted, confident prose &mdash; the failure isn't on the surface where
-                            a quick read can find it.
-                        </p>
-                    </div>
-                    <div class="glass rounded-xl p-7">
-                        <p class="font-display text-lg text-white mb-3">The grader brings a bias</p>
-                        <p class="text-muted text-sm leading-relaxed">
-                            If you already pay for a model, you're motivated to see its answer as better.
-                            "Feels better" is exactly the kind of judgment confirmation bias eats alive.
-                        </p>
-                    </div>
-                    <div class="glass rounded-xl p-7">
-                        <p class="font-display text-lg text-white mb-3">One sample proves nothing</p>
-                        <p class="text-muted text-sm leading-relaxed">
-                            A single lucky or unlucky generation swings the verdict. Without a task where failure
-                            is objective, you can't tell signal from variance.
-                        </p>
-                    </div>
-                    <div class="glass rounded-xl p-7">
-                        <p class="font-display text-lg text-white mb-3">No decision comes out of it</p>
-                        <p class="text-muted text-sm leading-relaxed">
-                            "Model A seems nicer" doesn't tell you what to route where, what to pay for, or what
-                            to cancel. An evaluation that can't change a line item isn't an evaluation.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- ===== METADATA + BEFORE/AFTER ===== -->
+<section class="section">
+  <div class="wrap grid cols-2" style="gap:3rem; align-items:start">
+    <aside class="filecard" style="border-left-color:var(--gold)">
+      <p class="mono muted" style="font-size:var(--step--1); letter-spacing:.12em; margin:0 0 1rem">FILE METADATA</p>
+      <dl style="margin:0; display:grid; grid-template-columns:auto 1fr; gap:.55rem 1.2rem; font-family:var(--mono); font-size:var(--step--1)">
+        <dt style="color:var(--gold)">TYPE</dt><dd style="margin:0">Evaluation methodology</dd>
+        <dt style="color:var(--gold)">SUBJECTS</dt><dd style="margin:0">Claude Opus 4.8 vs GLM 5.2</dd>
+        <dt style="color:var(--gold)">TESTBED</dt><dd style="margin:0">Gravity billiards — physics as the discriminator</dd>
+        <dt style="color:var(--gold)">OUTCOME</dt><dd style="margin:0">GLM subscription cancelled; per-call access only</dd>
+      </dl>
+    </aside>
+    <div>
+      <p class="eyebrow">Before</p>
+      <p class="muted" style="margin-top:.5em">
+        A paid GLM subscription justified by general impressions — and no task-specific
+        evidence for which model actually earned its place in which workflow.
+      </p>
+      <p class="eyebrow" style="margin-top:1.6rem">After</p>
+      <p class="muted" style="margin-top:.5em">
+        Head-to-head discriminator tasks with visible failure modes, and a routing rule applied
+        across my stack: the cheapest model that clears the quality bar for each task class.
+      </p>
+      <p class="eyebrow" style="margin-top:1.6rem">Measurable Outcome</p>
+      <p class="muted" style="margin-top:.5em">
+        GLM subscription cancelled; GLM moved to per-call OpenRouter access only; budget caps
+        enforced on all API keys.
+        <span class="fill-in">[AMY: fill in — any cost-per-task or monthly API spend numbers you're willing to publish]</span>
+      </p>
+    </div>
+  </div>
+</section>
 
-        <!-- The method -->
-        <section class="py-20 bg-surface border-y border-border">
-            <div class="max-w-5xl mx-auto px-6">
-                <p class="text-gold text-sm tracking-widest uppercase mb-3">The Method</p>
-                <h2 class="font-display text-2xl md:text-3xl text-white mb-6">Discriminator tasks: make failure visible and specific</h2>
-                <div class="grid md:grid-cols-2 gap-12 items-start">
-                    <div class="space-y-4 text-muted leading-relaxed">
-                        <p>
-                            A discriminator task is a test chosen so that the models' difference shows up as a
-                            <span class="text-white">visible, specific failure</span> &mdash; something you can watch
-                            happen, not something you debate. Instead of "whose essay is better," the question
-                            becomes "whose billiard ball falls through the floor."
-                        </p>
-                        <p>
-                            The task has to be hard enough to separate the models, and it has to exercise the
-                            capability you're actually buying. When it works, the result doesn't need a rubric
-                            discussion &mdash; the failure points at the exact capability gap, and the decision
-                            follows from it.
-                        </p>
-                    </div>
-                    <div class="glass rounded-xl p-7">
-                        <p class="text-white font-medium mb-4">What makes a good discriminator task</p>
-                        <ul class="space-y-3 text-sm text-muted leading-relaxed">
-                            <li class="flex gap-3">
-                                <span class="text-gold mt-0.5">1.</span>
-                                <span><span class="text-white">Failure is visible.</span> You observe it directly &mdash;
-                                on screen, in behavior &mdash; rather than inferring it from tone.</span>
-                            </li>
-                            <li class="flex gap-3">
-                                <span class="text-gold mt-0.5">2.</span>
-                                <span><span class="text-white">Failure is specific.</span> When it breaks, it tells you
-                                which capability broke &mdash; not just "worse overall."</span>
-                            </li>
-                            <li class="flex gap-3">
-                                <span class="text-gold mt-0.5">3.</span>
-                                <span><span class="text-white">It exercises what you're paying for.</span> The task
-                                mirrors the real workload class you'd route to the model.</span>
-                            </li>
-                            <li class="flex gap-3">
-                                <span class="text-gold mt-0.5">4.</span>
-                                <span><span class="text-white">It forces a decision.</span> The outcome maps directly
-                                to a routing or spending change &mdash; keep, cancel, or demote.</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- ===== THE PROBLEM ===== -->
+<section class="section section--paper">
+  <div class="wrap">
+    <p class="eyebrow">The Problem</p>
+    <h2 class="display" style="margin:.3em 0 .4em">Why vibe-based model comparison fails</h2>
+    <p class="muted" style="max-width:66ch; margin-bottom:2rem">
+      The default way teams compare models — give two of them the same prompt, read both answers,
+      pick the one that "feels better" — reliably produces confident conclusions and bad decisions:
+    </p>
+    <div class="grid cols-2">
+      <article class="filecard" style="background:#FBF7EC; color:var(--paper-ink); border-left-color:var(--gold)">
+        <div class="fileno" style="color:#8a6f2e">EXHIBIT 01</div>
+        <h3 class="display" style="font-size:var(--step-1); margin:.4em 0">Both outputs look plausible</h3>
+        <p class="muted">Modern models are all fluent. On open-ended prompts, weaknesses hide inside well-formatted, confident prose — the failure isn't on the surface where a quick read can find it.</p>
+      </article>
+      <article class="filecard" style="background:#FBF7EC; color:var(--paper-ink); border-left-color:var(--teal)">
+        <div class="fileno" style="color:#3E8E8A">EXHIBIT 02</div>
+        <h3 class="display" style="font-size:var(--step-1); margin:.4em 0">The grader brings a bias</h3>
+        <p class="muted">If you already pay for a model, you're motivated to see its answer as better. "Feels better" is exactly the kind of judgment confirmation bias eats alive.</p>
+      </article>
+      <article class="filecard" style="background:#FBF7EC; color:var(--paper-ink); border-left-color:var(--teal)">
+        <div class="fileno" style="color:#3E8E8A">EXHIBIT 03</div>
+        <h3 class="display" style="font-size:var(--step-1); margin:.4em 0">One sample proves nothing</h3>
+        <p class="muted">A single lucky or unlucky generation swings the verdict. Without a task where failure is objective, you can't tell signal from variance.</p>
+      </article>
+      <article class="filecard" style="background:#FBF7EC; color:var(--paper-ink); border-left-color:var(--gold)">
+        <div class="fileno" style="color:#8a6f2e">EXHIBIT 04</div>
+        <h3 class="display" style="font-size:var(--step-1); margin:.4em 0">No decision comes out of it</h3>
+        <p class="muted">"Model A seems nicer" doesn't tell you what to route where, what to pay for, or what to cancel. An evaluation that can't change a line item isn't an evaluation.</p>
+      </article>
+    </div>
+  </div>
+</section>
 
-        <!-- Worked example -->
-        <section class="py-20">
-            <div class="max-w-5xl mx-auto px-6">
-                <p class="text-gold text-sm tracking-widest uppercase mb-3">Worked Example</p>
-                <h2 class="font-display text-2xl md:text-3xl text-white mb-6">Claude vs GLM: the gravity-billiards head-to-head</h2>
-                <p class="text-muted leading-relaxed max-w-2xl mb-10">
-                    Both models got the same brief: build a gravity billiards game. Physics is an unforgiving
-                    discriminator &mdash; collisions, gravity, and object behavior are either right or visibly wrong
-                    within seconds of playing. There is no "both answers seem fine" zone.
-                </p>
+<!-- ===== THE METHOD + WORKED EXAMPLE ===== -->
+<section class="section">
+  <div class="wrap">
+    <p class="eyebrow">The Method</p>
+    <h2 class="display" style="margin:.3em 0 .4em">Make failure visible<br>and specific</h2>
+    <div class="grid cols-2" style="gap:3rem; align-items:start; margin-top:1.2rem">
+      <div>
+        <p class="muted" style="margin:0">
+          A discriminator task is a test chosen so that the models' difference shows up as a
+          <strong style="color:var(--cream)">visible, specific failure</strong> — something you can watch
+          happen, not something you debate. Instead of "whose essay is better," the question
+          becomes <span class="charm">"whose billiard ball falls through the floor."</span>
+        </p>
+        <p class="muted" style="margin-top:1em">
+          The task has to be hard enough to separate the models, and it has to exercise the
+          capability you're actually buying. When it works, the result doesn't need a rubric
+          discussion — the failure points at the exact capability gap, and the decision
+          follows from it.
+        </p>
+      </div>
+      <div class="filecard">
+        <p class="mono muted" style="font-size:var(--step--1); letter-spacing:.12em; margin:0 0 1rem">WHAT MAKES A GOOD DISCRIMINATOR TASK</p>
+        <ol class="muted" style="margin:0; padding-left:1.2em; display:grid; gap:.8em">
+          <li><strong style="color:var(--cream)">Failure is visible.</strong> You observe it directly — on screen, in behavior — rather than inferring it from tone.</li>
+          <li><strong style="color:var(--cream)">Failure is specific.</strong> When it breaks, it tells you which capability broke — not just "worse overall."</li>
+          <li><strong style="color:var(--cream)">It exercises what you're paying for.</strong> The task mirrors the real workload class you'd route to the model.</li>
+          <li><strong style="color:var(--cream)">It forces a decision.</strong> The outcome maps directly to a routing or spending change — keep, cancel, or demote.</li>
+        </ol>
+      </div>
+    </div>
 
-                <div class="glass rounded-xl overflow-x-auto mb-6">
-                    <table class="w-full text-sm text-left">
-                        <thead>
-                            <tr class="border-b border-border text-muted text-xs uppercase tracking-wider">
-                                <th class="px-6 py-4 font-medium">Evaluation dimension</th>
-                                <th class="px-6 py-4 font-medium">Claude</th>
-                                <th class="px-6 py-4 font-medium">GLM</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="border-b border-border align-top">
-                                <td class="px-6 py-4 text-white">Physics correctness (gravity, collisions, ball behavior)</td>
-                                <td class="px-6 py-4 text-muted"><span class="fill-in">[AMY: fill in]</span></td>
-                                <td class="px-6 py-4 text-muted"><span class="fill-in">[AMY: fill in]</span></td>
-                            </tr>
-                            <tr class="border-b border-border align-top">
-                                <td class="px-6 py-4 text-white">Playability of the result</td>
-                                <td class="px-6 py-4 text-muted"><span class="fill-in">[AMY: fill in]</span></td>
-                                <td class="px-6 py-4 text-muted"><span class="fill-in">[AMY: fill in]</span></td>
-                            </tr>
-                            <tr class="border-b border-border align-top">
-                                <td class="px-6 py-4 text-white">Completeness on first pass</td>
-                                <td class="px-6 py-4 text-muted"><span class="fill-in">[AMY: fill in]</span></td>
-                                <td class="px-6 py-4 text-muted"><span class="fill-in">[AMY: fill in]</span></td>
-                            </tr>
-                            <tr class="align-top">
-                                <td class="px-6 py-4 text-white">Iterations needed to reach playable</td>
-                                <td class="px-6 py-4 text-muted"><span class="fill-in">[AMY: fill in]</span></td>
-                                <td class="px-6 py-4 text-muted"><span class="fill-in">[AMY: fill in]</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+    <p class="eyebrow" style="margin-top:3.5rem">Worked Example</p>
+    <h3 class="display" style="font-size:var(--step-2); margin:.3em 0 .4em">Opus 4.8 vs GLM 5.2: the gravity-billiards head-to-head</h3>
+    <p class="muted" style="max-width:66ch; margin-bottom:1.6rem">
+      Both models got the same brief: build a gravity billiards game. Physics is an unforgiving
+      discriminator — collisions, gravity, and object behavior are either right or visibly wrong
+      within seconds of playing. There is no "both answers seem fine" zone.
+    </p>
 
-                <div class="border-l-2 border-gold/40 pl-6 max-w-2xl">
-                    <p class="text-gold text-xs uppercase tracking-widest mb-2">Verified result</p>
-                    <p class="text-white leading-relaxed text-sm">
-                        Claude's physics implementation was meaningfully superior. The gap was visible in the running
-                        game &mdash; not a matter of taste, and not close enough to argue about.
-                    </p>
-                </div>
-            </div>
-        </section>
+    <div class="grid cols-2" style="margin-bottom:2rem">
+      <article class="filecard" style="border-left-color:var(--gold)">
+        <div class="fileno">EXHIBIT A · CLAUDE OPUS 4.8</div>
+        <h4 class="display" style="font-size:var(--step-1); margin:.4em 0">Play the Claude build</h4>
+        <p class="muted" style="margin:0 0 1rem">Same brief, Claude's implementation. Judge the gravity and collisions yourself.</p>
+        <a class="btn btn--quiet" href="https://luvbuniz.github.io/billiards/" target="_blank" rel="noopener">Open Exhibit A →</a>
+      </article>
+      <article class="filecard" style="border-left-color:var(--teal)">
+        <div class="fileno" style="color:var(--teal)">EXHIBIT B · GLM 5.2</div>
+        <h4 class="display" style="font-size:var(--step-1); margin:.4em 0">Play the GLM build</h4>
+        <p class="muted" style="margin:0 0 1rem">Same brief, GLM's implementation. The comparison takes about thirty seconds.</p>
+        <a class="btn btn--quiet" href="https://luvbuniz.github.io/fun-game/" target="_blank" rel="noopener">Open Exhibit B →</a>
+      </article>
+    </div>
 
-        <!-- Routing framework -->
-        <section class="py-20 bg-surface border-y border-border">
-            <div class="max-w-5xl mx-auto px-6">
-                <p class="text-gold text-sm tracking-widest uppercase mb-3">The Framework</p>
-                <h2 class="font-display text-2xl md:text-3xl text-white mb-6">From test result to routing decision</h2>
-                <p class="text-muted leading-relaxed max-w-2xl mb-10">
-                    Benchmarks only matter if they change what you route and what you pay for. The framework
-                    I apply after every evaluation:
-                </p>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="glass rounded-xl p-7 card-lift">
-                        <div class="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center mb-4">
-                            <span class="font-display text-gold">1</span>
-                        </div>
-                        <p class="text-white font-medium mb-2">Define the task class</p>
-                        <p class="text-muted text-sm leading-relaxed">
-                            Extraction, navigation, drafting, judgment &mdash; models get evaluated per class of work,
-                            never "in general."
-                        </p>
-                    </div>
-                    <div class="glass rounded-xl p-7 card-lift">
-                        <div class="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center mb-4">
-                            <span class="font-display text-gold">2</span>
-                        </div>
-                        <p class="text-white font-medium mb-2">Set the quality bar</p>
-                        <p class="text-muted text-sm leading-relaxed">
-                            What does failure look like for this class, and who sees the output? A cover letter and a
-                            page scrape have very different bars.
-                        </p>
-                    </div>
-                    <div class="glass rounded-xl p-7 card-lift">
-                        <div class="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center mb-4">
-                            <span class="font-display text-gold">3</span>
-                        </div>
-                        <p class="text-white font-medium mb-2">Run discriminator tasks</p>
-                        <p class="text-muted text-sm leading-relaxed">
-                            Test candidate models on tasks where clearing the bar &mdash; or missing it &mdash;
-                            is visible and specific.
-                        </p>
-                    </div>
-                    <div class="glass rounded-xl p-7 card-lift">
-                        <div class="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center mb-4">
-                            <span class="font-display text-gold">4</span>
-                        </div>
-                        <p class="text-white font-medium mb-2">Route by cost</p>
-                        <p class="text-muted text-sm leading-relaxed">
-                            The cheapest model that clears the bar wins the task class. Expensive models only where
-                            quality is the bottleneck.
-                        </p>
-                    </div>
-                </div>
+    <div class="evalwrap">
+      <table class="evaltable">
+        <thead>
+          <tr>
+            <th scope="col">Evaluation dimension</th>
+            <th scope="col">Claude Opus 4.8</th>
+            <th scope="col">GLM 5.2</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Physics correctness (gravity, collisions, ball behavior)</td>
+            <td class="muted"><span class="fill-in">[AMY: fill in]</span></td>
+            <td class="muted"><span class="fill-in">[AMY: fill in]</span></td>
+          </tr>
+          <tr>
+            <td>Playability of the result</td>
+            <td class="muted"><span class="fill-in">[AMY: fill in]</span></td>
+            <td class="muted"><span class="fill-in">[AMY: fill in]</span></td>
+          </tr>
+          <tr>
+            <td>Completeness on first pass</td>
+            <td class="muted"><span class="fill-in">[AMY: fill in]</span></td>
+            <td class="muted"><span class="fill-in">[AMY: fill in]</span></td>
+          </tr>
+          <tr>
+            <td>Iterations needed to reach playable</td>
+            <td class="muted"><span class="fill-in">[AMY: fill in]</span></td>
+            <td class="muted"><span class="fill-in">[AMY: fill in]</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-                <p class="text-muted text-sm leading-relaxed max-w-2xl mt-10">
-                    This is the framework running live inside my
-                    <a href="hermes-pipeline.html" class="text-gold hover:text-gold-bright underline underline-offset-4">agent pipeline</a>:
-                    Claude Sonnet is reserved for cover letters where quality is the bottleneck, while DeepSeek V4
-                    Flash/Pro handles page extraction and navigation where volume is the bottleneck.
-                </p>
-            </div>
-        </section>
+    <div class="filecard" style="margin-top:2rem; max-width:60ch">
+      <div class="fileno">VERIFIED RESULT</div>
+      <p style="margin:.6em 0 0; font-size:var(--step-1)">
+        Claude's physics implementation was <span class="redact">meaningfully superior</span>.
+      </p>
+      <p class="muted" style="margin:.6em 0 0">
+        The gap was visible in the running game — not a matter of taste, and not close enough to argue about.
+      </p>
+    </div>
+  </div>
+</section>
 
-        <!-- Business outcome -->
-        <section class="py-20">
-            <div class="max-w-5xl mx-auto px-6">
-                <p class="text-gold text-sm tracking-widest uppercase mb-3">Business Outcome</p>
-                <h2 class="font-display text-2xl md:text-3xl text-white mb-6">The test ended a subscription</h2>
-                <p class="text-muted leading-relaxed max-w-2xl mb-10">
-                    The point of the method is that evaluations terminate in spending decisions.
-                    Here's what this one changed:
-                </p>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="glass rounded-xl p-7">
-                        <p class="font-display text-lg text-white mb-3">Subscription cancelled</p>
-                        <p class="text-muted text-sm leading-relaxed">
-                            The GLM subscription didn't survive contact with the evidence. It was cancelled
-                            after the head-to-head.
-                        </p>
-                    </div>
-                    <div class="glass rounded-xl p-7">
-                        <p class="font-display text-lg text-white mb-3">Demoted, not deleted</p>
-                        <p class="text-muted text-sm leading-relaxed">
-                            GLM moved to per-call access through OpenRouter &mdash; still available when it's the right
-                            tool for a cheap call, no longer a fixed monthly cost.
-                        </p>
-                    </div>
-                    <div class="glass rounded-xl p-7">
-                        <p class="font-display text-lg text-white mb-3">Spend kept honest</p>
-                        <p class="text-muted text-sm leading-relaxed">
-                            API budget caps enforced on all keys, so routing decisions stay decisions &mdash;
-                            not suggestions that drift.
-                            <span class="fill-in block mt-2">[AMY: fill in &mdash; cost-per-task or monthly API spend numbers, if publishing]</span>
-                        </p>
-                    </div>
-                </div>
+<!-- ===== THE FRAMEWORK ===== -->
+<section class="section section--paper">
+  <div class="wrap">
+    <p class="eyebrow">The Framework</p>
+    <h2 class="display" style="margin:.3em 0 .4em">From test result to routing decision</h2>
+    <p class="muted" style="max-width:66ch; margin-bottom:2rem">
+      Benchmarks only matter if they change what you route and what you pay for. The framework
+      I apply after every evaluation:
+    </p>
+    <div class="grid cols-4">
+      <article class="filecard" style="background:#FBF7EC; color:var(--paper-ink); border-left-color:var(--gold)">
+        <div class="fileno" style="color:#8a6f2e">STEP 01</div>
+        <h3 class="display" style="font-size:var(--step-1); margin:.4em 0">Define the task class</h3>
+        <p class="muted">Extraction, navigation, drafting, judgment — models get evaluated per class of work, never "in general."</p>
+      </article>
+      <article class="filecard" style="background:#FBF7EC; color:var(--paper-ink); border-left-color:var(--teal)">
+        <div class="fileno" style="color:#3E8E8A">STEP 02</div>
+        <h3 class="display" style="font-size:var(--step-1); margin:.4em 0">Set the quality bar</h3>
+        <p class="muted">What does failure look like for this class, and who sees the output? A cover letter and a page scrape have very different bars.</p>
+      </article>
+      <article class="filecard" style="background:#FBF7EC; color:var(--paper-ink); border-left-color:var(--teal)">
+        <div class="fileno" style="color:#3E8E8A">STEP 03</div>
+        <h3 class="display" style="font-size:var(--step-1); margin:.4em 0">Run discriminator tasks</h3>
+        <p class="muted">Test candidate models on tasks where clearing the bar — or missing it — is visible and specific.</p>
+      </article>
+      <article class="filecard" style="background:#FBF7EC; color:var(--paper-ink); border-left-color:var(--gold)">
+        <div class="fileno" style="color:#8a6f2e">STEP 04</div>
+        <h3 class="display" style="font-size:var(--step-1); margin:.4em 0">Route by cost</h3>
+        <p class="muted">The cheapest model that clears the bar wins the task class. Expensive models only where quality is the bottleneck.</p>
+      </article>
+    </div>
+    <p class="muted" style="margin-top:1.4rem; max-width:66ch">
+      This is the framework running live inside my
+      <a href="hermes-pipeline.html" style="color:#8a6f2e; text-decoration:underline">agent pipeline</a>:
+      Claude Sonnet is reserved for cover letters where quality is the bottleneck, while DeepSeek V4
+      Flash/Pro handles page extraction and navigation where volume is the bottleneck.
+    </p>
+  </div>
+</section>
 
-                <p class="text-muted leading-relaxed max-w-3xl mt-10">
-                    For a team, the same method answers the questions that stall AI adoption: which model do we
-                    standardize on, for which tasks, and what should we actually pay for? Benchmarked answers replace
-                    brand loyalty &mdash; and the eval suite becomes an asset you re-run every time a new model ships.
-                </p>
-            </div>
-        </section>
+<!-- ===== BUSINESS OUTCOME ===== -->
+<section class="section">
+  <div class="wrap">
+    <p class="eyebrow">Business Outcome</p>
+    <h2 class="display" style="margin:.3em 0 .4em">The test ended a subscription</h2>
+    <p class="muted" style="max-width:66ch; margin-bottom:2rem">
+      The point of the method is that evaluations terminate in spending decisions.
+      Here's what this one changed:
+    </p>
+    <div class="grid cols-3">
+      <article class="filecard">
+        <div class="fileno">LINE ITEM 01</div>
+        <h3 class="display" style="font-size:var(--step-1); margin:.4em 0">Subscription cancelled</h3>
+        <p class="muted">The GLM subscription didn't survive contact with the evidence. It was cancelled after the head-to-head.</p>
+      </article>
+      <article class="filecard">
+        <div class="fileno">LINE ITEM 02</div>
+        <h3 class="display" style="font-size:var(--step-1); margin:.4em 0">Demoted, not deleted</h3>
+        <p class="muted">GLM moved to per-call access through OpenRouter — still available when it's the right tool for a cheap call, no longer a fixed monthly cost.</p>
+      </article>
+      <article class="filecard">
+        <div class="fileno">LINE ITEM 03</div>
+        <h3 class="display" style="font-size:var(--step-1); margin:.4em 0">Spend kept honest</h3>
+        <p class="muted">API budget caps enforced on all keys, so routing decisions stay decisions — not suggestions that drift.
+        <span class="fill-in" style="display:inline-block; margin-top:.6em">[AMY: fill in — cost-per-task or monthly API spend numbers, if publishing]</span></p>
+      </article>
+    </div>
+    <p class="muted" style="max-width:72ch; margin-top:2rem">
+      For a team, the same method answers the questions that stall AI adoption: which model do we
+      standardize on, for which tasks, and what should we actually pay for? Benchmarked answers replace
+      brand loyalty — and the eval suite becomes an asset you re-run every time a new model ships.
+    </p>
+  </div>
+</section>
 
-        <!-- CTA -->
-        <section class="py-16 bg-surface border-t border-border">
-            <div class="max-w-3xl mx-auto px-6 text-center">
-                <h2 class="font-display text-2xl text-white mb-4">Deciding which models your team should pay for?</h2>
-                <p class="text-muted mb-8">I build discriminator-task evaluations for your actual workload &mdash; and turn the results into a routing and spending plan.</p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="../index.html#contact" class="px-8 py-4 bg-gold text-deep font-medium hover:bg-gold-bright transition-colors">
-                        Get in Touch
-                    </a>
-                    <a href="../index.html#work" class="px-8 py-4 border border-border hover:border-gold/40 text-white transition-colors">
-                        More Work
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
+<!-- ===== CTA ===== -->
+<section class="section section--paper">
+  <div class="wrap" style="text-align:center">
+    <span class="stamp">Evidence Over Vibes</span>
+    <h2 class="display" style="margin:.5em auto .4em; max-width:22ch">Deciding which models your team should pay for?</h2>
+    <p class="muted" style="max-width:60ch; margin:0 auto 1.6rem">
+      I build discriminator-task evaluations for your actual workload — and turn the results
+      into a routing and spending plan.
+    </p>
+    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap">
+      <a class="btn btn--solid" href="../index.html#contact">Get in Touch →</a>
+      <a class="btn btn--quiet" href="../index.html#casefiles">More Case Files</a>
+    </div>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="py-6 border-t border-border">
-        <div class="max-w-5xl mx-auto px-6 flex justify-between items-center text-sm text-muted">
-            <span>&copy; 2026 Amy Sullivan &middot; Buni LLC</span>
-            <span>Enterprise AI Consultant</span>
-        </div>
-    </footer>
+<footer class="foot">
+  <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem">
+    <a href="../index.html">← BACK TO FIELD OFFICE</a>
+    <span>© 2026 AMY SULLIVAN · BUNI LLC · FILE 02 · ONE REDACTION</span>
+  </div>
+</footer>
 
 </body>
 </html>

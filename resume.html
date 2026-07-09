@@ -1,234 +1,179 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Résumé — Amy Sullivan | AI Enablement Specialist</title>
-    <meta name="description" content="Résumé of Amy Sullivan — AI enablement specialist and workflow architect, Buni LLC.">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'deep': '#0a0a0b',
-                        'surface': '#141416',
-                        'elevated': '#1c1c1f',
-                        'border': 'rgba(255,255,255,0.08)',
-                        'muted': '#71717a',
-                        'gold': '#d4a853',
-                        'gold-bright': '#f0c966',
-                    },
-                    fontFamily: {
-                        'display': ['Fraunces', 'Georgia', 'serif'],
-                        'body': ['DM Sans', 'system-ui', 'sans-serif'],
-                    },
-                }
-            }
-        }
-    </script>
-
-    <style>
-        body {
-            background-color: #0a0a0b;
-            color: #e4e4e7;
-        }
-
-        .glass {
-            background: rgba(255,255,255,0.02);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,0.06);
-        }
-
-        .hero-bg {
-            background:
-                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(212, 168, 83, 0.08), transparent),
-                radial-gradient(ellipse 60% 40% at 80% 60%, rgba(212, 168, 83, 0.04), transparent);
-        }
-
-        .grid-pattern {
-            background-image:
-                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 48px 48px;
-        }
-
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #0a0a0b; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #d4a853; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Résumé — Amy Sullivan | AI Enablement Specialist</title>
+<meta name="description" content="Résumé of Amy Sullivan — AI enablement specialist and workflow architect, Buni LLC.">
+<link rel="stylesheet" href="assets/system.css">
 </head>
-<body class="font-body antialiased">
+<body>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-deep/80 backdrop-blur-md border-b border-border">
-        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="font-display text-lg text-white hover:text-gold-bright transition-colors">Amy Sullivan</a>
-            <div class="flex items-center gap-6 text-sm">
-                <a href="index.html#work" class="text-muted hover:text-white transition-colors hidden sm:block">Work</a>
-                <a href="index.html#services" class="text-muted hover:text-white transition-colors hidden sm:block">Services</a>
-                <a href="index.html#contact" class="px-4 py-2 bg-gold/10 text-gold border border-gold/20 hover:bg-gold/20 transition-colors">
-                    Get in Touch
-                </a>
-            </div>
-        </div>
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="mark">AS</span> Amy&nbsp;Sullivan</a>
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html#specialties">Specialties</a>
+      <a href="index.html#casefiles">Case Files</a>
+      <a href="index.html#contact" class="nav-cta">Get in Touch →</a>
     </nav>
+  </div>
+</header>
 
-    <main>
-        <!-- Header -->
-        <header class="hero-bg grid-pattern border-b border-border pt-32 pb-12">
-            <div class="max-w-3xl mx-auto px-6">
-                <a href="index.html" class="text-muted text-sm hover:text-white transition-colors">&larr; Back to site</a>
-                <h1 class="font-display text-3xl md:text-4xl text-white leading-tight mt-6">Amy Sullivan</h1>
-                <p class="text-gold mt-2">AI Enablement Specialist &middot; Workflow Architect &middot; Buni LLC</p>
-                <p class="text-muted text-sm mt-4 leading-relaxed">
-                    Bradenton, FL &middot; remote &middot;
-                    <a href="mailto:sullivanamy75@gmail.com" class="text-gold hover:text-gold-bright underline underline-offset-4">sullivanamy75@gmail.com</a> &middot;
-                    <a href="https://www.linkedin.com/in/amy-sullivan-320865141/" target="_blank" rel="noopener" class="text-gold hover:text-gold-bright underline underline-offset-4">LinkedIn</a> &middot;
-                    <a href="one-pager.html" class="text-gold hover:text-gold-bright underline underline-offset-4">capabilities one-pager</a>
-                </p>
-            </div>
-        </header>
+<!-- ===== HERO / HEADER ===== -->
+<section class="section" style="padding-bottom:2.5rem">
+  <div class="wrap">
+    <a href="index.html" class="mono muted" style="font-size:var(--step--1); letter-spacing:.08em">&larr; Back to site</a>
+    <p class="eyebrow" style="margin-top:1.5rem">Résumé</p>
+    <h1 class="display" style="font-size:var(--step-2); margin:.35em 0 0">Amy Sullivan</h1>
+    <p style="color:var(--gold-2); font-size:var(--step-1); margin:.6rem 0 0; letter-spacing:.01em">AI Enablement Specialist &middot; Workflow Architect &middot; Buni LLC</p>
+    <p class="mono muted" style="font-size:var(--step--1); letter-spacing:.05em; margin-top:1.2rem">
+      Bradenton, FL &middot; remote &middot;
+      <a href="mailto:sullivanamy75@gmail.com" style="color:var(--gold); text-decoration:underline">sullivanamy75@gmail.com</a> &middot;
+      <a href="https://www.linkedin.com/in/amy-sullivan-320865141/" target="_blank" rel="noopener" style="color:var(--gold); text-decoration:underline">LinkedIn</a> &middot;
+      <a href="one-pager.html" style="color:var(--gold); text-decoration:underline">capabilities one-pager</a>
+    </p>
+  </div>
+</section>
 
-        <!-- Summary -->
-        <section class="py-12 border-b border-border">
-            <div class="max-w-3xl mx-auto px-6">
-                <p class="text-gold text-xs tracking-widest uppercase mb-4">Summary</p>
-                <p class="text-muted leading-relaxed">
-                    AI enablement specialist with 3+ years of daily, hands-on use of Claude, ChatGPT, Gemini,
-                    and Grok in production. I translate AI capability into practical, repeatable workflows that
-                    non-technical teams adopt and sustain independently &mdash; with a documented track record of
-                    75% efficiency gains through systematic prompt engineering and AI-powered content production.
-                    I build reusable playbooks, templates, and training that drive sustained adoption and
-                    responsible AI use. Currently contributing to enterprise AI model training through
-                    multi-format content evaluation.
-                </p>
-            </div>
-        </section>
+<!-- ===== SUMMARY ===== -->
+<section class="section">
+  <div class="wrap">
+    <p class="eyebrow">Summary</p>
+    <p class="muted" style="max-width:72ch; margin-top:1.2rem; font-size:var(--step-0); line-height:1.75">
+      AI enablement specialist with 3+ years of daily, hands-on use of Claude, ChatGPT, Gemini,
+      and Grok in production. I translate AI capability into practical, repeatable workflows that
+      non-technical teams adopt and sustain independently &mdash; with a documented track record of
+      75% efficiency gains through systematic prompt engineering and AI-powered content production.
+      I build reusable playbooks, templates, and training that drive sustained adoption and
+      responsible AI use. Currently contributing to enterprise AI model training through
+      multi-format content evaluation.
+    </p>
+  </div>
+</section>
 
-        <!-- Competencies -->
-        <section class="py-12 border-b border-border bg-surface">
-            <div class="max-w-3xl mx-auto px-6">
-                <p class="text-gold text-xs tracking-widest uppercase mb-4">Core Competencies</p>
-                <div class="flex flex-wrap gap-2 text-sm">
-                    <span class="px-3 py-1 border border-border rounded-full text-muted">AI enablement &amp; adoption strategy</span>
-                    <span class="px-3 py-1 border border-border rounded-full text-muted">AI workflow design &amp; prompt patterns</span>
-                    <span class="px-3 py-1 border border-border rounded-full text-muted">Multi-LLM benchmarking</span>
-                    <span class="px-3 py-1 border border-border rounded-full text-muted">Training delivery &amp; workshops</span>
-                    <span class="px-3 py-1 border border-border rounded-full text-muted">Playbooks, templates &amp; SOPs</span>
-                    <span class="px-3 py-1 border border-border rounded-full text-muted">AI model training &amp; data-quality evaluation</span>
-                    <span class="px-3 py-1 border border-border rounded-full text-muted">Instructional design &amp; curriculum development</span>
-                    <span class="px-3 py-1 border border-border rounded-full text-muted">Change management &amp; coaching</span>
-                    <span class="px-3 py-1 border border-border rounded-full text-muted">Responsible AI use &amp; human oversight</span>
-                </div>
-            </div>
-        </section>
+<!-- ===== CORE COMPETENCIES ===== -->
+<section class="section section--paper">
+  <div class="wrap">
+    <p class="eyebrow">Core Competencies</p>
+    <div style="display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1.3rem">
+      <span class="muted" style="border:var(--rule); border-radius:999px; padding:.45rem 1rem; font-size:var(--step--1)">AI enablement &amp; adoption strategy</span>
+      <span class="muted" style="border:var(--rule); border-radius:999px; padding:.45rem 1rem; font-size:var(--step--1)">AI workflow design &amp; prompt patterns</span>
+      <span class="muted" style="border:var(--rule); border-radius:999px; padding:.45rem 1rem; font-size:var(--step--1)">Multi-LLM benchmarking</span>
+      <span class="muted" style="border:var(--rule); border-radius:999px; padding:.45rem 1rem; font-size:var(--step--1)">Training delivery &amp; workshops</span>
+      <span class="muted" style="border:var(--rule); border-radius:999px; padding:.45rem 1rem; font-size:var(--step--1)">Playbooks, templates &amp; SOPs</span>
+      <span class="muted" style="border:var(--rule); border-radius:999px; padding:.45rem 1rem; font-size:var(--step--1)">AI model training &amp; data-quality evaluation</span>
+      <span class="muted" style="border:var(--rule); border-radius:999px; padding:.45rem 1rem; font-size:var(--step--1)">Instructional design &amp; curriculum development</span>
+      <span class="muted" style="border:var(--rule); border-radius:999px; padding:.45rem 1rem; font-size:var(--step--1)">Change management &amp; coaching</span>
+      <span class="muted" style="border:var(--rule); border-radius:999px; padding:.45rem 1rem; font-size:var(--step--1)">Responsible AI use &amp; human oversight</span>
+    </div>
+  </div>
+</section>
 
-        <!-- Experience -->
-        <section class="py-12 border-b border-border">
-            <div class="max-w-3xl mx-auto px-6 space-y-10">
-                <p class="text-gold text-xs tracking-widest uppercase">Experience</p>
+<!-- ===== EXPERIENCE ===== -->
+<section class="section">
+  <div class="wrap">
+    <p class="eyebrow">Experience</p>
+    <div class="grid" style="gap:1.6rem; margin-top:1.4rem">
 
-                <div>
-                    <div class="flex flex-wrap justify-between items-baseline gap-2">
-                        <h2 class="text-white font-medium">AI Enablement Consultant &amp; Workflow Architect</h2>
-                        <span class="text-muted text-sm">Jan 2024 &ndash; present</span>
-                    </div>
-                    <p class="text-gold text-sm mb-3">Buni LLC (independent consulting) &middot; remote</p>
-                    <ul class="space-y-2 text-sm text-muted leading-relaxed list-disc list-outside ml-5">
-                        <li>Translate business needs into AI-enabled workflows delivering 75% efficiency gains, including end-to-end content production pipelines for presentations, training materials, and documentation.</li>
-                        <li>Build and operate production agent systems &mdash; including a two-lane multi-model application pipeline with hard guardrail gates and human-in-the-loop review, documented publicly with live stats.</li>
-                        <li>Benchmark Claude, ChatGPT, Gemini, and Grok for accuracy, reliability, and cost, matching the right model to each task class via discriminator-task evaluation.</li>
-                        <li>Create reusable playbooks, prompt-pattern libraries, and SOPs that let non-technical teams replicate workflows without ongoing support.</li>
-                        <li>Designed and shipped Stackadoo (stackadoo.com), a 3D educational math game with a parent dashboard, using Claude and Codex.</li>
-                    </ul>
-                    <div class="glass rounded-lg p-4 mt-4">
-                        <p class="text-white text-sm font-medium mb-2">Selected engagement — K&ndash;8 curriculum &amp; content production (Sept 2024 &ndash; Apr 2025)</p>
-                        <ul class="space-y-2 text-sm text-muted leading-relaxed list-disc list-outside ml-5">
-                            <li>Designed 78 weeks of curriculum across three programs with AI-powered workflows, reducing production time from 8 hours to 2 hours per week.</li>
-                            <li>Produced 40+ presentation decks with consistent design standards via systematic prompt engineering; built an 8-week robotics curriculum (live online).</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="flex flex-wrap justify-between items-baseline gap-2">
-                        <h2 class="text-white font-medium">AI Data-Quality Evaluator — Model Training</h2>
-                        <span class="text-muted text-sm">2024 &ndash; present</span>
-                    </div>
-                    <p class="text-gold text-sm mb-3">Contract, multiple enterprise AI platforms &middot; remote</p>
-                    <ul class="space-y-2 text-sm text-muted leading-relaxed list-disc list-outside ml-5">
-                        <li>Evaluate AI-generated presentations, documents, and spreadsheets against structured rubrics covering content quality, layout, storytelling, aesthetics, and editability.</li>
-                        <li>Score and rank outputs on 7-point quality scales, generating training signal for model improvement on real-world business deliverables.</li>
-                        <li>Write and refine evaluation rubrics with objective, reproducible criteria; develop persona-based scenarios and annotation guidelines for AI training pipelines.</li>
-                    </ul>
-                </div>
-
-                <div>
-                    <div class="flex flex-wrap justify-between items-baseline gap-2">
-                        <h2 class="text-white font-medium">Digital Marketing Specialist</h2>
-                        <span class="text-muted text-sm">2023 &ndash; 2024</span>
-                    </div>
-                    <p class="text-gold text-sm mb-3">Voice Media / independent consulting</p>
-                    <ul class="space-y-2 text-sm text-muted leading-relaxed list-disc list-outside ml-5">
-                        <li>Implemented AI-augmented workflows for SEO audits, content strategy, and analytics; translated AI capability into business outcomes for SMB clients.</li>
-                    </ul>
-                </div>
-
-                <div>
-                    <div class="flex flex-wrap justify-between items-baseline gap-2">
-                        <h2 class="text-white font-medium">Owner &amp; Operator — Luvami (Amazon private label)</h2>
-                        <span class="text-muted text-sm">2016 &ndash; 2020</span>
-                    </div>
-                    <p class="text-gold text-sm mb-3">Las Vegas, NV</p>
-                    <ul class="space-y-2 text-sm text-muted leading-relaxed list-disc list-outside ml-5">
-                        <li>Built and ran an Amazon e-commerce business for four years: data-driven inventory management, pricing optimization, and digital marketing operations.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Tools -->
-        <section class="py-12 border-b border-border bg-surface">
-            <div class="max-w-3xl mx-auto px-6">
-                <p class="text-gold text-xs tracking-widest uppercase mb-4">Tools &amp; Technologies</p>
-                <div class="space-y-2 text-sm text-muted leading-relaxed">
-                    <p><span class="text-white">AI / LLMs:</span> Claude, ChatGPT/GPT-4, Gemini, Grok, Microsoft Copilot &mdash; daily multi-model use, 3+ years</p>
-                    <p><span class="text-white">Content &amp; design:</span> Gamma, Canva, Google Slides, Articulate Rise/360, HeyGen, PowerPoint</p>
-                    <p><span class="text-white">Productivity:</span> Google Workspace, Microsoft 365, HubSpot CRM, GitHub</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA -->
-        <section class="py-16">
-            <div class="max-w-3xl mx-auto px-6 text-center">
-                <p class="text-muted mb-6">The proof behind this résumé is documented in full on the portfolio &mdash; case studies, live pipeline stats, and shipped products.</p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="index.html#work" class="px-8 py-4 bg-gold text-deep font-medium hover:bg-gold-bright transition-colors">
-                        See the Work
-                    </a>
-                    <a href="one-pager.html" class="px-8 py-4 border border-border hover:border-gold/40 text-white transition-colors">
-                        Capabilities One-Pager
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="py-6 border-t border-border">
-        <div class="max-w-5xl mx-auto px-6 flex justify-between items-center text-sm text-muted">
-            <span>&copy; 2026 Amy Sullivan &middot; Buni LLC</span>
-            <span>Enterprise AI Consultant</span>
+      <article class="filecard">
+        <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:.5rem">
+          <h3 class="display" style="font-size:var(--step-1); margin:0">AI Enablement Consultant &amp; Workflow Architect</h3>
+          <span class="mono muted" style="font-size:var(--step--1); letter-spacing:.08em">Jan 2024 &ndash; present</span>
         </div>
-    </footer>
+        <p class="mono" style="color:var(--gold); font-size:var(--step--1); letter-spacing:.06em; margin:.6rem 0 1rem">Buni LLC (independent consulting) &middot; remote</p>
+        <ul class="muted" style="margin:0; padding-left:1.2em; line-height:1.7">
+          <li style="margin-bottom:.55em">Translate business needs into AI-enabled workflows delivering 75% efficiency gains, including end-to-end content production pipelines for presentations, training materials, and documentation.</li>
+          <li style="margin-bottom:.55em">Build and operate production agent systems &mdash; including a two-lane multi-model application pipeline with hard guardrail gates and human-in-the-loop review, documented publicly with live stats.</li>
+          <li style="margin-bottom:.55em">Benchmark Claude, ChatGPT, Gemini, and Grok for accuracy, reliability, and cost, matching the right model to each task class via discriminator-task evaluation.</li>
+          <li style="margin-bottom:.55em">Create reusable playbooks, prompt-pattern libraries, and SOPs that let non-technical teams replicate workflows without ongoing support.</li>
+          <li style="margin-bottom:0">Designed and shipped Stackadoo (stackadoo.com), a 3D educational math game with a parent dashboard, using Claude and Codex.</li>
+        </ul>
+        <div style="margin-top:1.3rem; border:var(--rule); border-left:2px solid var(--gold-2); background:var(--ink-3); padding:1.1rem 1.2rem">
+          <p style="color:var(--cream); font-weight:600; margin:0 0 .7rem; font-size:var(--step--1)">Selected engagement — K&ndash;8 curriculum &amp; content production (Sept 2024 &ndash; Apr 2025)</p>
+          <ul class="muted" style="margin:0; padding-left:1.2em; line-height:1.7">
+            <li style="margin-bottom:.55em">Designed 78 weeks of curriculum across three programs with AI-powered workflows, reducing production time from 8 hours to 2 hours per week.</li>
+            <li style="margin-bottom:0">Produced 40+ presentation decks with consistent design standards via systematic prompt engineering; built an 8-week robotics curriculum (live online).</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="filecard">
+        <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:.5rem">
+          <h3 class="display" style="font-size:var(--step-1); margin:0">AI Data-Quality Evaluator — Model Training</h3>
+          <span class="mono muted" style="font-size:var(--step--1); letter-spacing:.08em">2024 &ndash; present</span>
+        </div>
+        <p class="mono" style="color:var(--gold); font-size:var(--step--1); letter-spacing:.06em; margin:.6rem 0 1rem">Contract, multiple enterprise AI platforms &middot; remote</p>
+        <ul class="muted" style="margin:0; padding-left:1.2em; line-height:1.7">
+          <li style="margin-bottom:.55em">Evaluate AI-generated presentations, documents, and spreadsheets against structured rubrics covering content quality, layout, storytelling, aesthetics, and editability.</li>
+          <li style="margin-bottom:.55em">Score and rank outputs on 7-point quality scales, generating training signal for model improvement on real-world business deliverables.</li>
+          <li style="margin-bottom:0">Write and refine evaluation rubrics with objective, reproducible criteria; develop persona-based scenarios and annotation guidelines for AI training pipelines.</li>
+        </ul>
+      </article>
+
+      <article class="filecard">
+        <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:.5rem">
+          <h3 class="display" style="font-size:var(--step-1); margin:0">Digital Marketing Specialist</h3>
+          <span class="mono muted" style="font-size:var(--step--1); letter-spacing:.08em">2023 &ndash; 2024</span>
+        </div>
+        <p class="mono" style="color:var(--gold); font-size:var(--step--1); letter-spacing:.06em; margin:.6rem 0 1rem">Voice Media / independent consulting</p>
+        <ul class="muted" style="margin:0; padding-left:1.2em; line-height:1.7">
+          <li style="margin-bottom:0">Implemented AI-augmented workflows for SEO audits, content strategy, and analytics; translated AI capability into business outcomes for SMB clients.</li>
+        </ul>
+      </article>
+
+      <article class="filecard">
+        <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:.5rem">
+          <h3 class="display" style="font-size:var(--step-1); margin:0">Owner &amp; Operator — Luvami (Amazon private label)</h3>
+          <span class="mono muted" style="font-size:var(--step--1); letter-spacing:.08em">2016 &ndash; 2020</span>
+        </div>
+        <p class="mono" style="color:var(--gold); font-size:var(--step--1); letter-spacing:.06em; margin:.6rem 0 1rem">Las Vegas, NV</p>
+        <ul class="muted" style="margin:0; padding-left:1.2em; line-height:1.7">
+          <li style="margin-bottom:0">Built and ran an Amazon e-commerce business for four years: data-driven inventory management, pricing optimization, and digital marketing operations.</li>
+        </ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== TOOLS & TECHNOLOGIES ===== -->
+<section class="section section--paper">
+  <div class="wrap">
+    <p class="eyebrow">Tools &amp; Technologies</p>
+    <div class="grid cols-3" style="margin-top:1.3rem">
+      <div class="filecard" style="background:#FBF7EC; color:var(--paper-ink); border-left-color:var(--gold)">
+        <p class="muted" style="margin:0"><strong style="color:var(--paper-ink)">AI / LLMs:</strong> Claude, ChatGPT/GPT-4, Gemini, Grok, Microsoft Copilot &mdash; daily multi-model use, 3+ years</p>
+      </div>
+      <div class="filecard" style="background:#FBF7EC; color:var(--paper-ink); border-left-color:var(--teal)">
+        <p class="muted" style="margin:0"><strong style="color:var(--paper-ink)">Content &amp; design:</strong> Gamma, Canva, Google Slides, Articulate Rise/360, HeyGen, PowerPoint</p>
+      </div>
+      <div class="filecard" style="background:#FBF7EC; color:var(--paper-ink); border-left-color:var(--gold)">
+        <p class="muted" style="margin:0"><strong style="color:var(--paper-ink)">Productivity:</strong> Google Workspace, Microsoft 365, HubSpot CRM, GitHub</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CLOSING CTA ===== -->
+<section class="section">
+  <div class="wrap" style="text-align:center">
+    <p class="eyebrow" style="justify-content:center">The Proof</p>
+    <p class="muted" style="max-width:62ch; margin:1.3rem auto 1.6rem">The proof behind this résumé is documented in full on the portfolio &mdash; case studies, live pipeline stats, and shipped products.</p>
+    <div style="margin-bottom:1.9rem"><span class="stamp stamp--gold">Documented in Full</span></div>
+    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap">
+      <a class="btn btn--solid" href="index.html#casefiles">See the Work</a>
+      <a class="btn btn--quiet" href="one-pager.html">Capabilities One-Pager</a>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem">
+    <span>&copy; 2026 Amy Sullivan &middot; Buni LLC</span>
+    <span>Enterprise AI Consultant</span>
+  </div>
+</footer>
 
 </body>
 </html>
