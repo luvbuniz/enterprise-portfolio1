@@ -209,7 +209,11 @@ h3.display { font-size: var(--step-2); }
   cursor: help;
   box-decoration-break: clone;
 }
-.redact:hover, .filecard:hover .redact { background: transparent; color: var(--gold-2); }
+.redact:hover, .filecard:hover .redact, .redact:focus { background: transparent; color: var(--gold-2); }
+/* Touch devices can't hover — never leave real content hidden */
+@media (hover: none) {
+  .redact { background: transparent; color: inherit; cursor: auto; }
+}
 
 /* ---------- TICKER ---------- */
 .tickerbar {
