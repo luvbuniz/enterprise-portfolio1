@@ -1,586 +1,384 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workflow Blueprint: Social Media Operations Agent | Amy Sullivan</title>
-    <meta name="description" content="A bespoke workflow blueprint for LinkedIn-first B2B companies: agents research trends and traffic, draft multi-format content behind brand gates, and stage everything for human approval — nothing auto-posts. By Amy Sullivan.">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'deep': '#0a0a0b',
-                        'surface': '#141416',
-                        'elevated': '#1c1c1f',
-                        'border': 'rgba(255,255,255,0.08)',
-                        'muted': '#71717a',
-                        'gold': '#d4a853',
-                        'gold-bright': '#f0c966',
-                    },
-                    fontFamily: {
-                        'display': ['Fraunces', 'Georgia', 'serif'],
-                        'body': ['DM Sans', 'system-ui', 'sans-serif'],
-                    },
-                }
-            }
-        }
-    </script>
-
-    <style>
-        body {
-            background-color: #0a0a0b;
-            color: #e4e4e7;
-        }
-
-        .gold-gradient {
-            background: linear-gradient(135deg, #d4a853 0%, #f0c966 50%, #d4a853 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .glass {
-            background: rgba(255,255,255,0.02);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,0.06);
-        }
-
-        .card-lift {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card-lift:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(212, 168, 83, 0.08);
-        }
-
-        .hero-bg {
-            background:
-                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(212, 168, 83, 0.08), transparent),
-                radial-gradient(ellipse 60% 40% at 80% 60%, rgba(212, 168, 83, 0.04), transparent);
-        }
-
-        .grid-pattern {
-            background-image:
-                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 48px 48px;
-        }
-
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #0a0a0b; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #d4a853; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FILE 04 — Social Media Operations Agent · Amy Sullivan</title>
+<meta name="description" content="Case file: a bespoke workflow blueprint for LinkedIn-first B2B companies — agents research trends and traffic, draft multi-format content behind brand gates, and stage everything for human approval. Nothing auto-posts. By Amy Sullivan.">
+<link rel="stylesheet" href="../assets/system.css">
+<style>
+  .flowlabel { font-family: var(--mono); font-size: var(--step--1); letter-spacing:.14em; color: var(--gold); text-transform: uppercase; }
+  .arrow { font-family: var(--mono); color: var(--cream-2); text-align:center; padding:.4rem 0; }
+  .routetable { width:100%; border-collapse:collapse; text-align:left; }
+  .routetable th { font-family:var(--mono); font-weight:500; font-size:var(--step--1); letter-spacing:.14em; text-transform:uppercase; color:var(--gold); }
+  .routetable th, .routetable td { padding:.9rem 1rem .9rem 0; border-bottom:var(--rule); vertical-align:top; }
+</style>
 </head>
-<body class="font-body antialiased">
+<body>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-deep/80 backdrop-blur-md border-b border-border">
-        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="../index.html" class="font-display text-lg text-white hover:text-gold-bright transition-colors">Amy Sullivan</a>
-            <div class="flex items-center gap-6 text-sm">
-                <a href="../index.html#work" class="text-muted hover:text-white transition-colors hidden sm:block">Work</a>
-                <a href="../index.html#services" class="text-muted hover:text-white transition-colors hidden sm:block">Services</a>
-                <a href="../index.html#contact" class="px-4 py-2 bg-gold/10 text-gold border border-gold/20 hover:bg-gold/20 transition-colors">
-                    Get in Touch
-                </a>
-            </div>
-        </div>
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><span class="mark">AS</span> Amy&nbsp;Sullivan</a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../index.html#specialties">Specialties</a>
+      <a href="../index.html#casefiles">Case Files</a>
+      <a href="../index.html#contact" class="nav-cta">Get in Touch →</a>
     </nav>
+  </div>
+</header>
 
-    <main>
-        <!-- Page header -->
-        <header class="hero-bg grid-pattern border-b border-border pt-32 pb-16">
-            <div class="max-w-5xl mx-auto px-6">
-                <a href="../index.html#work" class="text-muted text-sm hover:text-white transition-colors">&larr; All work</a>
-                <p class="text-gold text-sm tracking-widest uppercase mt-6 mb-4">Workflow Blueprint</p>
-                <h1 class="font-display text-3xl md:text-5xl text-white leading-tight max-w-3xl">
-                    Social Media Operations Agent
-                </h1>
-                <p class="text-lg text-muted leading-relaxed max-w-2xl mt-6">
-                    A bespoke workflow for LinkedIn-first B2B companies: agents research your competitors,
-                    trends, and traffic, draft written, image, and video content behind hard brand gates,
-                    and stage everything in an approval queue with a scheduler &mdash; and nothing posts
-                    without a human click.
-                </p>
-                <div class="flex flex-wrap gap-3 mt-8">
-                    <span class="text-xs px-3 py-1.5 border border-gold/30 text-gold rounded-full">
-                        Blueprint &mdash; an example of the bespoke systems I design for clients
-                    </span>
-                    <span class="text-xs px-3 py-1.5 border border-border text-muted rounded-full">
-                        Architecture proven in my own production pipeline
-                    </span>
-                    <span class="text-xs px-3 py-1.5 border border-gold/30 text-gold rounded-full">
-                        Status: now being implemented for my own brand &mdash; receipts to follow
-                    </span>
-                </div>
-            </div>
-        </header>
+<!-- ===== FILE HEADER ===== -->
+<section class="section" style="padding-bottom:2rem">
+  <div class="wrap">
+    <p class="eyebrow">Case File 04 · Workflow Blueprint · Declassified</p>
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1.5rem; margin-top:.6em">
+      <h1 class="display" style="font-size:var(--step-3); max-width:20ch; margin:0">Social Media Operations Agent</h1>
+      <span class="stamp stamp--gold">Nothing Auto-Posts</span>
+    </div>
+    <p class="muted" style="max-width:66ch; margin-top:1.2rem; font-size:var(--step-1)">
+      A bespoke workflow for LinkedIn-first B2B companies: agents research your competitors,
+      trends, and traffic, draft written, image, and video content behind hard brand gates,
+      and stage everything in an approval queue with a scheduler — <span class="charm">and nothing posts without a human click.</span>
+    </p>
+    <p class="mono muted" style="font-size:var(--step--1); letter-spacing:.08em">
+      BLUEPRINT — AN EXAMPLE OF THE BESPOKE SYSTEMS I DESIGN FOR CLIENTS · ARCHITECTURE PROVEN IN MY OWN PRODUCTION PIPELINE · STATUS: NOW BEING IMPLEMENTED FOR MY OWN BRAND — RECEIPTS TO FOLLOW
+    </p>
+  </div>
+</section>
 
-        <!-- Who it's for -->
-        <section class="py-16 border-b border-border">
-            <div class="max-w-5xl mx-auto px-6">
-                <p class="text-gold text-sm tracking-widest uppercase mb-3">Who This Is For</p>
-                <h2 class="font-display text-2xl md:text-3xl text-white mb-6">Companies whose founders are the brand</h2>
-                <p class="text-muted leading-relaxed max-w-2xl mb-10">
-                    This workflow is designed for B2B companies of roughly 5&ndash;50 people whose pipeline runs on
-                    LinkedIn visibility &mdash; where consistent, on-brand content is the #1 marketing lever and
-                    nobody has time to be a content team.
-                </p>
-                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div class="glass rounded-lg p-5">
-                        <p class="text-white font-medium text-sm mb-1">Recruiting &amp; staffing agencies</p>
-                        <p class="text-muted text-xs leading-relaxed">Constant posting need, public competitor content, results tied to a measurable pipeline.</p>
-                    </div>
-                    <div class="glass rounded-lg p-5">
-                        <p class="text-white font-medium text-sm mb-1">Consultancies &amp; fractional execs</p>
-                        <p class="text-muted text-xs leading-relaxed">Thought leadership literally is the funnel &mdash; the partner's voice can't go dark for a month.</p>
-                    </div>
-                    <div class="glass rounded-lg p-5">
-                        <p class="text-white font-medium text-sm mb-1">Law, CPA &amp; advisory firms</p>
-                        <p class="text-muted text-xs leading-relaxed">Compliance requires human review before anything posts &mdash; this architecture makes that a feature, not a bottleneck.</p>
-                    </div>
-                    <div class="glass rounded-lg p-5">
-                        <p class="text-white font-medium text-sm mb-1">B2B SaaS &amp; agencies</p>
-                        <p class="text-muted text-xs leading-relaxed">Already sold on AI content &mdash; what's missing is the system that keeps it on-brand at volume.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+<div class="tickerbar" aria-hidden="true">
+  <span>◆ RESEARCH</span><span>◆ STRATEGY</span><span>◆ CREATION</span><span>◆ GATES</span><span>◆ HUMAN APPROVAL</span><span>◆ SCHEDULE</span>
+  <span>◆ RESEARCH</span><span>◆ STRATEGY</span><span>◆ CREATION</span><span>◆ GATES</span><span>◆ HUMAN APPROVAL</span><span>◆ SCHEDULE</span>
+</div>
 
-        <!-- The problem -->
-        <section class="py-20 bg-surface border-b border-border">
-            <div class="max-w-5xl mx-auto px-6">
-                <p class="text-gold text-sm tracking-widest uppercase mb-3">The Problem</p>
-                <h2 class="font-display text-2xl md:text-3xl text-white mb-6">Content is a full-time job nobody was hired for</h2>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="glass rounded-xl p-7">
-                        <p class="font-display text-lg text-white mb-3">The founder bottleneck</p>
-                        <p class="text-muted text-sm leading-relaxed">
-                            The voice that wins deals belongs to one or two busy people. Content happens in bursts
-                            when they have a free evening, then goes silent for weeks &mdash; and the algorithm
-                            punishes silence.
-                        </p>
-                    </div>
-                    <div class="glass rounded-xl p-7">
-                        <p class="font-display text-lg text-white mb-3">The agency trap</p>
-                        <p class="text-muted text-sm leading-relaxed">
-                            Outsourced content is expensive and generic &mdash; ghostwriters who don't know the
-                            business produce posts that sound like everyone else's, and every revision cycle
-                            costs days.
-                        </p>
-                    </div>
-                    <div class="glass rounded-xl p-7">
-                        <p class="font-display text-lg text-white mb-3">The AI slop risk</p>
-                        <p class="text-muted text-sm leading-relaxed">
-                            Raw AI tools generate volume without judgment: off-brand phrasing, invented claims,
-                            wrong audience. Ungated automation posting in your name is a reputation incident
-                            waiting to happen.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- ===== METADATA + WHO IT'S FOR ===== -->
+<section class="section">
+  <div class="wrap">
+    <div class="grid cols-2" style="gap:3rem; align-items:start; margin-bottom:2rem">
+      <aside class="filecard" style="border-left-color:var(--gold)">
+        <p class="mono muted" style="font-size:var(--step--1); letter-spacing:.12em; margin:0 0 1rem">FILE METADATA</p>
+        <dl style="margin:0; display:grid; grid-template-columns:auto 1fr; gap:.55rem 1.2rem; font-family:var(--mono); font-size:var(--step--1)">
+          <dt style="color:var(--gold)">TYPE</dt><dd style="margin:0">Workflow blueprint</dd>
+          <dt style="color:var(--gold)">AUDIENCE</dt><dd style="margin:0">LinkedIn-first B2B · roughly 5–50 people</dd>
+          <dt style="color:var(--gold)">PROVENANCE</dt><dd style="margin:0">Architecture proven in my own production pipeline</dd>
+          <dt style="color:var(--gold)">STATUS</dt><dd style="margin:0">Being implemented for my own brand — receipts to follow</dd>
+        </dl>
+      </aside>
+      <div>
+        <p class="eyebrow">Who This Is For</p>
+        <h2 class="display" style="font-size:var(--step-2); margin:.3em 0 .4em">Companies whose founders are the brand</h2>
+        <p class="muted" style="margin:0">
+          This workflow is designed for B2B companies of roughly 5–50 people whose pipeline runs on
+          LinkedIn visibility — where consistent, on-brand content is the #1 marketing lever and
+          nobody has time to be a content team.
+        </p>
+      </div>
+    </div>
+    <div class="grid cols-4">
+      <article class="filecard">
+        <div class="fileno">SUBJECT PROFILE 01</div>
+        <h3 class="display" style="font-size:var(--step-1); margin:.4em 0">Recruiting &amp; staffing agencies</h3>
+        <p class="muted" style="margin:0">Constant posting need, public competitor content, results tied to a measurable pipeline.</p>
+      </article>
+      <article class="filecard" style="border-left-color:var(--teal)">
+        <div class="fileno" style="color:var(--teal)">SUBJECT PROFILE 02</div>
+        <h3 class="display" style="font-size:var(--step-1); margin:.4em 0">Consultancies &amp; fractional execs</h3>
+        <p class="muted" style="margin:0">Thought leadership literally is the funnel — the partner's voice can't go dark for a month.</p>
+      </article>
+      <article class="filecard" style="border-left-color:var(--teal)">
+        <div class="fileno" style="color:var(--teal)">SUBJECT PROFILE 03</div>
+        <h3 class="display" style="font-size:var(--step-1); margin:.4em 0">Law, CPA &amp; advisory firms</h3>
+        <p class="muted" style="margin:0">Compliance requires human review before anything posts — this architecture makes that a feature, not a bottleneck.</p>
+      </article>
+      <article class="filecard">
+        <div class="fileno">SUBJECT PROFILE 04</div>
+        <h3 class="display" style="font-size:var(--step-1); margin:.4em 0">B2B SaaS &amp; agencies</h3>
+        <p class="muted" style="margin:0">Already sold on AI content — what's missing is the system that keeps it on-brand at volume.</p>
+      </article>
+    </div>
+  </div>
+</section>
 
-        <!-- Architecture -->
-        <section class="py-20">
-            <div class="max-w-5xl mx-auto px-6">
-                <p class="text-gold text-sm tracking-widest uppercase mb-3">The Workflow</p>
-                <h2 class="font-display text-2xl md:text-3xl text-white mb-6">Research &rarr; strategy &rarr; creation &rarr; gates &rarr; human approval &rarr; schedule</h2>
-                <p class="text-muted leading-relaxed max-w-2xl mb-10">
-                    The same architecture as my <a href="hermes-pipeline.html" class="text-gold hover:text-gold-bright underline underline-offset-4">production
-                    agent pipeline</a> &mdash; cheap models for volume work, strong models where quality is the
-                    bottleneck, hard gates instead of vibes, and a human holding every exit &mdash; aimed at
-                    content operations.
-                </p>
+<!-- ===== THE PROBLEM ===== -->
+<section class="section section--paper">
+  <div class="wrap">
+    <p class="eyebrow">The Problem</p>
+    <h2 class="display" style="margin:.3em 0 .4em">Content is a full-time job nobody was hired for</h2>
+    <div class="grid cols-3" style="margin-top:2rem">
+      <article class="filecard" style="background:#FBF7EC; color:var(--paper-ink); border-left-color:var(--gold)">
+        <div class="fileno" style="color:#8a6f2e">OBSTACLE 01</div>
+        <h3 class="display" style="font-size:var(--step-1); margin:.4em 0">The founder bottleneck</h3>
+        <p class="muted">The voice that wins deals belongs to one or two busy people. Content happens in bursts when they have a free evening, then goes silent for weeks — and the algorithm punishes silence.</p>
+      </article>
+      <article class="filecard" style="background:#FBF7EC; color:var(--paper-ink); border-left-color:var(--teal)">
+        <div class="fileno" style="color:#3E8E8A">OBSTACLE 02</div>
+        <h3 class="display" style="font-size:var(--step-1); margin:.4em 0">The agency trap</h3>
+        <p class="muted">Outsourced content is expensive and generic — ghostwriters who don't know the business produce posts that sound like everyone else's, and every revision cycle costs days.</p>
+      </article>
+      <article class="filecard" style="background:#FBF7EC; color:var(--paper-ink); border-left-color:var(--gold)">
+        <div class="fileno" style="color:#8a6f2e">OBSTACLE 03</div>
+        <h3 class="display" style="font-size:var(--step-1); margin:.4em 0">The AI slop risk</h3>
+        <p class="muted">Raw AI tools generate volume without judgment: off-brand phrasing, invented claims, wrong audience. Ungated automation posting in your name is a reputation incident waiting to happen.</p>
+      </article>
+    </div>
+  </div>
+</section>
 
-                <div class="glass rounded-xl p-4 md:p-8 overflow-x-auto">
-                    <svg viewBox="0 0 880 620" role="img" aria-label="Workflow diagram: competitor and trend scanning plus your traffic data feed a weekly intel brief, which drafts a content calendar approved by a human. A creation lane produces written, image, and video content, which passes hard quality gates into an approval queue. A human approves; a scheduler posts; engagement data loops back." class="w-full h-auto" style="min-width: 760px;" font-family="DM Sans, system-ui, sans-serif">
-                        <defs>
-                            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                                <path d="M 0 0 L 10 5 L 0 10 z" fill="#8a8a93"/>
-                            </marker>
-                        </defs>
+<!-- ===== THE WORKFLOW ===== -->
+<section class="section">
+  <div class="wrap">
+    <p class="eyebrow">The Workflow</p>
+    <h2 class="display" style="margin:.3em 0 .4em">Research → strategy → creation →<br>gates → human approval → schedule</h2>
+    <p class="muted" style="max-width:66ch; margin-bottom:2rem">
+      The same architecture as my <a href="hermes-pipeline.html" style="color:var(--gold-2); text-decoration:underline">production
+      agent pipeline</a> — cheap models for volume work, strong models where quality is the
+      bottleneck, hard gates instead of vibes, and a human holding every exit — aimed at
+      content operations.
+    </p>
 
-                        <!-- Input: competitor/trend scan -->
-                        <rect x="16" y="48" width="200" height="76" rx="8" fill="#1c1c1f" stroke="rgba(255,255,255,0.18)"/>
-                        <text x="32" y="72" fill="#d4a853" font-size="10" letter-spacing="2">RESEARCH LANE</text>
-                        <text x="32" y="92" fill="#e4e4e7" font-size="12.5">Competitor + trend scan</text>
-                        <text x="32" y="108" fill="#a1a1aa" font-size="10.5">public posts &#183; industry news</text>
+    <div class="grid cols-2">
+      <div class="filecard"><span class="flowlabel">Research Lane · Competitor + Trend Scan</span>
+        <p class="muted" style="margin:.5em 0 0">Public posts · industry news</p></div>
+      <div class="filecard"><span class="flowlabel">Analytics Lane · Your Traffic + Post Data</span>
+        <p class="muted" style="margin:.5em 0 0">Site analytics · engagement</p></div>
+    </div>
+    <p class="arrow" aria-hidden="true">▼ &nbsp; BRIEF &nbsp; ▼</p>
+    <div class="filecard" style="border-left-color:var(--teal)">
+      <span class="flowlabel" style="color:var(--teal)">Weekly Intel Brief · What's Working, Gaps</span>
+      <p class="muted" style="margin:.5em 0 0">Fast, cheap models condense both lanes into one brief.</p>
+    </div>
+    <p class="arrow" aria-hidden="true">▼ &nbsp; PLAN &nbsp; ▼</p>
+    <div class="grid cols-2">
+      <div class="filecard"><span class="flowlabel">Content Calendar · Week of Themes + Slots</span>
+        <p class="muted" style="margin:.5em 0 0">Drafted, not decided.</p></div>
+      <div class="filecard" style="border-left-color:var(--gold-2)"><span class="flowlabel" style="color:var(--gold-2)">Human Gate 1 · Approve the Plan</span>
+        <p class="muted" style="margin:.5em 0 0">Minutes, not hours. <strong style="color:var(--gold-2)">Strategy stays human.</strong></p></div>
+    </div>
+    <p class="arrow" aria-hidden="true">▼ &nbsp; CREATE &nbsp; ▼</p>
+    <div class="grid cols-2">
+      <div class="filecard"><span class="flowlabel">Brand Inputs · Built Once, in Discovery</span>
+        <p class="muted" style="margin:.5em 0 0">Voice guide · visual kit · banned-topics list</p></div>
+      <div class="filecard" style="border-left-color:var(--teal)"><span class="flowlabel" style="color:var(--teal)">Creation Lane · Routed by Task Value</span>
+        <p class="muted" style="margin:.5em 0 0">Written — posts · articles · carousels &nbsp;|&nbsp; Image — branded graphics on templates &nbsp;|&nbsp; Video — scripts · short-form cuts</p></div>
+    </div>
+    <p class="arrow" aria-hidden="true">▼ &nbsp; GATES &nbsp; ▼</p>
+    <div class="filecard" style="border-left-color:var(--crimson)">
+      <span class="flowlabel" style="color:var(--crimson)">Quality Gates · Hard Blocks</span>
+      <p class="muted" style="margin:.5em 0 0">
+        Brand-voice rubric · source check · banned topics · platform specs.
+        <strong style="color:var(--cream)">Fail = back to draft, never forward.</strong>
+      </p>
+    </div>
+    <p class="arrow" aria-hidden="true">▼ &nbsp; PASS &nbsp; ▼</p>
+    <div class="grid cols-2">
+      <div class="filecard" style="border-left-color:var(--gold-2)"><span class="flowlabel" style="color:var(--gold-2)">Human Gate 2 · Approval Queue</span>
+        <p class="muted" style="margin:.5em 0 0">Approve, edit, or reject. <strong style="color:var(--gold-2)">Nothing auto-posts.</strong></p></div>
+      <div class="filecard"><span class="flowlabel">Scheduler · Timed Slots per Platform</span>
+        <p class="muted" style="margin:.5em 0 0">Missed slot = skip + notify.</p></div>
+    </div>
+    <p class="mono muted" style="font-size:var(--step--1); letter-spacing:.08em; margin-top:1.6rem">
+      FEEDBACK LOOP — ENGAGEMENT DATA FLOWS BACK INTO NEXT WEEK'S INTEL BRIEF · WEEKLY DIGEST VIA TELEGRAM OR EMAIL · API BUDGET CAPS ENFORCED ON ALL KEYS
+    </p>
+  </div>
+</section>
 
-                        <!-- Input: traffic -->
-                        <rect x="16" y="148" width="200" height="76" rx="8" fill="#1c1c1f" stroke="rgba(255,255,255,0.18)"/>
-                        <text x="32" y="172" fill="#d4a853" font-size="10" letter-spacing="2">ANALYTICS LANE</text>
-                        <text x="32" y="192" fill="#e4e4e7" font-size="12.5">Your traffic + post data</text>
-                        <text x="32" y="208" fill="#a1a1aa" font-size="10.5">site analytics &#183; engagement</text>
+<!-- ===== STAGE BY STAGE ===== -->
+<section class="section section--paper">
+  <div class="wrap">
+    <p class="eyebrow">Stage by Stage</p>
+    <h2 class="display" style="margin:.3em 0 .4em">What each stage actually does</h2>
+    <div class="grid cols-2" style="margin-top:2rem">
+      <article class="filecard" style="background:#FBF7EC; color:var(--paper-ink); border-left-color:var(--gold)">
+        <div class="fileno" style="color:#8a6f2e">STAGE 01 · RESEARCH &amp; ANALYTICS</div>
+        <h3 class="display" style="font-size:var(--step-1); margin:.4em 0">Watch the field, watch your numbers</h3>
+        <p class="muted">Scheduled agent runs scan competitors' public posts and industry sources, while a second lane reads your site traffic and past post performance. Both condense into a weekly intel brief: what's landing, where the gaps are, which of your topics actually drive visits. High-volume, low-stakes work — routed to fast, cheap models.</p>
+      </article>
+      <article class="filecard" style="background:#FBF7EC; color:var(--paper-ink); border-left-color:var(--teal)">
+        <div class="fileno" style="color:#3E8E8A">STAGE 02 · STRATEGY — HUMAN GATE 1</div>
+        <h3 class="display" style="font-size:var(--step-1); margin:.4em 0">The agent drafts the calendar; you decide it</h3>
+        <p class="muted">From the brief, the agent proposes the week: themes, angles, formats, and posting slots. The owner reviews in minutes — keep, kill, or redirect. Strategy stays human; the agent just makes the decision cheap to arrive at.</p>
+      </article>
+      <article class="filecard" style="background:#FBF7EC; color:var(--paper-ink); border-left-color:var(--teal)">
+        <div class="fileno" style="color:#3E8E8A">STAGE 03 · CREATION</div>
+        <h3 class="display" style="font-size:var(--step-1); margin:.4em 0">Multi-format drafts, routed by task value</h3>
+        <p class="muted">Written posts and articles go to a strong writing model grounded in your sources and voice guide — quality is the bottleneck there. Branded graphics render onto locked visual templates. Video means scripts and short-form cut plans a phone can execute. Which model handles which task class is decided by <a href="model-benchmarking.html" style="color:#8a6f2e; text-decoration:underline">discriminator-task evaluation</a>, per client — never by brand loyalty.</p>
+      </article>
+      <article class="filecard" style="background:#FBF7EC; color:var(--paper-ink); border-left-color:var(--gold)">
+        <div class="fileno" style="color:#8a6f2e">STAGE 04 · QUALITY GATES</div>
+        <h3 class="display" style="font-size:var(--step-1); margin:.4em 0">Hard blocks, not vibes</h3>
+        <p class="muted">Every draft must clear deterministic gates before a human ever sees it: a brand-voice rubric score with anchored scales, a source check that flags any claim without grounding, the banned-topics list, and platform-spec checks (length, dimensions, hashtags). Failing drafts go back, never forward — the same soft-heuristics-fail lesson my <a href="hermes-pipeline.html" style="color:#8a6f2e; text-decoration:underline">production pipeline</a> learned the hard way.</p>
+      </article>
+      <article class="filecard" style="background:#FBF7EC; color:var(--paper-ink); border-left-color:var(--gold)">
+        <div class="fileno" style="color:#8a6f2e">STAGE 05 · APPROVAL — HUMAN GATE 2</div>
+        <h3 class="display" style="font-size:var(--step-1); margin:.4em 0">Nothing posts without a person</h3>
+        <p class="muted">Everything that survives the gates stages to an approval queue the owner can clear from a phone: approve, edit, or reject, with the draft, its sources, and its gate scores in one view. A post published in your name is a reputation-carrying action — it gets the same human finish as my own pipeline's applications. For regulated firms, this queue is the compliance record.</p>
+      </article>
+      <article class="filecard" style="background:#FBF7EC; color:var(--paper-ink); border-left-color:var(--teal)">
+        <div class="fileno" style="color:#3E8E8A">STAGE 06 · SCHEDULE &amp; LEARN</div>
+        <h3 class="display" style="font-size:var(--step-1); margin:.4em 0">Timed slots, honest failures, closed loop</h3>
+        <p class="muted">Approved content flows into per-platform slots and posts via API or scheduling tool — or stays in click-to-post mode if you want full manual control. A missed slot skips and notifies; the system never improvises. Engagement data feeds next week's intel brief, and a weekly Telegram or email digest shows what ran and what it did.</p>
+      </article>
+    </div>
+  </div>
+</section>
 
-                        <!-- Arrows to intel brief -->
-                        <line x1="216" y1="86" x2="266" y2="118" stroke="#8a8a93" stroke-width="1.2" marker-end="url(#arrow)"/>
-                        <line x1="216" y1="186" x2="266" y2="152" stroke="#8a8a93" stroke-width="1.2" marker-end="url(#arrow)"/>
+<!-- ===== MODEL ROUTING ===== -->
+<section class="section">
+  <div class="wrap">
+    <p class="eyebrow">Model Routing</p>
+    <h2 class="display" style="margin:.3em 0 .4em">Cheapest model that clears the bar,<br>per task class</h2>
+    <div style="overflow-x:auto; margin-top:1.6rem">
+      <table class="routetable">
+        <thead>
+          <tr>
+            <th scope="col">Task class</th>
+            <th scope="col">Model class</th>
+            <th scope="col">Why</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="white-space:nowrap">Flagship written content</td>
+            <td style="white-space:nowrap; color:var(--gold-2)">Frontier writing model</td>
+            <td class="muted">This is the output that carries the founder's name. Quality is the bottleneck — it gets the strongest model, grounded in sources and the voice guide.</td>
+          </tr>
+          <tr>
+            <td style="white-space:nowrap">Trend &amp; competitor scanning</td>
+            <td style="white-space:nowrap; color:var(--gold-2)">Fast extraction model</td>
+            <td class="muted">Runs constantly across many sources. Volume is the bottleneck; cheap per call matters more than eloquence.</td>
+          </tr>
+          <tr>
+            <td style="white-space:nowrap">Rubric scoring &amp; gate checks</td>
+            <td style="white-space:nowrap; color:var(--gold-2)">Mid-tier model</td>
+            <td class="muted">Judging against an anchored rubric is easier than writing — a mid-tier model clears the bar at a fraction of the cost.</td>
+          </tr>
+          <tr>
+            <td style="white-space:nowrap">Branded graphics</td>
+            <td style="white-space:nowrap; color:var(--gold-2)">Image model + locked templates</td>
+            <td class="muted">Generation happens inside brand templates — fonts, colors, and layout are constraints, not suggestions.</td>
+          </tr>
+          <tr>
+            <td style="white-space:nowrap">Scheduling &amp; digests</td>
+            <td style="white-space:nowrap; color:var(--gold-2)">No model — deterministic code</td>
+            <td class="muted">Posting at 9:15 Tuesday is not a judgment call. Anything that can be plain code, is.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="max-width:66ch; margin-top:1.4rem">
+      Specific models are chosen per client through
+      <a href="model-benchmarking.html" style="color:var(--gold-2); text-decoration:underline">discriminator-task evaluation</a>
+      on your actual content, with API budget caps on every key — so the stack is an evidence-based
+      decision that gets re-tested as models improve, not a subscription that quietly renews.
+    </p>
+  </div>
+</section>
 
-                        <!-- Intel brief -->
-                        <rect x="272" y="98" width="176" height="76" rx="8" fill="#141416" stroke="rgba(255,255,255,0.18)"/>
-                        <text x="288" y="122" fill="#d4a853" font-size="10" letter-spacing="2">WEEKLY INTEL BRIEF</text>
-                        <text x="288" y="142" fill="#e4e4e7" font-size="12.5">What's working, gaps</text>
-                        <text x="288" y="158" fill="#a1a1aa" font-size="10.5">fast, cheap models</text>
+<!-- ===== DEPLOYMENT OPTIONS ===== -->
+<section class="section section--paper">
+  <div class="wrap">
+    <p class="eyebrow">Deployment Options</p>
+    <h2 class="display" style="margin:.3em 0 .4em">Two ways to run it — including on the subscription you already pay for</h2>
+    <div class="grid cols-2" style="margin-top:2rem">
+      <article class="filecard" style="background:#FBF7EC; color:var(--paper-ink); border-left-color:var(--gold)">
+        <div class="fileno" style="color:#8a6f2e">OPTION A · LIGHTEST FOOTPRINT</div>
+        <h3 class="display" style="font-size:var(--step-1); margin:.4em 0">On your existing Claude subscription</h3>
+        <p class="muted">The entire pipeline runs as scheduled Claude Code sessions (Routines) in the cloud: an orchestrator model coordinates cheaper worker models, research runs on built-in web tools, state lives in a private repo, and drafts stage to your review queue.</p>
+        <ul class="muted" style="margin:.8em 0 0; padding-left:1.1em; line-height:1.9">
+          <li>No API keys, no per-token billing</li>
+          <li>Flat cost: the Claude plan your team already has</li>
+          <li>Subject to your plan's usage limits — fine for a weekly cadence</li>
+        </ul>
+      </article>
+      <article class="filecard" style="background:#FBF7EC; color:var(--paper-ink); border-left-color:var(--teal)">
+        <div class="fileno" style="color:#3E8E8A">OPTION B · HIGHEST HEADROOM</div>
+        <h3 class="display" style="font-size:var(--step-1); margin:.4em 0">Multi-model API build on your infrastructure</h3>
+        <p class="muted">For higher volume, non-Claude models in the routing mix, or pipelines that must run inside your own environment: an agent framework on a small server with per-call API access — the same architecture as my <a href="hermes-pipeline.html" style="color:#8a6f2e; text-decoration:underline">production pipeline</a>.</p>
+        <ul class="muted" style="margin:.8em 0 0; padding-left:1.1em; line-height:1.9">
+          <li>Any model from any provider, routed by benchmark</li>
+          <li>Scales past subscription limits</li>
+          <li>Budget caps enforced on every key</li>
+        </ul>
+      </article>
+    </div>
+    <p class="muted" style="max-width:66ch; margin-top:1.4rem">
+      Which option fits is a cost question with real numbers — posting cadence × content
+      volume × model mix — estimated in discovery, not guessed.
+    </p>
+  </div>
+</section>
 
-                        <!-- Arrow to calendar -->
-                        <line x1="448" y1="136" x2="498" y2="136" stroke="#8a8a93" stroke-width="1.2" marker-end="url(#arrow)"/>
+<!-- ===== POSITIONING ===== -->
+<section class="section">
+  <div class="wrap">
+    <p class="eyebrow">Positioning</p>
+    <h2 class="display" style="margin:.3em 0 .4em">Where this sits against the alternatives</h2>
+    <div class="grid cols-3" style="margin-top:2rem">
+      <article class="filecard">
+        <div class="fileno">VS. DOING IT YOURSELF</div>
+        <p class="muted" style="margin:.6em 0 0">The founder's judgment stays in the two places it matters — the calendar and the approval queue — and stops being spent on blank pages, resizing graphics, and remembering to post.</p>
+      </article>
+      <article class="filecard" style="border-left-color:var(--teal)">
+        <div class="fileno" style="color:var(--teal)">VS. AN AGENCY RETAINER</div>
+        <p class="muted" style="margin:.6em 0 0">The system is built once, documented, and owned by you — grounded in your sources and voice rather than a ghostwriter's best guess, with revision cycles measured in minutes in a queue.</p>
+      </article>
+      <article class="filecard">
+        <div class="fileno">VS. RAW AI TOOLS</div>
+        <p class="muted" style="margin:.6em 0 0">The difference is everything around the model: grounding, brand gates, an audit trail, budget caps, and a human between the draft and your reputation. <span class="redact">Tools generate; systems are accountable.</span></p>
+      </article>
+    </div>
+  </div>
+</section>
 
-                        <!-- Calendar draft -->
-                        <rect x="504" y="98" width="176" height="76" rx="8" fill="#141416" stroke="rgba(255,255,255,0.18)"/>
-                        <text x="520" y="122" fill="#d4a853" font-size="10" letter-spacing="2">CONTENT CALENDAR</text>
-                        <text x="520" y="142" fill="#e4e4e7" font-size="12.5">Week of themes + slots</text>
-                        <text x="520" y="158" fill="#a1a1aa" font-size="10.5">drafted, not decided</text>
+<!-- ===== HOW IT GETS BUILT + CTA ===== -->
+<section class="section section--paper">
+  <div class="wrap">
+    <p class="eyebrow">How It Gets Built</p>
+    <h2 class="display" style="margin:.3em 0 .4em">Trust is dialed up, not assumed</h2>
+    <div class="grid cols-3" style="margin-top:2rem">
+      <article class="filecard" style="background:#FBF7EC; color:var(--paper-ink); border-left-color:var(--gold)">
+        <div class="fileno" style="color:#8a6f2e">PHASE 01</div>
+        <h3 class="display" style="font-size:var(--step-1); margin:.4em 0">Discovery</h3>
+        <p class="muted">Build the brand inputs once: voice guide from your best existing content, visual kit, banned-topics list, competitor set, and the quality rubric your gates will enforce.</p>
+      </article>
+      <article class="filecard" style="background:#FBF7EC; color:var(--paper-ink); border-left-color:var(--teal)">
+        <div class="fileno" style="color:#3E8E8A">PHASE 02</div>
+        <h3 class="display" style="font-size:var(--step-1); margin:.4em 0">Pilot, heavily gated</h3>
+        <p class="muted">The pipeline runs with every gate at maximum and a human reviewing everything. Early rejections aren't failures — they're the training data that tunes the rubric and the templates.</p>
+      </article>
+      <article class="filecard" style="background:#FBF7EC; color:var(--paper-ink); border-left-color:var(--gold)">
+        <div class="fileno" style="color:#8a6f2e">PHASE 03</div>
+        <h3 class="display" style="font-size:var(--step-1); margin:.4em 0">Handoff</h3>
+        <p class="muted">Your team owns the queue, the calendar gate, and the documented system. Oversight eases where the gates have earned it — the human click on publishing never goes away.</p>
+      </article>
+    </div>
+    <p class="muted" style="max-width:66ch; margin-top:1.4rem">
+      What gets measured is instrumented from day one: hours spent per post before and after, drafts
+      produced per week, gate rejection rate, and engagement per post — so the system's value is
+      a number you read, not a claim you're asked to believe.
+    </p>
 
-                        <!-- Arrow to gate 1 -->
-                        <line x1="680" y1="136" x2="730" y2="136" stroke="#8a8a93" stroke-width="1.2" marker-end="url(#arrow)"/>
+    <div style="text-align:center; margin-top:3.5rem">
+      <span class="stamp">Cleared for Adaptation</span>
+      <h2 class="display" style="margin:.5em auto .4em; max-width:22ch">Want this built for your company?</h2>
+      <p class="muted" style="max-width:60ch; margin:0 auto 1.6rem">
+        This blueprint is the starting point — discovery tunes it to your brand, your compliance
+        needs, and the platforms your buyers actually read.
+      </p>
+      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap">
+        <a class="btn btn--solid" href="../index.html#contact">Get in Touch →</a>
+        <a class="btn btn--quiet" href="../index.html#casefiles">More Case Files</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-                        <!-- Human gate 1 -->
-                        <rect x="736" y="98" width="136" height="76" rx="8" fill="rgba(212,168,83,0.10)" stroke="rgba(212,168,83,0.6)"/>
-                        <text x="750" y="122" fill="#d4a853" font-size="10" letter-spacing="2">HUMAN GATE 1</text>
-                        <text x="750" y="142" fill="#e4e4e7" font-size="12.5">Approve the plan</text>
-                        <text x="750" y="158" fill="#a1a1aa" font-size="10.5">minutes, not hours</text>
-
-                        <!-- Arrow gate1 down to creation -->
-                        <line x1="800" y1="174" x2="620" y2="252" stroke="#8a8a93" stroke-width="1.2" marker-end="url(#arrow)"/>
-
-                        <!-- Brand inputs -->
-                        <rect x="16" y="280" width="200" height="92" rx="8" fill="#1c1c1f" stroke="rgba(255,255,255,0.18)"/>
-                        <text x="32" y="304" fill="#d4a853" font-size="10" letter-spacing="2">BRAND INPUTS</text>
-                        <text x="32" y="324" fill="#e4e4e7" font-size="12.5">Voice guide &#183; visual kit</text>
-                        <text x="32" y="340" fill="#e4e4e7" font-size="12.5">Banned-topics list</text>
-                        <text x="32" y="356" fill="#a1a1aa" font-size="10.5">built once, in discovery</text>
-
-                        <!-- Creation lane -->
-                        <rect x="272" y="256" width="416" height="104" rx="8" fill="#141416" stroke="rgba(255,255,255,0.18)"/>
-                        <text x="288" y="280" fill="#d4a853" font-size="10" letter-spacing="2">CREATION LANE &#8212; ROUTED BY TASK VALUE</text>
-                        <text x="288" y="304" fill="#e4e4e7" font-size="12">Written &#8212; posts &#183; articles &#183; carousels</text>
-                        <text x="288" y="322" fill="#e4e4e7" font-size="12">Image &#8212; branded graphics on templates</text>
-                        <text x="288" y="340" fill="#e4e4e7" font-size="12">Video &#8212; scripts &#183; short-form cuts</text>
-
-                        <!-- Arrow creation to gates -->
-                        <line x1="480" y1="360" x2="480" y2="404" stroke="#8a8a93" stroke-width="1.2" marker-end="url(#arrow)"/>
-                        <!-- Arrow brand inputs to gates -->
-                        <line x1="216" y1="330" x2="300" y2="424" stroke="#8a8a93" stroke-width="1.2" marker-end="url(#arrow)"/>
-
-                        <!-- Quality gates -->
-                        <rect x="272" y="410" width="416" height="72" rx="8" fill="#141416" stroke="rgba(212,168,83,0.55)"/>
-                        <text x="288" y="434" fill="#d4a853" font-size="10" letter-spacing="2">QUALITY GATES &#8212; HARD BLOCKS</text>
-                        <text x="288" y="454" fill="#e4e4e7" font-size="11.5">brand-voice rubric &#183; source check &#183; banned topics</text>
-                        <text x="288" y="470" fill="#e4e4e7" font-size="11.5">platform specs &#183; fail = back to draft, never forward</text>
-
-                        <!-- Arrow gates to approval -->
-                        <line x1="400" y1="482" x2="400" y2="524" stroke="#8a8a93" stroke-width="1.2" marker-end="url(#arrow)"/>
-
-                        <!-- Approval queue (human gate 2) -->
-                        <rect x="272" y="530" width="256" height="76" rx="8" fill="rgba(212,168,83,0.10)" stroke="rgba(212,168,83,0.6)"/>
-                        <text x="288" y="554" fill="#d4a853" font-size="10" letter-spacing="2">HUMAN GATE 2 &#8212; APPROVAL</text>
-                        <text x="288" y="574" fill="#e4e4e7" font-size="12.5">Approve, edit, or reject</text>
-                        <text x="288" y="590" fill="#a1a1aa" font-size="10.5">nothing auto-posts</text>
-
-                        <!-- Arrow approval to scheduler -->
-                        <line x1="528" y1="568" x2="578" y2="568" stroke="#8a8a93" stroke-width="1.2" marker-end="url(#arrow)"/>
-
-                        <!-- Scheduler -->
-                        <rect x="584" y="530" width="176" height="76" rx="8" fill="#1c1c1f" stroke="rgba(255,255,255,0.18)"/>
-                        <text x="600" y="554" fill="#d4a853" font-size="10" letter-spacing="2">SCHEDULER</text>
-                        <text x="600" y="574" fill="#e4e4e7" font-size="12.5">Timed slots per platform</text>
-                        <text x="600" y="590" fill="#a1a1aa" font-size="10.5">missed slot = skip + notify</text>
-
-                        <!-- Feedback loop caption -->
-                        <text x="16" y="420" fill="#a1a1aa" font-size="10" letter-spacing="2">FEEDBACK LOOP</text>
-                        <text x="16" y="440" fill="#a1a1aa" font-size="11">Engagement data flows back</text>
-                        <text x="16" y="456" fill="#a1a1aa" font-size="11">into next week's intel brief.</text>
-                        <text x="16" y="480" fill="#a1a1aa" font-size="11">Weekly digest via Telegram</text>
-                        <text x="16" y="496" fill="#a1a1aa" font-size="11">or email &#183; API budget caps</text>
-                        <text x="16" y="512" fill="#a1a1aa" font-size="11">enforced on all keys.</text>
-                    </svg>
-                </div>
-            </div>
-        </section>
-
-        <!-- Stage by stage -->
-        <section class="py-20 bg-surface border-y border-border">
-            <div class="max-w-5xl mx-auto px-6">
-                <p class="text-gold text-sm tracking-widest uppercase mb-3">Stage by Stage</p>
-                <h2 class="font-display text-2xl md:text-3xl text-white mb-10">What each stage actually does</h2>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="glass rounded-xl p-7">
-                        <p class="text-gold text-xs tracking-widest uppercase mb-2">1 &middot; Research &amp; analytics</p>
-                        <p class="text-white font-medium mb-2">Watch the field, watch your numbers</p>
-                        <p class="text-muted text-sm leading-relaxed">
-                            Scheduled agent runs scan competitors' public posts and industry sources, while a second
-                            lane reads your site traffic and past post performance. Both condense into a weekly intel
-                            brief: what's landing, where the gaps are, which of your topics actually drive visits.
-                            High-volume, low-stakes work &mdash; routed to fast, cheap models.
-                        </p>
-                    </div>
-                    <div class="glass rounded-xl p-7">
-                        <p class="text-gold text-xs tracking-widest uppercase mb-2">2 &middot; Strategy — human gate 1</p>
-                        <p class="text-white font-medium mb-2">The agent drafts the calendar; you decide it</p>
-                        <p class="text-muted text-sm leading-relaxed">
-                            From the brief, the agent proposes the week: themes, angles, formats, and posting slots.
-                            The owner reviews in minutes &mdash; keep, kill, or redirect. Strategy stays human;
-                            the agent just makes the decision cheap to arrive at.
-                        </p>
-                    </div>
-                    <div class="glass rounded-xl p-7">
-                        <p class="text-gold text-xs tracking-widest uppercase mb-2">3 &middot; Creation</p>
-                        <p class="text-white font-medium mb-2">Multi-format drafts, routed by task value</p>
-                        <p class="text-muted text-sm leading-relaxed">
-                            Written posts and articles go to a strong writing model grounded in your sources and voice
-                            guide &mdash; quality is the bottleneck there. Branded graphics render onto locked visual
-                            templates. Video means scripts and short-form cut plans a phone can execute. Which model
-                            handles which task class is decided by
-                            <a href="model-benchmarking.html" class="text-gold hover:text-gold-bright underline underline-offset-4">discriminator-task evaluation</a>,
-                            per client &mdash; never by brand loyalty.
-                        </p>
-                    </div>
-                    <div class="glass rounded-xl p-7">
-                        <p class="text-gold text-xs tracking-widest uppercase mb-2">4 &middot; Quality gates</p>
-                        <p class="text-white font-medium mb-2">Hard blocks, not vibes</p>
-                        <p class="text-muted text-sm leading-relaxed">
-                            Every draft must clear deterministic gates before a human ever sees it: a brand-voice
-                            rubric score with anchored scales, a source check that flags any claim without grounding,
-                            the banned-topics list, and platform-spec checks (length, dimensions, hashtags). Failing
-                            drafts go back, never forward &mdash; the same soft-heuristics-fail lesson my
-                            <a href="hermes-pipeline.html" class="text-gold hover:text-gold-bright underline underline-offset-4">production pipeline</a>
-                            learned the hard way.
-                        </p>
-                    </div>
-                    <div class="glass rounded-xl p-7">
-                        <p class="text-gold text-xs tracking-widest uppercase mb-2">5 &middot; Approval — human gate 2</p>
-                        <p class="text-white font-medium mb-2">Nothing posts without a person</p>
-                        <p class="text-muted text-sm leading-relaxed">
-                            Everything that survives the gates stages to an approval queue the owner can clear from a
-                            phone: approve, edit, or reject, with the draft, its sources, and its gate scores in one
-                            view. A post published in your name is a reputation-carrying action &mdash; it gets the
-                            same human finish as my own pipeline's applications. For regulated firms, this queue is
-                            the compliance record.
-                        </p>
-                    </div>
-                    <div class="glass rounded-xl p-7">
-                        <p class="text-gold text-xs tracking-widest uppercase mb-2">6 &middot; Schedule &amp; learn</p>
-                        <p class="text-white font-medium mb-2">Timed slots, honest failures, closed loop</p>
-                        <p class="text-muted text-sm leading-relaxed">
-                            Approved content flows into per-platform slots and posts via API or scheduling tool
-                            &mdash; or stays in click-to-post mode if you want full manual control. A missed slot
-                            skips and notifies; the system never improvises. Engagement data feeds next week's
-                            intel brief, and a weekly Telegram or email digest shows what ran and what it did.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Model routing -->
-        <section class="py-20">
-            <div class="max-w-5xl mx-auto px-6">
-                <p class="text-gold text-sm tracking-widest uppercase mb-3">Model Routing</p>
-                <h2 class="font-display text-2xl md:text-3xl text-white mb-6">Cheapest model that clears the bar, per task class</h2>
-                <div class="glass rounded-xl overflow-x-auto">
-                    <table class="w-full text-sm text-left">
-                        <thead>
-                            <tr class="border-b border-border text-muted text-xs uppercase tracking-wider">
-                                <th class="px-6 py-4 font-medium">Task class</th>
-                                <th class="px-6 py-4 font-medium">Model class</th>
-                                <th class="px-6 py-4 font-medium">Why</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="border-b border-border align-top">
-                                <td class="px-6 py-4 text-white whitespace-nowrap">Flagship written content</td>
-                                <td class="px-6 py-4 text-gold whitespace-nowrap">Frontier writing model</td>
-                                <td class="px-6 py-4 text-muted leading-relaxed">This is the output that carries the founder's name. Quality is the bottleneck &mdash; it gets the strongest model, grounded in sources and the voice guide.</td>
-                            </tr>
-                            <tr class="border-b border-border align-top">
-                                <td class="px-6 py-4 text-white whitespace-nowrap">Trend &amp; competitor scanning</td>
-                                <td class="px-6 py-4 text-gold whitespace-nowrap">Fast extraction model</td>
-                                <td class="px-6 py-4 text-muted leading-relaxed">Runs constantly across many sources. Volume is the bottleneck; cheap per call matters more than eloquence.</td>
-                            </tr>
-                            <tr class="border-b border-border align-top">
-                                <td class="px-6 py-4 text-white whitespace-nowrap">Rubric scoring &amp; gate checks</td>
-                                <td class="px-6 py-4 text-gold whitespace-nowrap">Mid-tier model</td>
-                                <td class="px-6 py-4 text-muted leading-relaxed">Judging against an anchored rubric is easier than writing &mdash; a mid-tier model clears the bar at a fraction of the cost.</td>
-                            </tr>
-                            <tr class="border-b border-border align-top">
-                                <td class="px-6 py-4 text-white whitespace-nowrap">Branded graphics</td>
-                                <td class="px-6 py-4 text-gold whitespace-nowrap">Image model + locked templates</td>
-                                <td class="px-6 py-4 text-muted leading-relaxed">Generation happens inside brand templates &mdash; fonts, colors, and layout are constraints, not suggestions.</td>
-                            </tr>
-                            <tr class="align-top">
-                                <td class="px-6 py-4 text-white whitespace-nowrap">Scheduling &amp; digests</td>
-                                <td class="px-6 py-4 text-gold whitespace-nowrap">No model &mdash; deterministic code</td>
-                                <td class="px-6 py-4 text-muted leading-relaxed">Posting at 9:15 Tuesday is not a judgment call. Anything that can be plain code, is.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <p class="text-muted text-sm leading-relaxed max-w-2xl mt-6">
-                    Specific models are chosen per client through
-                    <a href="model-benchmarking.html" class="text-gold hover:text-gold-bright underline underline-offset-4">discriminator-task evaluation</a>
-                    on your actual content, with API budget caps on every key &mdash; so the stack is an evidence-based
-                    decision that gets re-tested as models improve, not a subscription that quietly renews.
-                </p>
-            </div>
-        </section>
-
-        <!-- Deployment options -->
-        <section class="py-20 bg-surface border-y border-border">
-            <div class="max-w-5xl mx-auto px-6">
-                <p class="text-gold text-sm tracking-widest uppercase mb-3">Deployment Options</p>
-                <h2 class="font-display text-2xl md:text-3xl text-white mb-6">Two ways to run it &mdash; including on the subscription you already pay for</h2>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="glass rounded-xl p-7 border border-gold/20">
-                        <p class="text-gold text-xs tracking-widest uppercase mb-2">Option A &middot; Lightest footprint</p>
-                        <p class="text-white font-medium mb-3">On your existing Claude subscription</p>
-                        <p class="text-muted text-sm leading-relaxed mb-4">
-                            The entire pipeline runs as scheduled Claude Code sessions (Routines) in the cloud:
-                            an orchestrator model coordinates cheaper worker models, research runs on built-in web
-                            tools, state lives in a private repo, and drafts stage to your review queue.
-                        </p>
-                        <ul class="space-y-2 text-sm text-muted">
-                            <li class="flex items-center gap-2"><span class="w-1 h-1 bg-gold rounded-full"></span>No API keys, no per-token billing</li>
-                            <li class="flex items-center gap-2"><span class="w-1 h-1 bg-gold rounded-full"></span>Flat cost: the Claude plan your team already has</li>
-                            <li class="flex items-center gap-2"><span class="w-1 h-1 bg-gold rounded-full"></span>Subject to your plan's usage limits &mdash; fine for a weekly cadence</li>
-                        </ul>
-                    </div>
-                    <div class="glass rounded-xl p-7">
-                        <p class="text-gold text-xs tracking-widest uppercase mb-2">Option B &middot; Highest headroom</p>
-                        <p class="text-white font-medium mb-3">Multi-model API build on your infrastructure</p>
-                        <p class="text-muted text-sm leading-relaxed mb-4">
-                            For higher volume, non-Claude models in the routing mix, or pipelines that must run
-                            inside your own environment: an agent framework on a small server with per-call API
-                            access &mdash; the same architecture as my
-                            <a href="hermes-pipeline.html" class="text-gold hover:text-gold-bright underline underline-offset-4">production pipeline</a>.
-                        </p>
-                        <ul class="space-y-2 text-sm text-muted">
-                            <li class="flex items-center gap-2"><span class="w-1 h-1 bg-gold rounded-full"></span>Any model from any provider, routed by benchmark</li>
-                            <li class="flex items-center gap-2"><span class="w-1 h-1 bg-gold rounded-full"></span>Scales past subscription limits</li>
-                            <li class="flex items-center gap-2"><span class="w-1 h-1 bg-gold rounded-full"></span>Budget caps enforced on every key</li>
-                        </ul>
-                    </div>
-                </div>
-                <p class="text-muted text-sm leading-relaxed max-w-2xl mt-6">
-                    Which option fits is a cost question with real numbers &mdash; posting cadence &times; content
-                    volume &times; model mix &mdash; estimated in discovery, not guessed.
-                </p>
-            </div>
-        </section>
-
-        <!-- Engagement shape -->
-        <section class="py-20">
-            <div class="max-w-5xl mx-auto px-6">
-                <p class="text-gold text-sm tracking-widest uppercase mb-3">How It Gets Built</p>
-                <h2 class="font-display text-2xl md:text-3xl text-white mb-6">Trust is dialed up, not assumed</h2>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="glass rounded-xl p-7 card-lift">
-                        <div class="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center mb-4">
-                            <span class="font-display text-gold">1</span>
-                        </div>
-                        <p class="text-white font-medium mb-2">Discovery</p>
-                        <p class="text-muted text-sm leading-relaxed">
-                            Build the brand inputs once: voice guide from your best existing content, visual kit,
-                            banned-topics list, competitor set, and the quality rubric your gates will enforce.
-                        </p>
-                    </div>
-                    <div class="glass rounded-xl p-7 card-lift">
-                        <div class="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center mb-4">
-                            <span class="font-display text-gold">2</span>
-                        </div>
-                        <p class="text-white font-medium mb-2">Pilot, heavily gated</p>
-                        <p class="text-muted text-sm leading-relaxed">
-                            The pipeline runs with every gate at maximum and a human reviewing everything. Early
-                            rejections aren't failures &mdash; they're the training data that tunes the rubric and
-                            the templates.
-                        </p>
-                    </div>
-                    <div class="glass rounded-xl p-7 card-lift">
-                        <div class="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center mb-4">
-                            <span class="font-display text-gold">3</span>
-                        </div>
-                        <p class="text-white font-medium mb-2">Handoff</p>
-                        <p class="text-muted text-sm leading-relaxed">
-                            Your team owns the queue, the calendar gate, and the documented system. Oversight
-                            eases where the gates have earned it &mdash; the human click on publishing never
-                            goes away.
-                        </p>
-                    </div>
-                </div>
-                <p class="text-muted text-sm leading-relaxed max-w-2xl mt-10">
-                    What gets measured is instrumented from day one: hours spent per post before and after, drafts
-                    produced per week, gate rejection rate, and engagement per post &mdash; so the system's value is
-                    a number you read, not a claim you're asked to believe.
-                </p>
-            </div>
-        </section>
-
-        <!-- Why this beats the alternatives -->
-        <section class="py-20">
-            <div class="max-w-5xl mx-auto px-6">
-                <p class="text-gold text-sm tracking-widest uppercase mb-3">Positioning</p>
-                <h2 class="font-display text-2xl md:text-3xl text-white mb-6">Where this sits against the alternatives</h2>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="border-l-2 border-border pl-6">
-                        <p class="text-muted text-xs uppercase tracking-widest mb-3">vs. doing it yourself</p>
-                        <p class="text-white leading-relaxed text-sm">
-                            The founder's judgment stays in the two places it matters &mdash; the calendar and the
-                            approval queue &mdash; and stops being spent on blank pages, resizing graphics, and
-                            remembering to post.
-                        </p>
-                    </div>
-                    <div class="border-l-2 border-border pl-6">
-                        <p class="text-muted text-xs uppercase tracking-widest mb-3">vs. an agency retainer</p>
-                        <p class="text-white leading-relaxed text-sm">
-                            The system is built once, documented, and owned by you &mdash; grounded in your sources
-                            and voice rather than a ghostwriter's best guess, with revision cycles measured in
-                            minutes in a queue.
-                        </p>
-                    </div>
-                    <div class="border-l-2 border-border pl-6">
-                        <p class="text-muted text-xs uppercase tracking-widest mb-3">vs. raw AI tools</p>
-                        <p class="text-white leading-relaxed text-sm">
-                            The difference is everything around the model: grounding, brand gates, an audit trail,
-                            budget caps, and a human between the draft and your reputation. Tools generate; systems
-                            are accountable.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA -->
-        <section class="py-16 bg-surface border-t border-border">
-            <div class="max-w-3xl mx-auto px-6 text-center">
-                <h2 class="font-display text-2xl text-white mb-4">Want this built for your company?</h2>
-                <p class="text-muted mb-8">This blueprint is the starting point &mdash; discovery tunes it to your brand, your compliance needs, and the platforms your buyers actually read.</p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="../index.html#contact" class="px-8 py-4 bg-gold text-deep font-medium hover:bg-gold-bright transition-colors">
-                        Get in Touch
-                    </a>
-                    <a href="../index.html#work" class="px-8 py-4 border border-border hover:border-gold/40 text-white transition-colors">
-                        More Work
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="py-6 border-t border-border">
-        <div class="max-w-5xl mx-auto px-6 flex justify-between items-center text-sm text-muted">
-            <span>&copy; 2026 Amy Sullivan &middot; Buni LLC</span>
-            <span>Enterprise AI Consultant</span>
-        </div>
-    </footer>
+<footer class="foot">
+  <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem">
+    <a href="../index.html">← BACK TO FIELD OFFICE</a>
+    <span>© 2026 AMY SULLIVAN · BUNI LLC · FILE 04 · ONE REDACTION</span>
+  </div>
+</footer>
 
 </body>
 </html>
