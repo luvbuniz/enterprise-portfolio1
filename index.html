@@ -9,8 +9,16 @@
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="apple-touch-icon" href="assets/favicon-180.png">
 <link rel="stylesheet" href="assets/system.css">
+<link rel="stylesheet" href="assets/workflows.css">
+<meta property="og:title" content="Amy Sullivan — AI Workflow Systems & Enablement">
+<meta property="og:description" content="Working AI systems with guardrails and human approval gates. Interactive demos of the agent workflows I run every day.">
+<meta property="og:image" content="https://www.amysullivan.net/assets/og-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<script src="assets/site.js" defer></script>
+<script src="assets/ops-board.js" defer></script>
 </head>
 <body>
+<a class="skip" href="#top">Skip to content</a>
 
 <!-- ===== MASTHEAD ===== -->
 <header class="masthead">
@@ -19,6 +27,8 @@
     <nav class="nav" aria-label="Primary">
       <a href="#specialties">Specialties</a>
       <a href="#casefiles">Case Files</a>
+      <a href="workflows/">AI Workflows</a>
+      <a href="#shipped">Shipped Work</a>
       <a href="#about">Dossier</a>
       <a href="resume.html">Résumé</a>
       <a href="#contact" class="nav-cta">Get in Touch →</a>
@@ -29,11 +39,11 @@
 <!-- ===== HERO ===== -->
 <main id="top">
 <section class="section" style="padding-top:clamp(3rem,6vw,5rem)">
-  <div class="wrap hero-grid">
+  <div class="wrap hero-grid hero-grid--ops">
     <div>
       <p class="eyebrow">Field Office · Bradenton, FL · Est. Everywhere</p>
       <h1 class="display" style="margin:.35em 0 .05em">
-        Consider it<br><span style="color:var(--gold-2)">handled.</span>
+        Consider it<br><span class="sheen">handled.</span>
       </h1>
       <p class="charm" style="font-size:var(--step-1); margin:.6em 0 0">
         I help teams stop experimenting with AI and start using it.
@@ -47,19 +57,17 @@
       </p>
       <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:2rem">
         <a class="btn btn--solid" href="#contact">Book a Workflow Audit</a>
+        <a class="btn" href="workflows/">See the AI Workflows →</a>
         <a class="btn btn--quiet" href="#casefiles">Open the Case Files</a>
       </div>
+      <p class="mono muted" style="font-size:var(--step--1); letter-spacing:.08em; margin-top:1.4rem">▸ THE BOARD SHOWS MY REAL AGENT TEAM ROUTING SAMPLE TASKS. <a href="workflows/ai-agent-team.html#try" style="color:var(--gold-2); border-bottom:1px solid var(--gold)">DRIVE IT YOURSELF</a></p>
     </div>
-    <div style="display:grid; place-items:center">
-      <div class="gunbarrel" role="img" aria-label="Gunbarrel emblem with the initials AS">
-        <span class="iris">AS</span>
-      </div>
-    </div>
+    <div class="ops--hero" data-ops-board data-mode="auto" id="hero-ops"><span class="livedot" aria-hidden="true"></span></div>
   </div>
 
   <!-- credentials row -->
   <div class="wrap">
-    <div class="grid cols-4" style="margin-top:3.5rem; border-top:var(--rule); padding-top:2rem">
+    <div class="grid cols-4 statstrip" style="margin-top:3.5rem; border-top:var(--rule); padding-top:2rem">
       <div>
         <div class="display" style="font-size:var(--step-2); color:var(--gold-2)">75%</div>
         <p class="mono muted" style="font-size:var(--step--1); letter-spacing:.1em">PRODUCTION TIME RECOVERED</p>
@@ -87,6 +95,123 @@
   <span>◆ HONEST VERDICTS</span><span>◆ AI WORKFLOW SYSTEMS</span><span>◆ VOICE AGENTS</span>
   <span>◆ MODEL EVALUATION</span><span>◆ HONEST VERDICTS</span>
 </div>
+
+
+<!-- ===== TRY IT NOW ===== -->
+<section class="section" id="try" style="padding-block:clamp(3rem,6vw,5rem)">
+  <div class="wrap">
+    <p class="eyebrow">Live Demos · Don't Take My Word For It</p>
+    <h2 class="display" style="font-size:var(--step-2); margin:.3em 0 1.4rem">Try it now. Nothing to install.</h2>
+    <div class="tryrow">
+      <a class="filecard trycard" href="workflows/#voice-demos" data-reveal="1">
+        <span class="glyph" aria-hidden="true">🎙️</span>
+        <span class="kicker">Voice + chat agent · live</span>
+        <h3 class="display" style="font-size:var(--step-1); margin:0">Talk to an AI receptionist</h3>
+        <p class="muted" style="margin:0">Eight industry demos (HVAC, dental, roofing, and more). Call it from your browser or type.</p>
+        <span class="go">Pick an industry →</span>
+      </a>
+      <a class="filecard trycard" href="workflows/pip-ai-qa.html#try" data-reveal="2" style="border-left-color:var(--teal)">
+        <span class="glyph" aria-hidden="true">🔍</span>
+        <span class="kicker">AI QA agent · interactive</span>
+        <h3 class="display" style="font-size:var(--step-1); margin:0">See a screen through two lenses</h3>
+        <p class="muted" style="margin:0">Flip between how a 7-year-old and a QA pro see the same screen. Send findings to dev.</p>
+        <span class="go">Test the screen →</span>
+      </a>
+      <a class="filecard trycard" href="workflows/google-play-closed-testing.html#try" data-reveal="3">
+        <span class="glyph" aria-hidden="true">📈</span>
+        <span class="kicker">Launch tracker · real numbers</span>
+        <h3 class="display" style="font-size:var(--step-1); margin:0">Scrub through a 14-day launch</h3>
+        <p class="muted" style="margin:0">How a new Android app got 12+ real testers for 14 days, and why I aimed for 2×.</p>
+        <span class="go">Drag the timeline →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AI WORKFLOWS TEASER ===== -->
+<section class="section section--paper" id="workflows">
+  <div class="wrap">
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem">
+      <div>
+        <p class="eyebrow">AI Workflows · The Systems I Run Daily</p>
+        <h2 class="display" style="margin:.3em 0 .3em">Eight workflows.<br>Eight live demos.</h2>
+      </div>
+      <span class="stamp" style="margin-bottom:1rem">Human in the Loop</span>
+    </div>
+    <p class="muted" style="max-width:60ch; margin-bottom:2rem">These are the systems I run on my own work every day. Each one shows the problem, the setup, the steps, the results, and what you'd get as a client. Nothing is sent, posted, merged, or published without my approval.</p>
+    <div class="grid cols-3">
+      <a class="filecard wf-card" href="workflows/ai-agent-team.html" data-reveal="1" style="background:#FBF7EC; color:var(--paper-ink); border-left-color:var(--gold)">
+        <div class="fileno" style="color:#8a6f2e">WORKFLOW 01 · MULTI-AGENT</div>
+        <h3 class="display">My AI agent team</h3>
+        <p class="result" style="color:var(--paper-ink)">7 specialist agents plus an organizer, running daily. Nothing leaves without my OK.</p>
+        <p class="tags" style="color:#3E8E8A">Orchestration · Approval gates</p>
+        <span class="go" style="color:#8a6f2e">Route a task yourself →</span>
+      </a>
+      <a class="filecard wf-card" href="workflows/pip-ai-qa.html" data-reveal="2" style="background:#FBF7EC; color:var(--paper-ink); border-left-color:#3E8E8A">
+        <div class="fileno" style="color:#3E8E8A">WORKFLOW 02 · AI QA</div>
+        <h3 class="display">Pip, an AI QA agent</h3>
+        <p class="result" style="color:var(--paper-ink)">17 findings in one playtest. 5 fix PRs in one day. 80/80 answers graded right.</p>
+        <p class="tags" style="color:#3E8E8A">Real-device testing · Kid UX</p>
+        <span class="go" style="color:#8a6f2e">Try the two lenses →</span>
+      </a>
+      <a class="filecard wf-card" href="workflows/google-play-closed-testing.html" data-reveal="3" style="background:#FBF7EC; color:var(--paper-ink); border-left-color:var(--gold)">
+        <div class="fileno" style="color:#8a6f2e">WORKFLOW 03 · LAUNCH OPS</div>
+        <h3 class="display">Google Play closed testing</h3>
+        <p class="result" style="color:var(--paper-ink)">12 testers, 14 days, real people only. Production access about 18 days in.</p>
+        <p class="tags" style="color:#3E8E8A">Android · Tracking routines</p>
+        <span class="go" style="color:#8a6f2e">Scrub the tracker →</span>
+      </a>
+    </div>
+    <p style="margin-top:1.8rem"><a class="btn" href="workflows/" style="color:#8a6f2e; border-color:#8a6f2e">See all AI workflows →</a></p>
+  </div>
+</section>
+
+<!-- ===== SHIPPED WORK ===== -->
+<section class="section" id="shipped">
+  <div class="wrap">
+    <p class="eyebrow">Shipped Work · Games, Courses, Decks</p>
+    <h2 class="display" style="margin:.3em 0 .3em">I ship the things I design</h2>
+    <p class="muted" style="max-width:60ch; margin-bottom:2rem">Before I built AI workflows for businesses, I built learning products. They're live, and you can play them right now. <span class="charm">Same doctrine: design it carefully, direct the AI, ship something real.</span></p>
+
+    <figure class="cine" data-reveal aria-roledescription="slideshow" aria-label="Cinematic iPhone Photography deck, grades 8 to 12">
+      <div class="cine-frame">
+        <img src="assets/shipped/cinematic/slide-01.jpg" alt="Title slide: 'Your phone can shoot like a movie.' A student holds a phone on a rain-lit city street at dusk." class="on">
+        <img src="assets/shipped/cinematic/slide-02.jpg" alt="Slide: 'Sharp. Soft.' A close portrait in sharp focus against a blurred street." loading="lazy">
+        <img src="assets/shipped/cinematic/slide-03.jpg" alt="Slide: 'She is sharp. The street is a dream.' A student in focus in a blurred crowd." loading="lazy">
+        <img src="assets/shipped/cinematic/slide-04.jpg" alt="Slide: 'Tap the f. Slide for more blur.' A portrait against a softly blurred city sunset." loading="lazy">
+        <img src="assets/shipped/cinematic/slide-05.jpg" alt="Slide: 'Top right: switch to 24.' A student on a rainy night street with glowing lights." loading="lazy">
+        <img src="assets/shipped/cinematic/slide-06.jpg" alt="Slide: 'Morning. Late day. A window.' A silhouette photographing a sunset." loading="lazy">
+        <img src="assets/shipped/cinematic/slide-07.jpg" alt="Slide: 'Don't center everything. Leave space to look into.' A student at the edge of the frame on a lamp-lit avenue." loading="lazy">
+        <img src="assets/shipped/cinematic/slide-08.jpg" alt="Closing slide: 'Make something that feels like a movie.' A student in warm window light." loading="lazy">
+        <div class="cine-bars" aria-hidden="true"></div>
+      </div>
+      <figcaption class="cine-cap">
+        <div>
+          <div class="fileno" style="font-family:var(--mono); font-size:var(--step--1); color:var(--gold); letter-spacing:.14em">COURSE DECK · GRADES 8–12</div>
+          <h3 class="display" style="font-size:var(--step-1); margin:.3em 0">Cinematic iPhone Photography</h3>
+          <p class="muted" style="margin:0">A 20-slide lesson that teaches teens the film look with the phone already in their pocket: focus, blur, 24 fps, light, framing. Short lines, big images, one idea per slide.</p>
+        </div>
+        <div class="cine-ctl">
+          <button type="button" class="btn btn--quiet" id="cine-play" aria-pressed="true">❚❚ Pause</button>
+          <a class="btn" href="downloads/cinematic-iphone-photography-deck.pdf">View all 20 slides (PDF) →</a>
+        </div>
+      </figcaption>
+    </figure>
+
+    <div class="shipgrid">
+      <a class="ship" href="https://stackadoo.com" data-reveal="1"><img src="assets/shipped/stackadoo.jpg" alt="Stackadoo: a blocky 3D world where every block is earned by solving math." loading="lazy"><span class="k">3D math game · grades 2–5 · live</span><b>Stackadoo</b><span class="d">Kids solve math, reading, and spelling to earn blocks, then build whole worlds. Web + Android.</span></a>
+      <a class="ship" href="https://robotics-mission-lab-amy.luvbuniz.chatgpt.site/" data-reveal="2"><img src="assets/shipped/robot-mission-lab.jpg" alt="Robot Mission Lab: a brick robot carrying a parcel across a classroom table." loading="lazy"><span class="k">Interactive course · grades 6–8</span><b>Robot Mission Lab</b><span class="d">Eight missions, 56 interactive slides, a playable robot simulator, and a teacher guide.</span></a>
+      <a class="ship" href="workflows/kids-voice-games.html" data-reveal="3"><img src="workflows/img/moon-eye-night.jpg" alt="Moon Eye at night: a pastel block world under a starry sky." loading="lazy"><span class="k">Built by voice · my kids' ideas</span><b>Moon Eye + SkyWheels</b><span class="d">My kids described two games out loud. An AI coding agent built them. Both are playable.</span></a>
+      <a class="ship" href="https://luvbuniz.github.io/castle-math-quest/" data-reveal="1"><img src="assets/shipped/castle-math-quest.jpg" alt="Castle Math Quest: a friendly place-value challenge with hints." loading="lazy"><span class="k">Math game · no-fail design</span><b>Castle Math Quest</b><span class="d">Choose a hero, answer place-value challenges. No timers, no lost points.</span></a>
+      <a class="ship" href="https://luvbuniz.github.io/phonics-quest/" data-reveal="2"><img src="assets/shipped/phonics-forest.jpg" alt="Pip's Phonics Forest: tap the missing sound to finish each word." loading="lazy"><span class="k">Early reading · K–1</span><b>Pip's Phonics Forest</b><span class="d">Gentle, no-fail phonics practice with a calm fox guide.</span></a>
+      <a class="ship" href="https://jack-hawthorne-game.vercel.app/" data-reveal="3"><img src="assets/shipped/jack-hawthorne.jpg" alt="Jack Hawthorne's Adventure: an illustrated scene of 1851 London." loading="lazy"><span class="k">Branching history story</span><b>Jack Hawthorne's Adventure</b><span class="d">Step into 1851 London. Every choice branches the story.</span></a>
+    </div>
+    <div class="filecard" style="margin-top:1.6rem; border-left-color:var(--teal); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem">
+      <p style="margin:0">Curriculum, 78 weeks of lessons, slide decks, and the full EdTech archive.</p>
+      <a class="btn" href="edtech/">Open the EdTech portfolio →</a>
+    </div>
+  </div>
+</section>
 
 <!-- ===== SPECIALTIES ===== -->
 <section class="section section--paper" id="specialties">
@@ -179,6 +304,7 @@
   </div>
 </section>
 
+
 <!-- ===== DOSSIER / ABOUT ===== -->
 <section class="section section--paper" id="about">
   <div class="wrap grid cols-2" style="gap:3rem; align-items:start">
@@ -225,6 +351,7 @@
     </p>
     <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap">
       <a class="btn btn--solid" href="mailto:amy@amysullivan.net?subject=Workflow%20Audit&body=Hi%20Amy%20%E2%80%94%0A%0AThe%20workflow%20I%20want%20audited%3A%20%0AMy%20company%2Frole%3A%20%0AA%20few%20times%20that%20work%20for%20a%2030-minute%20call%3A%20%0A">Book the Audit →</a>
+      <a class="btn" href="https://bunillc.com/#booking-calendar">Free 15-min fit call →</a>
       <a class="btn btn--quiet" href="one-pager.html">Capabilities Brief</a>
       <a class="btn btn--quiet" href="https://www.linkedin.com/in/amy-sullivan-320865141/">LinkedIn ↗</a>
     </div>
@@ -244,5 +371,17 @@
   </div>
 </footer>
 
+<script>
+(function(){
+  var imgs = document.querySelectorAll('.cine-frame img'), btn = document.getElementById('cine-play');
+  if (!imgs.length) return;
+  var i = 0, timer = null, calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function next(){ imgs[i].classList.remove('on'); i = (i + 1) % imgs.length; imgs[i].classList.add('on'); }
+  function play(){ timer = setInterval(next, 3800); btn.textContent = '❚❚ Pause'; btn.setAttribute('aria-pressed','true'); }
+  function stop(){ clearInterval(timer); timer = null; btn.textContent = '▶ Play'; btn.setAttribute('aria-pressed','false'); }
+  btn.addEventListener('click', function(){ timer ? stop() : play(); });
+  if (calm) stop(); else play();
+})();
+</script>
 </body>
 </html>

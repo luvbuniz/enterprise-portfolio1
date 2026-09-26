@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pip, an AI QA agent · AI Workflows · Amy Sullivan</title>
+<meta name="description" content="Pip is an AI QA agent that playtests a kids&#x27; math game through two lenses, a 7-year-old first-timer and an adult QA tester, and hands screenshot-backed findings to a dev agent.">
+<meta property="og:title" content="Pip, an AI QA agent · AI Workflows · Amy Sullivan">
+<meta property="og:description" content="Pip is an AI QA agent that playtests a kids&#x27; math game through two lenses, a 7-year-old first-timer and an adult QA tester, and hands screenshot-backed findings to a dev agent.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/favicon-180.png">
+<link rel="stylesheet" href="../assets/system.css">
+<link rel="stylesheet" href="../assets/workflows.css">
+<script src="../assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><span class="mark">AS</span> Amy&nbsp;Sullivan</a>
+    <nav class="nav" aria-label="Primary">
+      <a href="../index.html#specialties">Specialties</a>
+      <a href="../index.html#casefiles">Case Files</a>
+      <a href="../workflows/" aria-current="page">AI Workflows</a>
+      <a href="../index.html#about">Dossier</a>
+      <a href="../resume.html">Résumé</a>
+      <a href="https://bunillc.com/#booking-calendar" class="nav-cta">Book a Call →</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<!-- ===== FILE HEADER ===== -->
+<section class="section" style="padding-bottom:2rem">
+  <div class="wrap">
+    <p class="eyebrow">AI Workflow 02 · AI Quality Assurance · Declassified</p>
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1.5rem; margin-top:.6em">
+      <h1 class="display" style="font-size:var(--step-3); max-width:22ch; margin:0">Pip: an AI QA agent that tests like a 7-year-old <span class="charm" style="font-size:.6em">and a teacher</span></h1>
+      <span class="stamp stamp--gold">Reports up · never ships</span>
+    </div>
+    <p class="muted wf-lede" style="margin-top:1.2rem">I built Stackadoo with AI coding agents. That's fast, but it makes bugs. Pip plays the game the way a real kid would, <span class="charm">then again the way a picky teacher would.</span></p>
+    <div class="grid cols-2" style="gap:2rem; align-items:start; margin-top:2rem">
+      <aside class="filecard" style="border-left-color:var(--gold)">
+        <p class="mono muted" style="font-size:var(--step--1); letter-spacing:.12em; margin:0 0 1rem">FILE METADATA</p>
+        <dl class="wf-meta"><dt>TYPE</dt><dd>QA workflow · in production</dd><dt>PRODUCT</dt><dd><a href="https://stackadoo.com" style="color:var(--gold-2)">Stackadoo</a> (web + Android)</dd><dt>AGENTS</dt><dd>Pip (QA), Cobble (Dev), Riley (Organizer), Cody (Coding bridge)</dd><dt>DEVICES</dt><dd>Galaxy S24 Ultra · Pixel 7 size · 768 / 1024px · iPad Mini</dd></dl>
+      </aside>
+      <div>
+        <p class="mono muted" style="font-size:var(--step--1); letter-spacing:.12em; margin:0 0 .8rem">ON THIS PAGE</p>
+        <p style="margin:0; font-family:var(--mono); font-size:var(--step--1); line-height:2.1">
+          <a href="#problem" style="color:var(--gold-2)">01 Problem</a> · <a href="#setup" style="color:var(--gold-2)">02 Setup</a> · <a href="#steps" style="color:var(--gold-2)">03 Steps</a> · <a href="#tools" style="color:var(--gold-2)">04 Tools</a><br>
+          <a href="#results" style="color:var(--gold-2)">05 Results</a> · <a href="#client" style="color:var(--gold-2)">06 What you get</a> · <a href="#try" style="color:var(--teal)">07 Try it ▸</a> · <a href="#contact" style="color:var(--gold-2)">08 Talk</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tickerbar" aria-hidden="true"><span>◆ KID LENS</span><span>◆ PRO LENS</span><span>◆ SCREENSHOTS</span><span>◆ SEVERITY</span><span>◆ FIX BRIEF</span><span>◆ RE-TEST</span><span>◆ HUMAN MERGE</span><span>◆ KID LENS</span><span>◆ PRO LENS</span><span>◆ SCREENSHOTS</span><span>◆ SEVERITY</span><span>◆ FIX BRIEF</span><span>◆ RE-TEST</span><span>◆ HUMAN MERGE</span></div>
+
+<!-- ===== 01 PROBLEM ===== -->
+<section class="section section--paper" id="problem">
+  <div class="wrap">
+    <p class="eyebrow">01 · The Problem</p>
+    <h2 class="display" style="font-size:var(--step-2); margin:.3em 0 .5em; max-width:24ch">Kids don't file bug reports. They just stop playing.</h2>
+    <div class="wf-prose" data-reveal><p>Stackadoo is a kids' math and building game (<a href="https://stackadoo.com" style="color:#8a6f2e;text-decoration:underline">stackadoo.com</a> and the Android app). I built it with AI coding agents.</p>
+<p>That's fast, but it creates bugs and UI clutter, and I couldn't replay every screen after every change.</p>
+<p>When a kid gets stuck, they don't tell you. They close the app. I needed a tester who notices what a 7-year-old notices.</p></div>
+  </div>
+</section>
+
+<!-- ===== 02 SETUP ===== -->
+<section class="section" id="setup">
+  <div class="wrap">
+    <p class="eyebrow">02 · The Setup</p>
+    <h2 class="display" style="font-size:var(--step-2); margin:.3em 0 .5em; max-width:26ch">Two lenses, every session</h2>
+    <div class="wf-prose muted"><p>Pip plays and reports, but doesn't ship code. Cobble turns findings into fix briefs and PRs and checks back with Pip. Riley routes the work. Cody hands bigger fixes to ChatGPT/Codex or Claude.</p></div>
+    <div class="wf-tablewrap"><table class="wf-table">
+        <thead><tr><th scope="col">Lens</th><th scope="col">Who Pip pretends to be</th><th scope="col">What it catches</th></tr></thead>
+        <tbody><tr><td data-label="Lens">Kid lens</td><td data-label="Who Pip pretends to be">A 7-year-old first-timer. Taps the shiny thing, skips long text, freezes if the next step isn't obvious.</td><td class="muted" data-label="What it catches">Confusion, dead ends, scary or unclear moments</td></tr><tr><td data-label="Lens">Pro lens</td><td data-label="Who Pip pretends to be">An adult QA tester and parent-teacher.</td><td class="muted" data-label="What it catches">Grading bugs, layout breaks, settings that don't stick</td></tr></tbody></table></div>
+    <ul class="wf-rules"><li>Every finding is tagged <em>kid-UX</em>, <em>adult-bug</em>, or <em>both</em>.</li><li>Focus areas: first-run scaffolding, house and stairs interiors, and pet-shop "buy everything" spam.</li><li>Report up, don't ship.</li><li><strong>No faked metrics.</strong> Pip must never pad Google Play closed-test engagement.</li><li>Hands off real players' data. My kids' account is look-only.</li></ul>
+    <figure class="wf-fig" data-reveal>
+      <img src="img/pip-qa-flow.png" alt="Flow diagram: Pip playtests with two lenses, writes findings, Cobble turns them into fix PRs, Pip re-tests, and Amy approves the merge." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true">
+      <figcaption>EXHIBIT A · THE QA LOOP</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ===== 03 STEPS ===== -->
+<section class="section section--paper" id="steps">
+  <div class="wrap">
+    <p class="eyebrow">03 · The Steps</p>
+    <h2 class="display" style="font-size:var(--step-2); margin:.3em 0 .3em">How it runs, step by step</h2>
+    <ol class="wf-steps"><li><strong>Wrote the dual-lens brief:</strong> personas, tags, and focus areas.</li><li><strong>Sep 2: a full dual-lens playtest of the web game.</strong> Setup, Math Meadow, Reading Town, building, shops, and quizzes, with screenshots of every step. <strong>17 findings</strong>, ranked by severity.</li><li><strong>Top priorities:</strong> the quiz showing "Oops" on <em>correct</em> answers (8×8→64, 5+54→59, 34−15→19), the reward screen racing the next question, a scary "Gloomies" mode that was on by default and didn't stay off, and Quit hidden behind a hamburger menu a 7-year-old won't find.</li><li><strong>Cobble turned these into fix briefs.</strong> Fixes shipped as GitHub PRs <strong>#482–#486</strong>.</li><li><strong>Pip verified on the branch before merge, then again live.</strong> It caught one case (15÷3→5) still failing live, and Cobble hardened the fix. Final live batch: <strong>80/80</strong> correct answers graded Correct. Pip also confirmed the visible Leave button, a sticky Next button, and 16 starter blocks.</li><li><strong>Moved testing onto a real phone:</strong> DroidPilot (a phone-control MCP server + Android app) on a Samsung Galaxy S24 Ultra, reached over Tailscale. Pip read the on-screen UI tree and took screenshots.</li><li><strong>Sep 7 phone-only findings:</strong> the app ran inside a browser custom tab (kids could see browser chrome), a cluttered saved-game list pushed NEW GAME below the fold, a kid could land with 0 blocks and a build tip they couldn't act on, a truncated objective tip, and unclear purple floor cubes. No crashes.</li><li><strong>Sep 12 clutter passes</strong> at Pixel 7 (412×915), 768px, 1024px, plus iPad Mini: competing hero buttons, nav wrapping, no phone menu, clipped card rails. In-game build 287 had a crowded HUD, NPC bubbles over the paint palette, an intro bubble covering controls, a busy shop, and the canvas filling half the iPad screen.</li><li><strong>Routed each clutter brief to the right fixer:</strong> Claude for the HUD, Codex for landing-page items.</li><li><strong>Ran the Play Console routines during closed testing:</strong> daily install tracker, reminders, reciprocal cleanup.</li><li><strong>QA'd partner apps too,</strong> and found real bugs for other developers: a launch crash from a test API key, a country block, and missing US units.</li></ol>
+    <figure class="wf-fig" data-reveal>
+      <img src="img/live-fix-screenshot.png" alt="Screenshot of the live Stackadoo quiz after the fix, grading a correct answer as Correct with the Leave button visible." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true">
+      <figcaption>EXHIBIT B · AFTER THE FIX, LIVE</figcaption>
+    </figure><figure class="wf-fig" data-reveal>
+      <img src="img/android-real-device.png" alt="Stackadoo running on a real Android phone during Pip&#x27;s device testing session." loading="lazy" decoding="async" onerror="this.closest('figure').hidden=true">
+      <figcaption>EXHIBIT C · REAL-DEVICE ANDROID TESTING</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ===== 04 TOOLS ===== -->
+<section class="section" id="tools" style="padding-block:clamp(2.5rem,6vw,4.5rem)">
+  <div class="wrap">
+    <p class="eyebrow">04 · Tools</p>
+    <ul class="wf-chips"><li>AI agents: QA, dev, organizer, coding bridge</li><li>Grok</li><li>Claude</li><li>ChatGPT / Codex</li><li>DroidPilot + Tailscale</li><li>Galaxy S24 Ultra (Android 16)</li><li>Chrome DevTools device mode</li><li>GitHub PRs</li><li>GitHub Pages + Cloudflare</li><li>Google Play Console</li><li>Screenshots + JSON findings files</li></ul>
+    
+  </div>
+</section>
+
+<!-- ===== 05 RESULTS ===== -->
+<section class="section section--paper" id="results">
+  <div class="wrap">
+    <p class="eyebrow">05 · Results</p>
+    <h2 class="display" style="font-size:var(--step-2); margin:.3em 0 .2em">What changed</h2>
+    <div class="wf-stats"><div class="wf-stat"><div class="n">17</div><p class="l">Findings in the first playtest</p></div><div class="wf-stat"><div class="n">5</div><p class="l">Fix PRs in one day</p></div><div class="wf-stat"><div class="n">80/80</div><p class="l">Correct answers graded correctly, live</p></div><div class="wf-stat"><div class="n">4</div><p class="l">Screen sizes checked, plus a real device</p></div><div class="wf-stat"><div class="n"><span class="fill">[fill in]</span></div><p class="l">Time saved per pass</p></div><div class="wf-stat"><div class="n"><span class="fill">[fill in]</span></div><p class="l">Parent / player feedback</p></div></div>
+    <p class="muted" style="margin-top:1.4rem; max-width:62ch">Also: scary mode removed from kid setup, and the Leave button made visible.</p>
+  </div>
+</section>
+
+<!-- ===== 06 WHAT A CLIENT GETS ===== -->
+<section class="section" id="client">
+  <div class="wrap">
+    <p class="eyebrow">06 · What a Client Gets</p>
+    <h2 class="display" style="font-size:var(--step-2); margin:.3em 0 .2em">If you hire me for this</h2>
+    <ul class="wf-gets"><li>A written tester persona and checklist fitted to your real users.</li><li>Real-device Android testing plus phone and tablet layout checks.</li><li>Screenshot-backed findings, ranked by severity.</li><li>A handoff format your developer (or AI coding agent) can act on.</li><li>A re-test after each fix.</li><li>Guardrails so testing never fakes app-store metrics or touches real user data.</li></ul>
+    
+  </div>
+</section>
+
+<!-- ===== 07 TRY IT ===== -->
+<section class="section section--paper" id="try">
+  <div class="wrap">
+    <p class="eyebrow">07 · Try It · Interactive Workflow Example</p>
+    <h2 class="display" style="font-size:var(--step-2); margin:.3em 0 .3em">Two lenses</h2>
+    <p class="muted" style="max-width:62ch">Same screen, two testers. Flip between the Kid lens and the Pro lens to see different findings. Select the ones you care about, then send them to dev to get a sample fix ticket.</p>
+    <div class="demo" id="demo">
+      <div class="demo-head"><span class="demo-tag">Try it · Two lenses</span><span class="demo-note">Mock screen · runs in your browser</span></div>
+      
+<div class="pip" id="pip">
+  <div class="chiprow" role="group" aria-label="Choose a testing lens">
+    <button type="button" class="chipbtn" data-lens="kid" aria-pressed="true">Kid lens · 7-year-old first-timer</button>
+    <button type="button" class="chipbtn chipbtn--teal" data-lens="pro" aria-pressed="false">Pro lens · QA tester / teacher</button>
+  </div>
+  <div class="pip-grid">
+    <div class="pip-screen" aria-label="Mock quiz screen with numbered findings" role="group">
+      <div class="pip-top"><span class="pip-burger" aria-hidden="true">☰</span><span>Math Meadow · Quiz</span><span class="pip-gloom">Gloomies: ON</span></div>
+      <p class="pip-instr">Read each question carefully and then choose the answer you think is correct from the four choices below, then wait for the next question.</p>
+      <div class="pip-q">8 × 8 = ?</div>
+      <div class="pip-answers"><span>56</span><span class="sel">64</span><span>72</span><span>48</span></div>
+      <div class="pip-oops">Oops! Try again</div>
+      <div class="pip-reward">⭐ +3 blocks! <small>Next question loading…</small></div>
+      <div class="pip-next">Next ▸</div>
+      <div class="pip-hotspots"></div>
+    </div>
+    <div class="pip-panel">
+      <p class="demo-note" style="margin:0 0 .6rem" id="pip-lens-label">Kid lens · tap a number or a finding to select it</p>
+      <ul class="pip-list"></ul>
+    </div>
+  </div>
+  <div style="display:flex; gap:.8rem; flex-wrap:wrap; align-items:center; margin-top:1rem">
+    <button type="button" class="btn btn--solid" id="pip-send">Send selected to dev →</button>
+    <span class="demo-note" id="pip-count">0 selected</span>
+  </div>
+  <div class="ticket wf-in" id="pip-ticket" hidden tabindex="-1"></div>
+  <p class="demo-note" style="margin-top:1rem">Mock screen rebuilt for this demo. The findings mirror the real Sep 2 playtest.</p>
+</div>
+<style>
+  .pip-grid { display:grid; grid-template-columns: minmax(0,1.05fr) minmax(0,1fr); gap:1.2rem; margin-top:1rem; }
+  @media (max-width: 820px){ .pip-grid { grid-template-columns: 1fr; } }
+  .pip-screen { position:relative; background:linear-gradient(180deg,#bfe7ff,#e8f7d8); color:#23304a; border-radius:14px; padding:.8rem .9rem 1rem; font-family:system-ui, sans-serif; min-height:380px; overflow:hidden; }
+  .pip-top { display:flex; justify-content:space-between; align-items:center; font-weight:700; font-size:.9rem; }
+  .pip-burger { font-size:1.3rem; opacity:.55; }
+  .pip-gloom { font-size:.72rem; background:#3b2a55; color:#e9dcff; padding:.2em .55em; border-radius:99px; }
+  .pip-instr { font-size:.72rem; line-height:1.35; color:#4b5568; margin:.6rem 0 .4rem; }
+  .pip-q { font-size:2rem; font-weight:800; text-align:center; margin:.4rem 0; }
+  .pip-answers { display:grid; grid-template-columns:repeat(4,1fr); gap:.4rem; }
+  .pip-answers span { background:#fff; border-radius:10px; text-align:center; padding:.55rem 0; font-weight:700; box-shadow:0 2px 0 #9fb7c9; }
+  .pip-answers .sel { outline:3px solid #2f8f5b; }
+  .pip-oops { margin:.7rem auto 0; text-align:center; background:#ffd9d4; color:#9b2a1f; font-weight:800; border-radius:10px; padding:.45rem; width:80%; }
+  .pip-reward { position:absolute; right:.8rem; top:48%; background:#fff6c9; border:2px solid #f2c94c; border-radius:12px; padding:.4rem .7rem; font-weight:800; transform:rotate(4deg); font-size:.9rem; }
+  .pip-reward small { display:block; font-weight:500; font-size:.68rem; color:#6b5a1a; }
+  .pip-next { position:absolute; left:50%; bottom:-14px; transform:translateX(-50%); background:#2f8f5b; color:#fff; font-weight:800; padding:.6rem 2rem; border-radius:12px 12px 0 0; }
+  .pip-hotspots button { position:absolute; width:34px; height:34px; border-radius:50%; border:2px solid #fff; background:#b3382e; color:#fff; font:700 .9rem/1 var(--mono); cursor:pointer; box-shadow:0 0 0 0 rgba(179,56,46,.6); animation:pulse 2s infinite; display:grid; place-items:center; }
+  .pip-hotspots button.pro { background:#27756f; }
+  .pip-hotspots button[aria-pressed="true"] { background:var(--gold); color:var(--ink); animation:none; }
+  .pip-list { list-style:none; margin:0; padding:0; display:grid; gap:.55rem; }
+  .pip-list button { width:100%; text-align:left; background:var(--ink); color:var(--cream); border:1px solid var(--ink-3); border-left:2px solid var(--ink-3); padding:.7rem .8rem; cursor:pointer; font:inherit; font-size:.92rem; line-height:1.45; }
+  .pip-list button[aria-pressed="true"] { border-left-color:var(--gold); background:#1c1a10; }
+  .pip-list .num { font-family:var(--mono); color:var(--gold); margin-right:.4rem; }
+  .pip-list .say { display:block; color:var(--cream-2); font-size:.85rem; margin-top:.25rem; }
+  .pip-list .pills { display:block; margin-top:.35rem; }
+</style>
+<script>
+(function(){
+  var F = [
+    {id:1, lens:'kid', x:14, y:62, title:'"Oops" on a right answer', say:'"I picked 64 and it said Oops. I think I\'m bad at math." A kid won\'t report it. They stop playing.', tag:'both', sev:'hi', repro:'Answer 8 × 8 with 64.', expect:'Graded Correct with a cheer.'},
+    {id:2, lens:'kid', x:7, y:6, title:'Can\'t find how to leave', say:'Quit is hidden behind the ☰ menu. A 7-year-old won\'t find it.', tag:'kid-UX', sev:'hi', repro:'Try to leave the quiz without the menu.', expect:'A visible Leave button.'},
+    {id:3, lens:'kid', x:86, y:50, title:'Reward flashes past', say:'The "+3 blocks" screen races the next question. No time to feel proud.', tag:'kid-UX', sev:'med', repro:'Answer correctly and watch the reward.', expect:'Reward stays until the kid taps Next.'},
+    {id:4, lens:'kid', x:92, y:20, title:'Wall of instructions', say:'Long text gets skipped. Then the kid freezes.', tag:'kid-UX', sev:'lo', repro:'Open any quiz.', expect:'One short line, or an icon.'},
+    {id:5, lens:'pro', x:44, y:46, title:'Grading bug on correct answers', say:'Correct answers graded wrong: 8×8→64, 5+54→59, 34−15→19.', tag:'both', sev:'hi', repro:'Enter 64, 59, and 19 for those three questions.', expect:'All three graded Correct. Re-test with a full answer batch.'},
+    {id:6, lens:'pro', x:80, y:6, title:'Scary mode on by default', say:'"Gloomies" mode is ON in kid setup, and turning it off doesn\'t stick.', tag:'both', sev:'hi', repro:'Turn Gloomies off, leave, come back.', expect:'Off by default, and the setting persists.'},
+    {id:7, lens:'pro', x:74, y:57, title:'Race: reward vs. next question', say:'The reward animation and the next-question load overlap.', tag:'adult-bug', sev:'med', repro:'Answer quickly twice in a row.', expect:'Next question waits for the reward to finish.'},
+    {id:8, lens:'pro', x:62, y:88, title:'Next button falls off the screen', say:'On small phones Next sits below the fold.', tag:'adult-bug', sev:'med', repro:'Open at 412px wide.', expect:'Sticky Next button.'}
+  ];
+  var SEV = {hi:['HIGH','pill--hi'], med:['MED','pill--med'], lo:['LOW','pill--lo']};
+  var root = document.getElementById('pip'), lens = 'kid', picked = {};
+  var hs = root.querySelector('.pip-hotspots'), list = root.querySelector('.pip-list');
+  function render(){
+    hs.innerHTML = ''; list.innerHTML = '';
+    F.filter(function(f){return f.lens===lens;}).forEach(function(f, i){
+      var n = i + 1;
+      var b = document.createElement('button'); b.type='button'; b.className = lens; b.textContent = n;
+      b.style.left = 'calc(' + f.x + '% - 17px)'; b.style.top = 'calc(' + f.y + '% - 17px)';
+      b.setAttribute('aria-label', 'Finding ' + n + ': ' + f.title);
+      b.setAttribute('aria-pressed', String(!!picked[f.id]));
+      b.onclick = function(){ toggle(f.id); };
+      hs.appendChild(b);
+      var li = document.createElement('li'), lb = document.createElement('button');
+      lb.type='button'; lb.setAttribute('aria-pressed', String(!!picked[f.id]));
+      lb.innerHTML = '<span class="num">' + n + '</span><strong>' + f.title + '</strong><span class="say">' + f.say + '</span><span class="pills"><span class="pill ' + SEV[f.sev][1] + '">' + SEV[f.sev][0] + '</span><span class="pill pill--tag">' + f.tag + '</span></span>';
+      lb.onclick = function(){ toggle(f.id); };
+      li.appendChild(lb); list.appendChild(li);
+    });
+    var c = Object.keys(picked).length;
+    root.querySelector('#pip-count').textContent = c + ' selected';
+    root.querySelector('#pip-lens-label').textContent = (lens==='kid' ? 'Kid lens · taps the shiny thing, skips long text' : 'Pro lens · QA tester and teacher') + ' · select findings to send';
+  }
+  function toggle(id){ if (picked[id]) delete picked[id]; else picked[id] = true; render(); }
+  root.querySelectorAll('[data-lens]').forEach(function(b){
+    b.onclick = function(){ lens = b.getAttribute('data-lens');
+      root.querySelectorAll('[data-lens]').forEach(function(x){ x.setAttribute('aria-pressed', String(x===b)); }); render(); };
+  });
+  root.querySelector('#pip-send').onclick = function(){
+    var t = root.querySelector('#pip-ticket');
+    var sel = F.filter(function(f){ return picked[f.id]; });
+    if (!sel.length) { sel = F.filter(function(f){ return f.lens===lens && f.sev==='hi'; }); sel.forEach(function(f){ picked[f.id]=true; }); render(); }
+    var order = {hi:0, med:1, lo:2};
+    sel.sort(function(a,b){ return order[a.sev]-order[b.sev]; });
+    var s = 'FIX BRIEF · Pip (QA) → Cobble (Dev)\nScreen: Math Meadow quiz (mock) · Build: web\n\n';
+    sel.forEach(function(f, i){
+      s += (i+1) + '. [' + SEV[f.sev][0] + '] [' + f.tag + '] ' + f.title + '\n   Repro: ' + f.repro + '\n   Expected: ' + f.expect + '\n\n';
+    });
+    s += 'Re-test plan: Pip verifies on the branch, then again live.\n✋ Merge needs Amy\u2019s approval.';
+    t.textContent = s; t.hidden = false; t.classList.remove('wf-in'); void t.offsetWidth; t.classList.add('wf-in'); t.focus({preventScroll:false});
+  };
+  render();
+})();
+</script>
+
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="contact">
+  <div class="wrap wf-cta" data-reveal>
+    <span class="stamp">For Your Eyes Only</span>
+    <h2 class="display">Want something like this for your business?</h2>
+    <p class="muted">Bring one workflow that feels slower or more manual than it should. We'll look at it together on a free 15-minute fit call, and I'll give you an honest answer, even if that answer is "don't automate this."</p>
+    <div class="btns">
+      <a class="btn btn--solid" href="https://bunillc.com/#booking-calendar">Book a free 15-minute fit call →</a>
+      <a class="btn btn--quiet" href="mailto:amy@amysullivan.net?subject=AI%20workflow%20question">Or email me</a>
+    </div>
+    <p class="sub"><a href="mailto:amy@amysullivan.net" style="color:var(--gold-2)">amy@amysullivan.net</a></p>
+  </div>
+</section>
+
+
+<section class="section" style="padding-block:2rem; border-top:var(--rule)">
+  <div class="wrap"><nav class="wf-pager" aria-label="More AI workflows"><a href="ai-agent-team.html">← My AI agent team</a><a href="google-play-closed-testing.html">Google Play closed testing →</a></nav></div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem">
+    <a href="../workflows/">← ALL AI WORKFLOWS</a>
+    <span>© 2026 AMY SULLIVAN · BUNI LLC · AI WORKFLOW 02</span>
+  </div>
+</footer>
+
+
+</body>
+</html>

@@ -252,3 +252,65 @@ h3.display { font-size: var(--step-2); }
   .masthead .wrap { flex-wrap: wrap; gap: .6rem .9rem; justify-content: center; }
   .nav { flex-wrap: wrap; gap: .8rem 1.2rem; justify-content: center; }
 }
+
+/* ============================================================
+   FIELD OFFICE v3 — polish layer (additive; no existing rule removed)
+   ============================================================ */
+
+/* film grain + a faint vignette, so the midnight reads like film, not flat */
+body::after {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 60;
+  opacity: .06; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+@media print { body::after { display: none; } }
+
+/* gold hairline under the masthead */
+.masthead { box-shadow: 0 1px 0 rgba(201,162,75,.18); }
+.nav a[aria-current="page"] { color: var(--gold-2); }
+
+/* dossier cards: pointer spotlight + a hairline that lights up */
+.filecard { position: relative; background-image: radial-gradient(420px circle at var(--mx,-999px) var(--my,-999px), rgba(228,200,126,.09), transparent 45%); }
+.filecard::after {
+  content: ""; position: absolute; inset: -1px; pointer-events: none;
+  border: 1px solid transparent; transition: border-color .25s var(--ease);
+}
+a.filecard:hover::after { border-color: rgba(201,162,75,.35); }
+
+/* ticker that ticks (site.js wraps the spans in .track) */
+.tickerbar.is-moving { padding-block: .55rem; }
+.tickerbar .track { display: inline-flex; width: max-content; animation: tick 48s linear infinite; }
+.tickerbar:hover .track { animation-play-state: paused; }
+@keyframes tick { to { transform: translateX(-50%); } }
+
+/* scroll reveals (only when JS is on) */
+.js [data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+.js [data-reveal].in { opacity: 1; transform: none; }
+.js [data-reveal="2"] { transition-delay: .08s; }
+.js [data-reveal="3"] { transition-delay: .16s; }
+
+/* gold text sheen for the one word that matters */
+.sheen {
+  background: linear-gradient(100deg, var(--gold) 20%, #fff3cf 40%, var(--gold-2) 55%, var(--gold) 80%);
+  background-size: 250% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: sheen 6s var(--ease) infinite;
+}
+@keyframes sheen { 0%, 60% { background-position: 100% 0; } 100% { background-position: -50% 0; } }
+
+/* skip link */
+.skip { position: absolute; left: -999px; top: .5rem; z-index: 99; background: var(--gold); color: var(--ink); padding: .5rem .8rem; font-family: var(--mono); }
+.skip:focus { left: .5rem; }
+
+/* v3: phones get a one-line swipeable nav instead of a three-line masthead */
+@media (max-width: 700px){
+  .masthead .wrap { justify-content: flex-start; padding-block: .6rem; }
+  .nav { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; width: 100%; gap: 1.2rem;
+         scrollbar-width: none; -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent); mask-image: linear-gradient(90deg, #000 88%, transparent); padding-bottom: .15rem; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { white-space: nowrap; }
+  .statstrip { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+}
+/* v3: anchor jumps land below the sticky masthead */
+html { scroll-padding-top: 88px; }
+.vd-frame { scroll-margin-top: 88px; }
